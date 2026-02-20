@@ -38,3 +38,29 @@ console.log("F", c * 9 / 5 + 32)
 // CHALLANGE 4
 let budget = 3900000
 let your_budget = prompt("your budget:")
+let number_budget = Number(your_budget)
+console.log(number_budget)
+
+let expence1 = prompt("give me expence!")
+let expence2 = prompt("give me expence!")
+let expence3 = prompt("give me expence!")
+
+let number_expence1 = Number(expence1)
+let number_expence2 = Number(expence2)
+let number_expence3 = Number(expence3)
+
+let total_expence = number_expence1 + number_expence2 + number_expence3
+console.log(total_expence)
+
+let remaining_budget = number_budget - total_expence
+console.log(remaining_budget)
+
+if (remaining_budget > 0) {
+    console.log("you can buy it")
+} else {
+    console.log("you can't buy it")
+}
+
+console.log(`your budget: ${number_budget}`)
+console.log(`your expence: ${total_expence}`)
+console.log(`your remaining budget: ${remaining_budget}`)
