@@ -1,4 +1,4 @@
-console.log("5" + 5); // "55"
+console.log("5" + 5); // "55" string 
 console.log("5" - 5); // 0
 console.log("5" * "2"); // 10
 console.log("10" / 2); // 5
