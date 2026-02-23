@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SubWay</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root{
+            --bg1: #0f172a;
+            --bg2: #0b1220;
+            --accent: #7c5cff;
+            --accent-2: #00d4ff;
+            --glass: rgba(255,255,255,0.06);
+            --muted: rgba(255,255,255,0.75);
+        }
+        html,body{height:100%;}
+        body{
+            margin:0;
+            font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            background: linear-gradient(135deg,var(--bg1) 0%, var(--bg2) 60%);
+            color: white;
+            -webkit-font-smoothing:antialiased;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            padding:40px 20px;
+            overflow:hidden;
+        }
+
+        /* subtle radial accents */
+        body::before, body::after{
+            content:"";
+            position: absolute;
+            filter: blur(80px);
+            opacity:0.55;
+            pointer-events:none;
+        }
+        body::before{
+            width: 520px; height:520px; left:-120px; top:-80px;
+            background: radial-gradient(circle at 30% 30%, rgba(124,92,255,0.55), transparent 40%);
+            transform: rotate(10deg);
+        }
+        body::after{
+            width:420px; height:420px; right:-100px; bottom:-60px;
+            background: radial-gradient(circle at 70% 70%, rgba(0,212,255,0.35), transparent 40%);
+        }
+
+        .card{
+            position:relative;
+            width:100%;
+            max-width:760px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius:18px;
+            padding:36px;
+            box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+            backdrop-filter: blur(8px) saturate(120%);
+        }
+
+        header{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+        h1{font-weight:700;margin:0;font-size:28px;color:var(--muted)}
+        #description{margin:0 0 20px 0;color:rgba(255,255,255,0.78);line-height:1.45}
+
+        .count-row{display:flex;align-items:center;justify-content:space-between;gap:20px}
+        .big-count{font-size:72px;font-weight:700;color:var(--accent-2);text-shadow:0 6px 18px rgba(0,0,0,0.6)}
+
+        .controls{display:flex;gap:12px;align-items:center}
+        .btn{
+            display:inline-flex;align-items:center;justify-content:center;
+            padding:12px 18px;border-radius:12px;border:none;cursor:pointer;font-size:18px;
+            color:white;background:linear-gradient(90deg,var(--accent),#5a8bff);
+            box-shadow: 0 6px 18px rgba(124,92,255,0.18);
+            transition: transform .12s ease, box-shadow .12s ease, opacity .12s ease;
+        }
+        .btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:rgba(255,255,255,0.9)}
+        .btn:active{transform:translateY(2px)}
+        .btn:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,0,0,0.45)}
+
+        @media (max-width:560px){
+            .card{padding:24px}
+            .big-count{font-size:48px}
+            h1{font-size:22px}
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card" role="main">
+        <header>
+            <h1>Subway Counter</h1>
+        </header>
+
+        <p id="description">Welcome to the Subway Counter! This application allows you to keep track of the number of people in the subway. Use the buttons below to add or remove people from the count, and refresh to reset it.</p>
+
+        <section class="count-row">
+            <div>
+                <div class="big-count" id="peopleCount">0</div>
+            </div>
+
+            <div class="controls">
+                <button id="addButton" class="btn" onclick="increase()">+</button>
+                <button id="removeButton" class="btn" onclick="decrease()">-</button>
+                <button id="refresh" class="btn secondary" onclick="refresh()">Reset</button>
+            </div>
+        </section>
+    </div>
+
+    <script src="training.js"></script>
+
+</body>
+</html>
