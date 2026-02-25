@@ -1,24 +1,406 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abdujabbor</title>
+    <title>JavaScript Challenges</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Manrope:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0f14;
+            --bg-soft: #121a24;
+            --panel: #101a26;
+            --panel-2: #162436;
+            --text: #eef4ff;
+            --muted: #9fb0c7;
+            --line: #27364a;
+            --accent: #f07f3c;
+            --accent-2: #37c7a1;
+            --shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Manrope", "Segoe UI", sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at 10% 10%, #1f3145 0%, transparent 32%),
+                radial-gradient(circle at 90% 0%, #193b3f 0%, transparent 30%),
+                var(--bg);
+            min-height: 100vh;
+            padding: 28px 18px 40px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 980px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: linear-gradient(165deg, var(--panel), var(--bg-soft));
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            padding: 20px;
+            margin-bottom: 18px;
+            box-shadow: var(--shadow);
+        }
+
+        .header-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+        }
+
+        .header-text {
+            min-width: 0;
+        }
+
+        .name {
+            margin: 0;
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 0.01em;
+        }
+
+        .role {
+            margin: 6px 0 0;
+            color: var(--muted);
+            font-size: 0.98rem;
+        }
+
+        .title {
+            margin: 16px 0 0;
+            font-family: "Space Grotesk", sans-serif;
+            font-size: clamp(1.6rem, 2vw, 2rem);
+        }
+
+        .title span {
+            color: var(--accent);
+        }
+
+        .avatar {
+            width: 112px;
+            height: 112px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #355171;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+            flex-shrink: 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .card {
+            background: linear-gradient(180deg, var(--panel), var(--panel-2));
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 14px;
+            box-shadow: var(--shadow);
+        }
+
+        .card h2 {
+            margin: 0 0 10px;
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 1.03rem;
+            font-weight: 700;
+        }
+
+        label {
+            display: block;
+            margin: 8px 0 5px;
+            font-size: 0.86rem;
+            color: var(--muted);
+        }
+
+        input[type="number"] {
+            width: 100%;
+            border: 1px solid #2c3f56;
+            border-radius: 10px;
+            background: #0c141f;
+            padding: 9px 10px;
+            font: inherit;
+            color: var(--text);
+        }
+
+        input[type="number"]:focus {
+            outline: 2px solid rgba(240, 127, 60, 0.25);
+            border-color: var(--accent);
+        }
+
+        .row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            border: 0;
+            border-radius: 10px;
+            padding: 9px 14px;
+            font-family: "Space Grotesk", sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            color: #fff;
+            background: linear-gradient(135deg, var(--accent), #ff9e4e);
+            transition: transform 0.12s ease, filter 0.12s ease;
+        }
+
+        button:hover {
+            filter: brightness(0.96);
+            transform: translateY(-1px);
+        }
+
+        .code-toggle {
+            background: linear-gradient(135deg, #2f425a, #3c5575);
+        }
+
+        .result {
+            color: var(--accent-2);
+            font-size: 0.92rem;
+            font-weight: 600;
+        }
+
+        .code-box {
+            display: none;
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #2c3f56;
+            background: #0b131e;
+            color: #c9d8ec;
+            font-family: Consolas, "Courier New", monospace;
+            font-size: 0.8rem;
+            line-height: 1.45;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+
+        .code-box.show {
+            display: block;
+        }
+
+        .tok-keyword { color: #ff9e4e; font-weight: 700; }
+        .tok-string { color: #9be08f; }
+        .tok-number { color: #73c9ff; }
+        .tok-comment { color: #8b9fb8; font-style: italic; }
+        .tok-boolean { color: #d7a9ff; }
+
+        .section {
+            margin: 4px 0 0;
+            padding: 8px 4px 2px;
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #78a4d6;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .full {
+            grid-column: 1 / -1;
+        }
+
+        @media (max-width: 760px) {
+            .header-top {
+                flex-direction: column-reverse;
+                align-items: flex-start;
+            }
+
+            .avatar {
+                width: 88px;
+                height: 88px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
-
 <body>
-    <h1>Abdujabbor Tursunov</h1>
-    <h3>Fullstack Developer</h3>
-    <p>Hi, I'm Abdujabbor Tursunov, a passionate Fullstack Developer with expertise in both frontend and backend
-        technologies. I enjoy creating dynamic and responsive web applications that provide seamless user experiences.
-        With a strong foundation in programming languages and frameworks, I am dedicated to delivering high-quality code
-        and innovative solutions.</p>
+    <main class="container">
+        <section class="header">
+            <div class="header-top">
+                <div class="header-text">
+                    <h1 class="name">Abdujabbor Tursunov</h1>
+                    <p class="role">Full Stack Developer | Special Code: 25-102</p>
+                    <p class="title">Java<span>Script</span> Challenges</p>
+                </div>
+                <img class="avatar" src="https://www.github.com/abdujabboraka.png" alt="Abdujabbor Tursunov profile photo">
+            </div>
+        </section>
 
-    <script src="app.js">
+        <section class="grid">
+            <article class="card">
+                <h2>Celsius to Fahrenheit</h2>
+                <label for="cInput">Celsius</label>
+                <input id="cInput" type="number" placeholder="e.g. 25">
+                <div class="row">
+                    <button id="cBtn">Convert</button>
+                    <button class="code-toggle" data-function="celsiusToFahrenheit" data-target="codeC">Show Code</button>
+                    <div id="cResult" class="result">Result: -</div>
+                </div>
+                <pre id="codeC" class="code-box"></pre>
+            </article>
 
+            <article class="card">
+                <h2>Budget Checker</h2>
+                <label for="budget">Budget</label>
+                <input id="budget" type="number" placeholder="your budget">
+                <label for="e1">Expense 1</label>
+                <input id="e1" type="number" placeholder="expense 1">
+                <label for="e2">Expense 2</label>
+                <input id="e2" type="number" placeholder="expense 2">
+                <label for="e3">Expense 3</label>
+                <input id="e3" type="number" placeholder="expense 3">
+                <div class="row">
+                    <button id="bBtn">Check</button>
+                    <button class="code-toggle" data-function="budgetAnalysis" data-target="codeB">Show Code</button>
+                    <div id="bResult" class="result">Result: -</div>
+                </div>
+                <pre id="codeB" class="code-box"></pre>
+            </article>
+
+            <h1 class="section full">
+                OPERATOR SECTION
+            </h1>
+
+            <article class="card">
+                <h2>Count Odd / Even Digits</h2>
+                <label for="countN">Enter number</label>
+                <input id="countN" type="number" placeholder="e.g. 12053">
+                <div class="row">
+                    <button id="cntBtn">Count</button>
+                    <button class="code-toggle" data-function="countOddEven" data-target="codeCnt">Show Code</button>
+                    <div id="cntResult" class="result">Result: -</div>
+                </div>
+                <pre id="codeCnt" class="code-box"></pre>
+            </article>
+
+            <article class="card">
+                <h2>Reverse Number</h2>
+                <label for="revN">Number</label>
+                <input id="revN" type="number" placeholder="e.g. 1234">
+                <div class="row">
+                    <button id="revBtn">Reverse</button>
+                    <button class="code-toggle" data-function="reverseNumber" data-target="codeRev">Show Code</button>
+                    <div id="revResult" class="result">Result: -</div>
+                </div>
+                <pre id="codeRev" class="code-box"></pre>
+            </article>
+
+            <article class="card full">
+                <h2>Largest Digit</h2>
+                <label for="lgN">Number</label>
+                <input id="lgN" type="number" placeholder="e.g. 5382">
+                <div class="row">
+                    <button id="lgBtn">Find</button>
+                    <button class="code-toggle" data-function="largestDigit" data-target="codeLg">Show Code</button>
+                    <div id="lgResult" class="result">Result: -</div>
+                </div>
+                <pre id="codeLg" class="code-box"></pre>
+            </article>
+        </section>
+
+  <h1 class="section full">
+                TO BE CONTINUED...
+            </h1>
+<p>Ai styled</p>
+    </main>
+
+    <script src="app.js"></script>
+    <script>
+        document.getElementById("cBtn").addEventListener("click", () => {
+            const v = document.getElementById("cInput").value;
+            const f = window.celsiusToFahrenheit(v);
+            document.getElementById("cResult").textContent = f === null ? "Invalid input" : `Result: ${f.toFixed(2)} deg F`;
+        });
+
+        document.getElementById("bBtn").addEventListener("click", () => {
+            const b = document.getElementById("budget").value;
+            const e1 = document.getElementById("e1").value;
+            const e2 = document.getElementById("e2").value;
+            const e3 = document.getElementById("e3").value;
+            const r = window.budgetAnalysis(b, e1, e2, e3);
+            document.getElementById("bResult").textContent = `Budget: ${r.budget} - Expenses: ${r.total} - Remaining: ${r.remaining} - ${r.canBuy ? "Can buy" : "Cannot buy"}`;
+        });
+
+        document.getElementById("cntBtn").addEventListener("click", () => {
+            const n = document.getElementById("countN").value;
+            const res = window.countOddEven(n);
+            document.getElementById("cntResult").textContent = `Odd: ${res.odd} - Even: ${res.even}`;
+        });
+
+        document.getElementById("revBtn").addEventListener("click", () => {
+            const n = document.getElementById("revN").value;
+            const r = window.reverseNumber(n);
+            document.getElementById("revResult").textContent = `Reversed: ${r}`;
+        });
+
+        document.getElementById("lgBtn").addEventListener("click", () => {
+            const n = document.getElementById("lgN").value;
+            const r = window.largestDigit(n);
+            document.getElementById("lgResult").textContent = `Largest digit: ${r}`;
+        });
+
+        document.querySelectorAll(".code-toggle").forEach((button) => {
+            const escapeHtml = (text) =>
+                text
+                    .replace(/&/g, "&amp;")
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;");
+
+            const highlightJs = (code) => {
+                let html = escapeHtml(code);
+                html = html.replace(/(\/\/.*$)/gm, '<span class="tok-comment">$1</span>');
+                html = html.replace(/("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')/g, '<span class="tok-string">$1</span>');
+                html = html.replace(/\b(\d+)\b/g, '<span class="tok-number">$1</span>');
+                html = html.replace(/\b(true|false|null|undefined)\b/g, '<span class="tok-boolean">$1</span>');
+                html = html.replace(/\b(function|return|const|let|var|if|else|while|for|break|continue|new)\b/g, '<span class="tok-keyword">$1</span>');
+                return html;
+            };
+
+            button.addEventListener("click", () => {
+                const functionName = button.dataset.function;
+                const targetId = button.dataset.target;
+                const codeElement = document.getElementById(targetId);
+                const fn = window[functionName];
+
+                if (!codeElement) return;
+
+                if (typeof fn !== "function") {
+                    codeElement.textContent = `Function "${functionName}" not found in app.js`;
+                    codeElement.classList.add("show");
+                    button.textContent = "Hide Code";
+                    return;
+                }
+
+                if (codeElement.classList.contains("show")) {
+                    codeElement.classList.remove("show");
+                    button.textContent = "Show Code";
+                    return;
+                }
+
+                codeElement.innerHTML = highlightJs(fn.toString());
+                codeElement.classList.add("show");
+                button.textContent = "Hide Code";
+            });
+        });
     </script>
-
 </body>
-
 </html>
