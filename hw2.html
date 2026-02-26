@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+            margin: 0;
+            background: gray;
+        }
+
+        button {
+            padding: 30px 80px;
+            font-size: 18px;
+            color: white;
+
+            background: rgba(255, 255, 255, 0.15); 
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
+            scale: 0.98;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="startAction()">start the action</button>
+    <script>
+        function startAction() {
+            let choice = Number(prompt(
+                "Choose a challenge:\n" +
+                "1 - Count even & odd numbers\n" +
+                "2 - Reverse a number\n" +
+                "3 - Largest digit\n" +
+                "4 - Sum of digits\n" +
+                "5 - Count digits"
+            ));
+
+            switch (choice) {
+
+                case 1: {
+                    let n = Number(prompt("Enter a number:"));
+                    let even = 0, odd = 0;
+
+                    for (let i = 1; i <= n; i++) {
+                        if (i % 2 === 0) even++;
+                        else odd++;
+                    }
+
+                    console.log("Even numbers:", even);
+                    console.log("Odd numbers:", odd);
+                    break;
+                }
+
+                case 2: {
+                    let n = Number(prompt("Enter a number:"));
+                    let reversed = 0;
+
+                    while (n > 0) {
+                        reversed = reversed * 10 + (n % 10);
+                        n = Math.floor(n / 10);
+                    }
+
+                    console.log("Reversed number:", reversed);
+                    break;
+                }
+
+                case 3: {
+                    let n = Number(prompt("Enter a number:"));
+                    let largest = 0;
+
+                    while (n > 0) {
+                        let digit = n % 10;
+                        if (digit > largest) largest = digit;
+                        n = Math.floor(n / 10);
+                    }
+
+                    console.log("Largest digit:", largest);
+                    break;
+                }
+
+                case 4: {
+                    let n = Number(prompt("Enter a number:"));
+                    let sum = 0;
+
+                    while (n > 0) {
+                        sum += n % 10;
+                        n = Math.floor(n / 10);
+                    }
+
+                    console.log("Sum of digits:", sum);
+                    break;
+                }
+
+                case 5: {
+                    let n = Number(prompt("Enter a number:"));
+                    let count = 0;
+
+                    while (n > 0) {
+                        count++;
+                        n = Math.floor(n / 10);
+                    }
+
+                    console.log("Number of digits:", count);
+                    break;
+                }
+
+                default:
+                    console.log("Invalid choice");
+            }
+        }
+    </script>
+</body>
+</html>
