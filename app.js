@@ -18,74 +18,74 @@
 // Array().greet();
 
 
-function challenge2(n) {
-  let reversed = 0;
+// function challenge2(n) {
+//   let reversed = 0;
 
-  while (n > 0) {
-    let lastDigit = n % 10;
-    reversed = reversed * 10 + lastDigit;
-    n = Math.floor(n / 10);
-  }
+//   while (n > 0) {
+//     let lastDigit = n % 10;
+//     reversed = reversed * 10 + lastDigit;
+//     n = Math.floor(n / 10);
+//   }
 
-  console.log("\nChallenge 2:");
-  console.log("Reversed number:", reversed);
-}
+//   console.log("\nChallenge 2:");
+//   console.log("Reversed number:", reversed);
+// }
 
-challenge2(1234);
-
-
-function challenge3(n) {
-  let largest = 0;
-
-  while (n > 0) {
-    let lastDigit = n % 10;
-    if (lastDigit > largest) {
-      largest = lastDigit;
-    }
-    n = Math.floor(n / 10);
-  }
-
-  console.log("\nChallenge 3:");
-  console.log("Largest digit:", largest);
-}
-
-challenge3(3947);
+// challenge2(1234);
 
 
-function challenge4(n) {
-  let sum = 0;
+// function challenge3(n) {
+//   let largest = 0;
 
-  while (n > 0) {
-    let lastDigit = n % 10;
-    sum = sum + lastDigit;
-    n = Math.floor(n / 10);
-  }
+//   while (n > 0) {
+//     let lastDigit = n % 10;
+//     if (lastDigit > largest) {
+//       largest = lastDigit;
+//     }
+//     n = Math.floor(n / 10);
+//   }
 
-  console.log("\nChallenge 4:");
-  console.log("Sum of digits:", sum);
-}
+//   console.log("\nChallenge 3:");
+//   console.log("Largest digit:", largest);
+// }
 
-challenge4(1234);
-
-
-function challenge5(n) {
-  let count = 0;
-
-  while (n > 0) {
-    n = Math.floor(n / 10);
-    count++;
-  }
-
-  console.log("\nChallenge 5:");
-  console.log("Number of digits:", count);
-}
-
-challenge5(98765);
+// challenge3(3947);
 
 
-//homework 
+// function challenge4(n) {
+//   let sum = 0;
+
+//   while (n > 0) {
+//     let lastDigit = n % 10;
+//     sum = sum + lastDigit;
+//     n = Math.floor(n / 10);
+//   }
+
+//   console.log("\nChallenge 4:");
+//   console.log("Sum of digits:", sum);
+// }
+
+// challenge4(1234);
+
+
+// function challenge5(n) {
+//   let count = 0;
+
+//   while (n > 0) {
+//     n = Math.floor(n / 10);
+//     count++;
+//   }
+
+//   console.log("\nChallenge 5:");
+//   console.log("Number of digits:", count);
+// }
+
+// challenge5(98765);
+
+
+
 // controle statements 
-// TASK 1 — Largest of two numbers
+//TASK 1 — Largest of two numbers
 
 let a = 10;
 let b = 25;
@@ -95,6 +95,7 @@ if (a > b) {
 } else {
     console.log("Task 1: Largest number is " + b);
 }
+
 
 // TASK 2 — Find the sign of 3 numbers
 let x = 3;
@@ -161,11 +162,11 @@ for (let num = 100; num <= 999; num++) {
         sum += digit ** 3;
         temp = Math.floor(temp / 10);
     }
-
-    if (sum === num) {
+        if (sum === num) {
         console.log("Task 6: Armstrong number =", num);
     }
 }
+
 // TASK 7 — Average Marks & Grade
 let marks = [80, 77, 88, 95, 68];
 let total = 0;
@@ -185,3 +186,4 @@ else grade = "A";
 
 console.log("Task 7: Average =", average);
 console.log("Task 7: Grade =", grade);
+
