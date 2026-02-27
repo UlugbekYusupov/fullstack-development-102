@@ -1,3 +1,4 @@
+
 let number = Number(prompt("Enter a number:"));
 let reversed = 0;
 
@@ -47,4 +48,5 @@ while (number2 > 0) {
 }
 
 console.log("Total digits:", count);
+
 
