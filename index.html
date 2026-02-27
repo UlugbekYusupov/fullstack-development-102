@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dark Minimal Brutal Button</title>
+    <title>Dark Minimal Brutal Buttons</title>
     <style>
         body {
             margin: 0;
@@ -29,23 +29,17 @@
             outline: none;
             overflow: hidden;
             z-index: 1;
-            
-            transition: color 0.3s ease;
+            transition: color 0.3s ease, transform 0.1s ease;
         }
 
         .dark-minimal-btn::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             background-color: #ffffff;
             z-index: -1;
-            
             transform: scaleX(0);
             transform-origin: right;
-            
             transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
         }
 
@@ -61,12 +55,23 @@
         .dark-minimal-btn:active {
             transform: scale(0.96);
         }
+        .next-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
     </style>
 </head>
 <body>
-    
-    <button class="dark-minimal-btn" onclick="startProcess()">Start Process</button>
-    <script src="script.js"></script>
+    <button onclick="location.href='/homework2/hw2.html'" class="dark-minimal-btn next-btn">
+        Go to next class
+    </button>
+
+    <button class="dark-minimal-btn" onclick="startProcess()">
+        Start Process
+    </button>
+
+    <script src="/script.js"></script>
 
 </body>
 </html>

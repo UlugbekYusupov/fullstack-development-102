@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Minimal Brutal Buttons</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: #0a0a0a;
+            font-family: 'Courier New', Courier, monospace;
+            color: white;
+        }
+
+        .dark-minimal-btn {
+            position: relative;
+            padding: 18px 36px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #ffffff;
+            background: transparent;
+            border: 2px solid #ffffff;
+            cursor: pointer;
+            outline: none;
+            overflow: hidden;
+            z-index: 1;
+            transition: color 0.3s ease, transform 0.1s ease;
+            margin-top: 20px;
+        }
+
+        .dark-minimal-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: #ffffff;
+            z-index: -1;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+        }
+
+        .dark-minimal-btn:hover {
+            color: #0a0a0a;
+        }
+
+        .dark-minimal-btn:hover::before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .dark-minimal-btn:active {
+            transform: scale(0.96);
+        }
+
+        #output {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-top: 30px;
+            min-height: 1.5em;
+        }
+    </style>
+</head>
+<body>
+
+    <button class="dark-minimal-btn" onclick="startProcess()">
+        Start Process
+    </button>
+    
+    <div id="output"></div>
+
+    <script>
+        function startProcess() {
+            const outputDiv = document.getElementById("output");
+            
+            let choice = Number(prompt(
+                "Choose a challenge:\n" +
+                "1 - Finding largest\n" +
+                "2 - Finding sign\n"+
+                "3 - Sorting system\n"+
+                "4 - odd, even numbers\n"+
+                "5 - Fizz , Buzzer \n" +
+                "6 - Armstrong\n"+
+                "7 - Scoring"
+            ));
+
+            if (!choice) return; 
+
+            switch (choice) {
+                case 1: {
+                    let num1 = Number(prompt("Enter first number:"));
+                    let num2 = Number(prompt("Enter second number:"));
+                    let num3 = Number(prompt("Enter third number:"));
+
+                    let largest;
+                    if (num1 === num2 && num2 === num3) {
+                        outputDiv.textContent = "All numbers are equal.";
+                    } else {
+                        largest = Math.max(num1, num2, num3);
+                        outputDiv.textContent = `The largest number: ${largest}`;
+                    }
+                    break;
+                }
+
+                case 2: {
+                    let a = Number(prompt("Enter first number:"));
+                    let b = Number(prompt("Enter second number:"));
+                    let c = Number(prompt("Enter third number:"));
+                    let product = a * b * c;
+                    let sign = (product > 0) ? "+" : (product < 0) ? "-" : "0";
+                    outputDiv.textContent = "The sign of the product is: " + sign;
+                    break;
+                }
+
+                case 3 : {
+                    let num1 = Number(prompt("Enter 1 number : "));
+                    let num2 = Number(prompt("Enter 2 number : "));
+                    let num3 = Number(prompt("Enter 3 number : "));
+                    let max = num1;
+                    let med = num1;
+                    let min = num1;
+                    if (num1 >= num2 && num1 >= num3) max = num1;
+                    else if (num2 >= num1 && num2 >= num3) max = num2;
+                    else max = num3;
+
+                    if (num1 <= num2 && num1 <= num3) min = num1;
+                    else if (num2 <= num1 && num2 <= num3) min = num2;
+                    else min = num3;
+                    med = (num1 + num2 + num3) - max - min;
+                    let result = `The sorted element : ${max} ,  ${med} , ${min}`
+                    outputDiv.textContent = result
+                    break;
+                }
+                case 4 : {
+                    let n = Number(prompt("Enter starting point : "));
+                    let m = Number(prompt("Enter ending point : "));
+                    let odd = 0;
+                    let even = 0;
+                    for (let i = n ; i <= m ; i++){
+                        if (i % 2 === 0) { 
+                            even++;
+                        }
+                        else {
+                            odd++;
+                        }
+                    }
+                    let result = `The even numbers : ${even}.\nThe odd numbers : ${odd}`
+                    outputDiv.textContent = result;
+                    break;
+                }
+                case 5 : {
+                    let threeMltp = 0;
+                    let fiveMltp  = 0;
+                    let bothMltp  = 0;
+                    let norm = 0;
+                    for (let i = 1 ; i <= 100 ; i++){
+                        if (i % 3 === 0 && i % 5 === 0){
+                            bothMltp++;
+                            console.log("FizzBuzz");
+                        }
+                        else if (i % 3 ===0){
+                            threeMltp++;
+                            console.log("Fizz");
+                        }
+                        else if (i % 5 ===0){
+                            fiveMltp++;
+                            console.log("Buzz");
+                        }
+                        else{
+                            console.log(i);
+                        }
+                    }
+                    let result = `There are ${threeMltp} "Fizz" and ${fiveMltp} "Buzz" and finally ${bothMltp} "FizzBuzz"`;
+                    outputDiv.textContent = result;
+                    break;
+                }
+                case 6 : {
+                    let result = [];
+                    for (let i = 100 ; i <= 999 ; i++){
+                        let sum = 0;
+                        let temp = i;
+                        while (temp > 0){
+                            let digit = temp % 10;
+                            sum += digit ** 3;
+                            temp = Math.floor(temp / 10)
+                        }
+                        if (sum === i){
+                           console.log(i);
+                           result += ` ${i} `;
+                           outputDiv.textContent = result;
+                        }
+                    }
+                    break;
+                }
+                case 7 : {
+                    const students = {
+                        "David" : 80,
+                        "Vinoth" : 77,
+                        "Divya" : 88,
+                        "Ishitma" : 95,
+                        "Thomas" : 68,
+                    }
+                    let table = `
+                    <table border="1" cellpadding="10" cellspacing="0">
+                        <tr>
+                            <th>Name</th>
+                            <th>Grade</th>
+                        </tr>
+                    `
+                    for (let name in students){
+                        let score = students[name];
+                        let grade = "\n"
+                        if (score < 60) {
+                            grade = "F";
+                        } else if (score < 70) {
+                            grade = "D";
+                        } else if (score < 80) {
+                            grade = "C";
+                        } else if (score < 90) {
+                            grade = "B";
+                        } else {
+                            grade = "A";
+                        }
+                        table += `
+                        <tr>
+                            <td>${name}</td>
+                            <td>${grade}</td>
+                        </tr>`;
+                    }
+                    table += `</table>`;
+                    outputDiv.innerHTML = table;
+                    break;
+                }
+                default:
+                    alert("No valid action chosen");
+            }
+        }
+    </script>
+</body>
+</html>
