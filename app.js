@@ -93,14 +93,156 @@
 
 
 //challange 5
-let num = Number(prompt("Enter the  number:"))
-let res = 0
-while (1 <= num) {
-    num /= 10
-    num = Math.floor(num)
-    res++
+// let num = Number(prompt("Enter the  number:"))
+// let res = 0
+// while (1 <= num) {
+//     num /= 10
+//     num = Math.floor(num)
+//     res++
+// }
+// console.log(res)
+
+
+
+//lesson 4
+
+//practice
+
+//1
+
+// let num1 = Number(prompt("Enter the first number:"))
+// let num2 = Number(prompt("Enter the second number:"))
+
+// function max(num1, num2) {
+//     if (num1 > num2) {
+//         return num1
+//     } else {
+//         return num2
+//     }
+// }
+
+// alert(`The largest number is: ${max(num1, num2)}`)
+
+
+// //2 
+
+// let num1 = Number(prompt("Enter the first number:"))
+// let num2 = Number(prompt("Enter the second number:"))
+// let num3 = Number(prompt("Enter the third number:"))
+// let negativeCount = 0
+
+// function sign(num1, num2, num3) {
+//     if (num1 < 0) {
+//         negativeCount++
+//     }
+//     if (num2 < 0) {
+//         negativeCount++
+//     }
+//     if (num3 < 0) {
+//         negativeCount++
+//     }
+
+//     if (negativeCount % 2 == 0) {
+//         return "the sign is +"
+//     } else {
+//         return "the sign is -"
+//     }
+// }
+
+// alert(sign(num1, num2, num3))
+
+
+//3
+
+// let num1 = Number(prompt("Enter the first number:"))
+// let num2 = Number(prompt("Enter the second number:"))
+// let num3 = Number(prompt("Enter the third number:"))
+// let res = []
+
+// function max(num1, num2) {
+//     if (num1 > num2) {
+//         return num1
+//     } else {
+//         return num2
+//     }
+// }
+
+// function min(num1, num2) {
+//     if (num1 < num2) {
+//         return num1
+//     } else {
+//         return num2
+//     }
+// }
+
+// function sort(num1, num2, num3) {
+//     let arr = [num1, num2, num3]
+//     let max = max(num1, max(num2, num3))
+//     let min = min(num1, min(num2, num3))
+//     let mid = num1 + num2 + num3 - max - min
+//     return [min, mid, max]
+// }
+
+// alert(sort(num1, num2, num3))
+
+
+//4 
+// for (let i = 1; i <= 15; i++) {
+//     if (i % 2 === 0) {
+//         console.log(`${i} is even`)
+//     } else {
+//         console.log(`${i} is odd`)
+//     }
+// }
+
+
+//5
+
+// for (let i = 1; i <= 100; i++) {
+//     if (i % 3 === 0 && i % 5 === 0) {
+//         console.log("FizzBuzz")
+//     } else if (i % 3 === 0) {
+//         console.log("Fizz")
+//     } else if (i % 5 === 0) {
+//         console.log("Buzz")
+//     } else {
+//         console.log(i)
+//     }
+// }
+
+
+//6 
+
+// for (let i = 100; i <= 999; i++) {
+//     let num = i
+//     let sum = 0
+//     let yuzlik = Math.floor(num / 100)
+//     let onlik = Math.floor((num % 100) / 10)
+//     let birlik = num % 10
+//     sum = yuzlik ** 3 + onlik ** 3 + birlik ** 3
+//     if (sum === i) {
+//         console.log(i)
+//     }
+// }
+
+
+//7 
+
+let grades = [80, 77, 88, 95, 68]
+let avg = 0
+let sum = 0
+for (let i = 0; i < grades.length; i++) {
+    sum += grades[i]
 }
-console.log(res)
-
-
-
+avg = sum / grades.length
+if (avg >= 90) {
+    console.log("Grade: A")
+} else if (avg >= 80) {
+    console.log("Grade: B")
+} else if (avg >= 70) {
+    console.log("Grade: C")
+} else if (avg >= 60) {
+    console.log("Grade: D")
+} else {
+    console.log("Grade: F")
+}
