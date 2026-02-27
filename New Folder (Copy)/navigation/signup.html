@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up section</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<style>
+     * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #f1f3f6;
+        }
+        .nav1 {
+            width: 100%;
+            min-height: 70px;
+            background-color: rgb(15, 61,92);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 50px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .navlog {
+            font-size: 24px;
+            font-weight: bold;
+        }.search-bar {
+            position: relative;
+        }
+        .search-bar:hover{
+            border: 1px solid rgb(15, 61,92);
+        }
+        .search-bar input {
+            padding: 9px 15px 9px 40px;
+            border-radius: 20px;
+            border: none;
+            width: 500px;
+        }
+        .search-bar i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #777;
+            pointer-events: none; 
+        }
+
+        .icons{
+            padding: 5px;
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+        .icons a{
+            padding: 8px;
+            color: white;
+        }
+        .icons a:hover{
+            background-color: white;
+            color: rgb(15, 61,92);
+            border-radius: 17px;
+
+        }
+        #activee{
+            background-color: white;
+            color: rgb(15, 61, 92);
+            border-radius: 17px;
+        }
+        .nav2{
+             width: 100%;
+            min-height: 70px;
+            background-color: #fffafa;
+            color: rgb(15, 61,92);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 50px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .menu {
+            display: flex;
+            margin: auto;
+            list-style: none;
+            gap: 50px;
+        }
+        .menu a:hover{
+            background-color: rgb(15, 61,92);
+            color: white;
+            border-radius: 8px;
+        }
+        .menu a {
+            padding: 9px 15px;
+            color: rgb(15, 61,92);
+            text-decoration: none;
+            font-size: 16px;
+        } 
+         #active{
+            background-color: rgb(15, 61, 92);
+            color: white;
+            border-radius: 8px;
+        }
+    .contwho{
+        padding-top: 300px;
+        padding-bottom: 300px;
+    }
+    .contwho div{
+        margin: 0 auto;
+    }
+    .sign{
+    text-align: center;
+}
+.sign h1{
+font-size: 25px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.sign p{
+    padding-bottom: 30px;
+    color: rgb(129, 129, 129);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+    .tablef{
+        width: 500px;
+        color: black;
+        border-radius: 6px;
+         padding: 30px 1px;
+         box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+    }
+    .sb{
+        width: 370px;
+        font-size: 16px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        border: 1px solid rgb(190, 190, 190);
+        border-radius: 5px;
+        margin-left: 50px;
+        padding-left: 30px;
+        margin-bottom: 25px;
+        padding: 10px 10px;
+    }
+    .tx{
+        padding-left: 50px;
+        padding-top: 20px;
+    }
+    .remfor{
+        padding-left: 50px;
+        justify-content: space-between;
+    }
+    .sbutton{
+        width: 400px;
+        height: 35px;
+        background-color: rgb(15,61,92);
+        color: white;
+        font-size: 17px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        border: none;
+        border-radius: 5px;
+        margin: 5px 50px;
+    }
+    .sp{
+        color: grey;
+        font-size: 17px;
+        text-align: center;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+footer {
+            background-color: rgb(15, 61, 92);
+            color: white;
+            padding: 50px 0 20px 0;
+            margin-top: 50px;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-around;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding: 0 20px;
+        }
+
+        .footer-col { width: 250px; }
+        .footer-col h3 { margin-bottom: 20px; font-size: 18px; }
+        .footer-col p, .footer-col li { font-size: 13px; color: #cbd5e0; line-height: 1.6; list-style: none;}
+        .footer-col a { color: #cbd5e0; text-decoration: none; }
+        .footer-col a:hover{
+            color: orange;
+        }
+        .store-locations {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            border-top: 1px solid rgb(15, 61, 92);
+        }
+
+        .location-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
+            text-align: center;
+            font-size: 13px;
+            color: #cbd5e0;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #2d4a77;
+            font-size: 12px;
+            color: #a0aec0;
+        }
+        h1{
+            text-align: center;
+        }
+</style>
+<body>
+     <nav class="nav1">
+    <div class="navlog">TechHouse Pro</div>
+        <div class="search-bar">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="search" placeholder="Search...">
+        </div>
+        <div class="icons">
+             <li><i style="padding-right: 7px;" class="fa-solid fa-globe"></i>UZB</li>
+            <li><a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a></li>
+            <li><a id="activee" href="signup.html"><i class="fa-solid fa-user"></i></a></li>
+        </div>
+    </nav>
+    <nav class="nav2">
+        <ul class="menu">
+            <li><a href="webassignment.html">Home</a></li>
+            <li><a href="pager.html">Products</a></li>
+            <li><a href="seassign.html">About</a></li>
+            <li><a href="support.html">Support</a></li>
+        </ul>
+    </nav>
+    <div class="contwho">
+        <div class="sign">
+        <h1>Welcome Back</h1>
+        <p>Sign in to your TechHouse Pro account</p>
+        </div>
+        <div class="tablef">
+            <h1>Login</h1>
+        <label class="tx" for="email">Email Address</label>
+        <input class="sb" type="email" placeholder="you@example.com">
+        <label class="tx" for="password">Password</label>
+        <input class="sb" type="password" placeholder="---------"> 
+        <div class="remfor">
+            <label><input type="checkbox"> Remember me</label>
+            <a href="">Forgot Password</a>
+        </div>  
+        <button class="sbutton" type="button">Login</button>
+        <p class="sp">Don't have an account?  <a href="">Sign up</a></p>
+        </div>
+     </div>
+     <script src="cart.js"></script>
+   <footer>
+        <div class="footer-top">
+            <div class="footer-col">
+                <h3>TechHouse Pro</h3>
+                <p>India's trusted home appliance retailer. Quality products, expert service, nationwide warranty.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Support</a></li>
+            </div>
+            <div class="footer-col">
+                <h3>Customer Support</h3>
+                <li><a href="#">Warranty Policy</a></li>
+                <li><a href="#">Delivery Information</a></li>
+                <li><a href="#">Returns & Exchanges</a></li>
+                <li><a href="#">Installation Service</a></li>
+            </div>
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-phone"></i> 1800-123-4567</p>
+                <p><i class="far fa-envelope"></i> support@techhouse.pro</p>
+                <p><i class="far fa-location-dot"></i> Headquarters: Mumbai, Maharashtra</p>
+            </div>
+        </div>
+
+        <div class="store-locations">
+            <h1 style="text-align:center; margin-bottom:20px">Our Store Locations</h1>
+            <div class="location-grid">
+                <div>Mumbai</div><div>Delhi</div><div>Bangalore</div><div>Hyderabad</div><div>Pune</div><div>Chennai</div>
+                <div>Kolkata</div><div>Ahmedabad</div><div>Jaipur</div><div>Lucknow</div><div>Indore</div><div>Chandigarh</div>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>&copy; 2026 TechHouse Pro. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

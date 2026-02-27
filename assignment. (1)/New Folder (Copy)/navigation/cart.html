@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - TechHouse Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Base Styles from Index */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #f1f3f6;
+        }
+
+        /* Navigation Styles */
+        .nav1 {
+            width: 100%;
+            min-height: 70px;
+            background-color: rgb(15, 61, 92);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 50px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .navlog { font-size: 24px; font-weight: bold; }
+        .search-bar { position: relative; }
+        .search-bar input {
+            padding: 9px 15px 9px 40px;
+            border-radius: 20px;
+            border: none;
+            width: 500px;
+        }
+        .search-bar i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #777;
+        }
+        .icons { display: flex; gap: 25px; list-style: none; align-items: center; }
+        .icons a { color: white; text-decoration: none; padding: 8px; }
+        .nav2 {
+            width: 100%;
+            min-height: 70px;
+            background-color: #ffffff;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .menu { display: flex; list-style: none; gap: 50px; }
+        .menu a { text-decoration: none; color: rgb(15, 61, 92); font-weight: 500; }
+
+        /* Cart Page Specific Layout */
+        .cart-main {
+            display: flex;
+            max-width: 1300px;
+            margin: 40px auto;
+            padding: 0 20px;
+            gap: 30px;
+        }
+
+        /* Left Side: Product Cards */
+        .cart-items-container {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .cart-item-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            display: flex;
+            padding: 20px;
+            align-items: center;
+            gap: 20px;
+        }
+        .cart-item-card img {
+            width: 160px;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .img-placeholder {
+            width: 160px;
+            height: 160px;
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .item-details {
+            flex-grow: 1;
+        }
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        .item-header h2 { font-size: 22px; color: #333; }
+        .item-header .price { font-size: 22px; font-weight: bold; color: #333; }
+        .item-meta {
+            display: flex;
+            gap: 25px;
+            color: #666;
+            font-size: 15px;
+        }
+
+        /* Right Side: Sidebar Forms */
+        .cart-sidebar {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .sidebar-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+        }
+        .sidebar-card h3 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .sidebar-card input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background-color: #f1f3f6;
+        }
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid rgb(15, 61, 92);
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .btn-primary {
+            background-color: rgb(15, 61, 92);
+            color: white;
+        }
+        .btn-outline {
+            background-color: transparent;
+            color: rgb(15, 61, 92);
+        }
+        .delivery-time {
+            font-size: 13px;
+            color: #555;
+            margin-top: 10px;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: rgb(15, 61, 92);
+            color: white;
+            padding: 50px 0 20px 0;
+            margin-top: 50px;
+        }
+        .footer-top {
+            display: flex;
+            justify-content: space-around;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        .footer-col { width: 250px; }
+        .footer-col h3 { margin-bottom: 20px; }
+        .footer-col p, .footer-col li { font-size: 13px; color: #cbd5e0; line-height: 1.6; list-style: none; }
+        
+@media screen and (max-width: 1024px) {
+    .cart-main {
+        flex-direction: column; 
+        align-items: center;
+    }
+
+    .cart-items-container, .cart-sidebar {
+        width: 100%;
+        max-width: 800px; 
+    }
+
+    .search-bar input {
+        width: 300px; 
+    }
+}
+
+
+@media screen and (max-width: 600px) {
+    .nav1 {
+        padding: 0 15px;
+        flex-wrap: wrap;
+        height: auto;
+        padding-bottom: 10px;
+    }
+
+    .navlog {
+        width: 100%;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .search-bar {
+        order: 3;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .search-bar input {
+        width: 100%;
+    }
+
+    .menu {
+        gap: 15px; 
+        font-size: 14px;
+    }
+
+    .cart-item-card {
+        flex-direction: column; 
+        text-align: center;
+    }
+
+    .cart-item-card img, .img-placeholder {
+        width: 100%;
+        height: 200px;
+    }
+
+    .item-header {
+        flex-direction: column;
+        gap: 5px;
+        margin-top: 10px;
+    }
+
+    .item-meta {
+        flex-direction: column;
+        gap: 5px;
+        font-size: 14px;
+    }
+
+    .btn-group {
+        flex-direction: column; 
+    }
+}
+    </style>
+</head>
+<body>
+
+    <nav class="nav1">
+        <div class="navlog">TechHouse Pro</div>
+        <div class="search-bar">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="search" placeholder="Search...">
+        </div>
+        <div class="icons">
+            <li><i class="fa-solid fa-globe"></i> UZB</li>
+            <li><a href="#"><i class="fa-solid fa-cart-shopping"></i></a></li>
+            <li><a href="#"><i class="fa-solid fa-user"></i></a></li>
+        </div>
+    </nav>
+
+    <nav class="nav2">
+        <ul class="menu">
+            <li><a href="#">Home</a></li>
+            <li><a href="#" style="font-weight: bold; border-bottom: 2px solid rgb(15, 61, 92);">About</a></li>
+            <li><a href="#">Products</a></li>
+            <li><a href="#">Support</a></li>
+        </ul>
+    </nav>
+
+    <div class="cart-main">
+        
+        <div class="cart-items-container">
+            
+            <div class="cart-item-card">
+                <img src="https://via.placeholder.com/160" alt="iPhone 17 Pro Max">
+                <div class="item-details">
+                    <div class="item-header">
+                        <h2>Apple iPhone 17 Pro Max</h2>
+                        <span class="price">Price: $1,723,999</span>
+                    </div>
+                    <div class="item-meta">
+                        <span>Quantity : 1</span>
+                        <span>Color: white</span>
+                        <span>Barcode: 00928264</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cart-item-card">
+                <div class="img-placeholder">
+                    <i class="fa-solid fa-ellipsis" style="color:#ccc; font-size: 30px;"></i>
+                </div>
+                <div class="item-details">
+                    <div class="item-header">
+                        <h2>SAMSUNG Washing Machine 8kg</h2>
+                        <span class="price">Price: $727,699</span>
+                    </div>
+                    <div class="item-meta">
+                        <span>Quantity : 1</span>
+                        <span>Color: black</span>
+                        <span>Barcode: 00928311</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cart-item-card">
+                <img src="https://via.placeholder.com/160" alt="Samsung Smart TV">
+                <div class="item-details">
+                    <div class="item-header">
+                        <h2>SAMSUNG Smart TV 65"</h2>
+                        <span class="price">Price: $54,699</span>
+                    </div>
+                    <div class="item-meta">
+                        <span>Quantity : 2</span>
+                        <span>Color: black</span>
+                        <span>Barcode: 00928369</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="cart-sidebar">
+            
+            <div class="sidebar-card">
+                <input type="text" placeholder="Name">
+                <input type="text" placeholder="Surname">
+                <input type="text" placeholder="Phone Number">
+                <input type="email" placeholder="Email">
+                <input type="text" placeholder="Address">
+            </div>
+
+            <div class="sidebar-card">
+                <h3>Method of obtaining</h3>
+                <div class="btn-group">
+                    <button class="btn btn-outline">Home delivery</button>
+                    <button class="btn btn-primary">In-store</button>
+                </div>
+                <p class="delivery-time"><b>Expected delivery time:</b> February 01 2026</p>
+            </div>
+
+            <div class="sidebar-card">
+                <h3>Payment</h3>
+                <p style="font-size: 1.2rem; margin-bottom: 20px;"><b>Total Price:</b> $245,1627</p>
+                <div class="btn-group">
+                    <button class="btn btn-primary">Card</button>
+                    <button class="btn btn-primary">Monthly</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-top">
+            <div class="footer-col">
+                <h3>TechHouse Pro</h3>
+                <p>India's trusted home appliance retailer. Quality products, expert service, nationwide warranty.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <li><a href="#" style="color:#cbd5e0; text-decoration:none;">Products</a></li>
+                <li><a href="#" style="color:#cbd5e0; text-decoration:none;">About Us</a></li>
+                <li><a href="#" style="color:#cbd5e0; text-decoration:none;">Support</a></li>
+            </div>
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-phone"></i> 1800-123-4567</p>
+                <p><i class="far fa-envelope"></i> support@techhouse.pro</p>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 40px; border-top: 1px solid #2d4a77; padding-top: 20px; font-size: 12px;">
+            <p>&copy; 2026 TechHouse Pro. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

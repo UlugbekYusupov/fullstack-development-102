@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f1f3f6;
+}
+
+.nav1 {
+    width: 100%;
+    min-height: 70px;
+    background-color: rgb(15, 61, 92);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+    position: sticky;
+    top: 0;
+    z-index: 1001; 
+}
+
+.navlog {
+    font-size: 24px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.search-bar {
+    position: relative;
+    flex: 1;
+    max-width: 500px;
+    margin: 0 20px;
+}
+
+.search-bar input {
+    padding: 9px 15px 9px 40px;
+    border-radius: 20px;
+    border: none;
+    width: 100%; 
+}
+
+.search-bar i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #777;
+    pointer-events: none;
+}
+
+.icons {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.icons a {
+    color: white;
+    padding: 8px;
+    text-decoration: none;
+}
+.nav2 {
+    width: 100%;
+    min-height: 60px;
+    background-color: #fffafa;
+    color: rgb(15, 61, 92);
+    display: flex;
+    align-items: center;
+    padding: 0 50px;
+    position: sticky;
+    top: 70px;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.menu {
+    display: flex;
+    margin: auto;
+    list-style: none;
+    gap: 30px;
+}
+
+.menu a {
+    padding: 9px 15px;
+    color: rgb(15, 61, 92);
+    text-decoration: none;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.menu a:hover, #active {
+    background-color: rgb(15, 61, 92);
+    color: white !important;
+    border-radius: 8px;
+}
+
+#menu-toggle, .hamburger {
+    display: none;
+}
+
+@media (max-width: 900px) {
+    .nav1 { padding: 0 20px; }
+    .nav2 { padding: 0 20px; }
+    .search-bar { max-width: 300px; }
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+        font-size: 24px;
+        cursor: pointer;
+    }
+    .nav1 {
+        flex-wrap: wrap;
+        padding: 15px 20px;
+        gap: 15px;
+    }
+
+    .search-bar {
+        order: 3; 
+        margin: 0;
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .menu {
+        position: absolute;
+        top: 60px;
+        left: -100%; 
+        flex-direction: column;
+        background-color: #fffafa;
+        width: 100%;
+        text-align: center;
+        gap: 0;
+        transition: 0.4s;
+        box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+    }
+
+    .menu li {
+        width: 100%;
+        border-bottom: 1px solid #eee;
+    }
+
+    .menu a {
+        display: block;
+        padding: 20px;
+    }
+
+    #menu-toggle:checked ~ .menu {
+        left: 0;
+    }
+}
+        .p1{
+            background-color: rgb(15,61,92);
+            color: white;
+            text-align: center;
+            padding: 100px;
+        }
+        .p1 h1{
+            font-size: 50px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        .p1 p{
+            color: rgb(172, 172, 172);
+            font-size: 19px;
+            padding-top: 30px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        .email {
+            display: flex;
+            line-height: 1.3;
+        }
+        .email p{
+            color: rgb(129, 129, 129);
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+        .email i{
+          color: rgb(15, 61,92);
+          padding-right: 20px;
+          padding-top: 10px;
+        }
+        .supportcontainer{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding-top: 80px;
+            gap: 70px;
+            margin-bottom: 80px;
+        }
+       .support1{
+            max-width: 600px;
+        }
+        .support1 span{
+            color: grey;
+            font-family: monospace;
+            font-size: 17px;
+        }
+        .support1 h1{
+            color: rgb(15, 61,92);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            padding-top: 25px;
+            font-size: 43px;
+        }
+        .support1 p{
+            color: grey;
+            font-size: 19px;
+            padding-bottom: 20px;
+        }
+        .support2{
+            background-color: white;
+            border-radius: 20px;
+        }
+        .support2:hover{
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        }
+        .support2 button{
+            background-color: rgb(15, 61,92);
+            color: white;
+            padding: 10px 100px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: none;
+            margin-bottom: 20px;
+        }
+        .support2 button:hover{
+            border: 1px solid rgb(15, 61, 92);
+            background-color: white;
+            color: rgb(15, 61, 92);
+        }
+        .support2 button:active{
+            background-color: rgb(199, 199, 199);
+        }
+        .support2 form{
+            padding: 30px;
+            border-radius: 20px;
+            display: grid;
+            background-color: white;
+            min-width: 450px;
+        }
+        .label{
+            font-size: 18px;
+            padding-bottom: 10px;
+        }
+        .input{
+            padding: 15px;
+            margin-bottom: 22px;
+            border: none;
+            background-color: #e6e6e6;
+            border-radius: 10px;
+        }
+        .messagesec{
+           height: 10vh;
+           border: none;
+           background-color: #e6e6e6;
+           border-radius: 13px;
+               }
+        .page2{
+            margin: auto;
+        }
+        .asked{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 90px;
+            margin-top: 70px;
+        }
+        .asked1{
+            max-width: 500px;
+        }
+        .ask-div{
+            text-align: center;
+            border-radius: 7px;
+            padding: 10px;
+            background-color: white;
+            margin-bottom: 20px;
+        }
+        .ask-question{
+            cursor: pointer;
+            font-size: 18px;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        }
+        .ask-answer{
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            max-height: 0;
+            color: grey;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            font-size: 17px;
+            padding-top: 5px;
+        }
+        .ask-div:hover .ask-answer{
+            max-height: 200px;
+        }
+        .asked2{
+            max-width: 500px;
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+        .asked2 h1{
+            color: rgb(15, 61,92);
+            font-size: 43px;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        .asked2 p{
+            color: grey;
+            font-size: 19px;
+            padding-top: 10px;
+        }
+
+footer {
+            background-color: rgb(15, 61, 92);
+            color: white;
+            padding: 50px 0 20px 0;
+            margin-top: 50px;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-around;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding: 0 20px;
+        }
+
+        .footer-col { width: 250px; }
+        .footer-col h3 { margin-bottom: 20px; font-size: 18px; }
+        .footer-col p, .footer-col li { font-size: 13px; color: #cbd5e0; line-height: 1.6; list-style: none;}
+        .footer-col a { color: #cbd5e0; text-decoration: none; }
+        .footer-col a:hover{
+            color: orange;
+        }
+        .store-locations {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            border-top: 1px solid #2d4a77;
+        }
+
+        .location-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
+            text-align: center;
+            font-size: 13px;
+            color: #cbd5e0;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #2d4a77;
+            font-size: 12px;
+            color: #a0aec0;
+        }
+</style>
+<body>
+     <nav class="nav1">
+    <div class="navlog">TechHouse Pro</div>
+        <div class="search-bar">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="search" placeholder="Search...">
+        </div>
+        <div class="icons">
+             <li><i style="padding-right: 7px;" class="fa-solid fa-globe"></i>UZB</li>
+            <li><a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a></li>
+            <li><a href="signup.html"><i class="fa-solid fa-user"></i></a></li>
+        </div>
+    </nav>
+    <nav class="nav2">
+        <ul class="menu">
+             <li><a href="/navigation/index.html">Home</a></li>
+            <li><a href="/navigation/products.html">Products</a></li>
+            <li><a href="/navigation/about.html">About</a></li>
+            <li><a  id="active" href="/navigation/support.html">Support</a></li>
+        </ul>
+    </nav>
+    <div class="wholesupport">
+    <div class="p1">
+            <h1>How Can We Help You?</h1>
+            <p>Our customer support  team is here to assist you 24/7</p>
+        </div>
+        <div class="supportcontainer">
+            <div class="support1">
+                <span>WE ARE HERE TO HELP YOU</span>
+                <h1>SHARE YOUR TECH <br> NEEDS</h1>
+                <h1>WE WILL TURN THEM INTO <br> SOLUTIONS</h1>
+                <p style="padding-top: 20px;">Are you looking for high-quality tech solutions tailored <br> to your needs? Reach out to us.</p>
+                <div class="email">
+                    <i class="fa-solid fa-envelope fa-2x"></i>
+                    <div class="sword">
+                        <span style="color: rgb(15, 61,92);">Email</span>
+                        <p>supporttechhousepro@gmail.com</p>
+                    </div>
+                </div>
+                 <div class="email">
+                    <i class="fa-solid fa-phone fa-2x"></i>
+                    <div class="sword">
+                        <span style="color: rgb(15, 61,92);">Phone Number</span>
+                        <p>+998 99 123 45 67</p>
+                    </div>
+                </div>
+            </div>
+            <div class="support2">
+                <form action="">
+                <label class="label" for="name">Name</label>
+                <input class="input" type="name" placeholder="JONATHAN ALEKSANDROVICH">
+                 <label class="label" for="name">Email</label>
+                 <input class="input" type="email" placeholder="jonathan@gmail.com">
+                 <label class="label" for="number">Phone Number</label>
+                 <input class="input" type="number" placeholder="+998 99 123 45 67">
+                 <label class="label" for="message">Message</label>
+                 <input class="messagesec" type="text" placeholder="Type your message">
+                 </form>
+                 <button style="margin-left: 70px;">Send Message</button>
+            </div>
+        </div>
+        <hr>
+        <div class="page2">
+            <div class="asked">
+                <div class="asked1">
+                <div class="ask-div">
+                    <span class="ask-question">What technologies do you use?</span>
+                    <p class="ask-answer">We use modern and relaible technologies such as HTML, CSS, JavaScripy, Node.js also popular frameworks.</p>
+                </div>
+                <div class="ask-div">
+                     <span class="ask-question">Will my website work on all devices and browsers?</span>
+                    <p class="ask-answer">Yes. All our website are fully responsive and tested to work smoothly on desktops,tablets, and major browsers.</p>
+                </div>
+                <div class="ask-div">
+                     <span class="ask-question">Can you integrate third-party tools or APIs?</span>
+                    <p class="ask-answer">Yes.We can integrate third-party services,APIs,payment system,analytics tools and other external platforms as need.</p>
+                </div>
+                <div class="ask-div">
+                     <span class="ask-question">Is my data and website secure?</span>
+                    <p class="ask-answer">Yes.We follow best security practices,including secure coding,data protection,and regular updates to keep your website safe.</p>
+                </div>
+                <div class="ask-div">
+                     <span class="ask-question">Can the project be upgraded or scaled in the future?</span>
+                    <p class="ask-answer">Absolutely.Our projects are built with scalability in mind, allowing easy upgrades and future expansion as your needs grow.</p>
+                </div>
+                </div>
+                <div class="asked2">
+                <h1>FREQUENTLY ASKED QUESTIONS</h1>
+                <p>This FAQ section is designed to help you understand the technical aspects of our services, including technologies, compatibility, and future scalability.</p>
+            </div>
+        </div>
+            </div>
+    </div>
+     <footer>
+        <div class="footer-top">
+            <div class="footer-col">
+                <h3>TechHouse Pro</h3>
+                <p>India's trusted home appliance retailer. Quality products, expert service, nationwide warranty.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Support</a></li>
+            </div>
+            <div class="footer-col">
+                <h3>Customer Support</h3>
+                <li><a href="#">Warranty Policy</a></li>
+                <li><a href="#">Delivery Information</a></li>
+                <li><a href="#">Returns & Exchanges</a></li>
+                <li><a href="#">Installation Service</a></li>
+            </div>
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-phone"></i> 1800-123-4567</p>
+                <p><i class="far fa-envelope"></i> support@techhouse.pro</p>
+                <p><i class="far fa-location-dot"></i> Headquarters: Mumbai, Maharashtra</p>
+            </div>
+        </div>
+
+        <div class="store-locations">
+            <h1 style="text-align:center; margin-bottom:20px">Our Store Locations</h1>
+            <div class="location-grid">
+                <div>Mumbai</div><div>Delhi</div><div>Bangalore</div><div>Hyderabad</div><div>Pune</div><div>Chennai</div>
+                <div>Kolkata</div><div>Ahmedabad</div><div>Jaipur</div><div>Lucknow</div><div>Indore</div><div>Chandigarh</div>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>&copy; 2026 TechHouse Pro. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

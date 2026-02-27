@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechHouse</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f1f3f6;
+}
+
+.nav1 {
+    width: 100%;
+    min-height: 70px;
+    background-color: rgb(15, 61, 92);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+    position: sticky;
+    top: 0;
+    z-index: 1001; 
+}
+
+.navlog {
+    font-size: 24px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.search-bar {
+    position: relative;
+    flex: 1;
+    max-width: 500px;
+    margin: 0 20px;
+}
+
+.search-bar input {
+    padding: 9px 15px 9px 40px;
+    border-radius: 20px;
+    border: none;
+    width: 100%; 
+}
+
+.search-bar i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #777;
+    pointer-events: none;
+}
+
+.icons {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.icons a {
+    color: white;
+    padding: 8px;
+    text-decoration: none;
+}
+.nav2 {
+    width: 100%;
+    min-height: 60px;
+    background-color: #fffafa;
+    color: rgb(15, 61, 92);
+    display: flex;
+    align-items: center;
+    padding: 0 50px;
+    position: sticky;
+    top: 70px;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.menu {
+    display: flex;
+    margin: auto;
+    list-style: none;
+    gap: 30px;
+}
+
+.menu a {
+    padding: 9px 15px;
+    color: rgb(15, 61, 92);
+    text-decoration: none;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.menu a:hover, #active {
+    background-color: rgb(15, 61, 92);
+    color: white !important;
+    border-radius: 8px;
+}
+
+#menu-toggle, .hamburger {
+    display: none;
+}
+
+@media (max-width: 900px) {
+    .nav1 { padding: 0 20px; }
+    .nav2 { padding: 0 20px; }
+    .search-bar { max-width: 300px; }
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+        font-size: 24px;
+        cursor: pointer;
+    }
+    .nav1 {
+        flex-wrap: wrap;
+        padding: 15px 20px;
+        gap: 15px;
+    }
+
+    .search-bar {
+        order: 3; 
+        margin: 0;
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .menu {
+        position: absolute;
+        top: 60px;
+        left: -100%; 
+        flex-direction: column;
+        background-color: #fffafa;
+        width: 100%;
+        text-align: center;
+        gap: 0;
+        transition: 0.4s;
+        box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+    }
+
+    .menu li {
+        width: 100%;
+        border-bottom: 1px solid #eee;
+    }
+
+    .menu a {
+        display: block;
+        padding: 20px;
+    }
+
+    #menu-toggle:checked ~ .menu {
+        left: 0;
+    }
+}
+        .pimg img{ 
+            
+            position: absolute;
+            object-fit: cover;
+            width: 100%;
+            height: 35vh;
+            filter: blur(2.5px);
+        }
+    .page{
+        position: relative;
+        padding-top: 70px;
+        text-align: center;
+    }
+    .page h1{
+        color: white;
+        font-size: 52px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .page p{
+        color: rgb(214, 214, 214);
+        font-size: 19px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        padding-bottom: 35px;
+    }
+    .page a{
+        padding: 12px 25px;
+        font-size: 17px;
+        color: white;
+        text-decoration: none;
+        background-color: rgb(15, 61, 92);
+        border: none;
+        border-radius: 5px;
+    }
+    .page a:hover{
+        background-color: white;
+        color: rgb(15, 61, 92);
+    }
+    .page a:active{
+         background-color: rgb(226, 226, 226);
+    }
+    .category h1{
+        padding-top: 70px;
+        text-align: center;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+    .cards{
+        padding-top: 30px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 60px;
+    }
+    .c1:hover{
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    }
+    .c1{
+        border: 1px  solid rgb(196, 191, 191);
+        font-size: 18px;
+        font-family: Arial, Helvetica, sans-serif;
+        display: grid;
+         border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+         border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        text-align: center;
+        margin-bottom:70px;
+    }
+    .c1 img{
+        object-fit: cover;
+        width: 220px;
+        height: 25vh;
+    }
+    .c1 span{
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+    .featured{
+        min-height: 520px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 35px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+    .pg{
+        padding-top: 70px;
+        text-align: center;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+.ref{
+    display: grid;
+     border-radius: 15px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.ref:hover{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    transform: translate(-1px, -1px) scale(1.05);
+}
+.reason h1{
+    padding-top: 100px;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.cards{
+    gap: 30px;
+    margin-top: 20px;
+}
+.del{
+    padding-bottom: 70px;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.del h3{
+    padding: 15px 0px;
+}
+.del p{
+    color: rgb(100, 100, 100);
+}
+.del span{
+border-radius: 30px;
+padding: 15px;
+background-color: rgb(244, 244, 255);
+}
+.del i{
+color: blue;
+}
+.ref img{
+      border-top-left-radius: 12px;
+     border-top-right-radius: 12px;
+    object-fit: cover;
+    width: 310px;
+    height: 30vh;
+}
+.text {
+    padding: 20px;
+    gap: 10px;
+     border-bottom-left-radius: 12px;
+     border-bottom-right-radius: 12px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.text span{
+    color: rgb(68, 68, 68);
+}
+.text p{
+    color: rgb(151, 151, 151);
+}
+.text h3{
+    padding: 5px 0px;
+}
+.text i{
+    color: orange;
+    padding: 5px 0px;
+}
+.text aside{
+    font-weight: bold;
+    font-family: sans-serif;
+    font-size: 20px;
+    padding-bottom: 10px;
+}
+
+.blearn{
+display: flex;
+justify-content: space-between;
+margin-top: 20px;
+}
+.blearn a{
+    text-decoration: none;
+padding: 8px 40px;
+border-radius: 20px;
+border: none;
+background-color: rgb(15, 61, 92);
+color: white;
+font-size: 16px;
+}
+.blearn a:hover{
+    background-color: white;
+    color: rgb(15, 61, 92);
+    border: 1px solid rgb(15, 61, 92);
+}
+.blearn a:active{
+    background-color: rgb(226, 226, 226);
+    
+}
+.mconcards{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-bottom: 50px;
+    padding-top: 30px;
+}
+.cardmember{
+    min-width: 250px;
+    border: 1px solid rgb(194, 193, 193);
+    border-radius: 20px;
+    padding: 10px;
+    text-align: center;
+    line-height: 1.4;
+    font-size: 20px; 
+    background-color: #f1f3f6;
+    margin: 20px;
+}
+.cardmember div{
+    text-align: justify;
+    padding: 10px;
+    font-size: 15px;
+}
+.cardmember button{
+    padding: 8px 60px;
+    font-size: 17px;
+    color: white;
+    background-color: rgb(15, 61, 92);
+    border-radius: 20px;
+    border: none;
+}
+.cardmember button:hover{
+    border: 1px solid rgb(15, 61, 92);
+    background-color: white;
+    color: rgb(15, 61, 92);
+}
+.cardmember button:active{
+    background-color: rgb(226, 226, 226);
+}
+.partners {
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto;
+    padding: 0 20px; 
+}
+
+.alogoccon {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 20px;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.alogoccon div {
+    border: 1px solid rgb(218, 218, 218);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+}
+
+.alogoccon img {
+    padding: 10px;
+    object-fit: contain;
+    width: 150px; 
+    height: auto;     
+    max-height: 60px;  
+}
+@media (max-width: 480px) {
+    .alogoccon img {
+        width: 120px;
+        max-height: 50px;
+    }
+    .alogoccon {
+        gap: 10px;
+    }
+}
+.ft{
+    padding-top: 50px;
+    text-align: center;
+    background-color: rgb(15, 61, 92);
+}
+.ft h1{
+    color: white;
+    padding-bottom: 15px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.ft p{
+    color: rgb(212, 212, 212);
+    font-size: 19px;
+    padding-bottom: 15px;
+}
+.ft button{
+    margin-top: 30px;
+    padding: 10px 30px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+.ft button:hover{
+    background-color: rgb(39, 76, 100);
+    color: white;
+    border: 1px solid white;
+}
+   footer {
+            background-color: rgb(15, 61, 92);
+            color: white;
+            padding: 50px 0 20px 0;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-around;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding: 0 20px;
+        }
+
+        .footer-col { width: 250px; }
+        .footer-col h3 { margin-bottom: 20px; font-size: 18px; }
+        .footer-col p, .footer-col li { font-size: 13px; color: #cbd5e0; line-height: 1.6; list-style: none;}
+        .footer-col a { color: #cbd5e0; text-decoration: none; }
+        .footer-col a:hover{
+            color: orange;
+        }
+        .store-locations {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            border-top: 1px solid #2d4a77;
+        }
+        .location-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
+            text-align: center;
+            font-size: 13px;
+            color: #cbd5e0;
+        }
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #2d4a77;
+            font-size: 12px;
+            color: #a0aec0;
+        }
+</style>
+<body>
+      <nav class="nav1">
+    <div class="navlog">TechHouse Pro</div>
+        <div class="search-bar">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="search" placeholder="Search...">
+        </div>
+        <div class="icons">
+            <li><i style="padding-right: 7px;" class="fa-solid fa-globe"></i>UZB</li>
+            <li><a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a></li>
+            <li><a href="signup.html"><i class="fa-solid fa-user"></i></a></li>
+        </div>
+    </nav>
+    <nav class="nav2">
+        <ul class="menu">
+            <li><a id="active" href="/navigation/index.html">Home</a></li>
+            <li><a href="/navigation/products.html">Products</a></li>
+            <li><a href="/navigation/about.html">About</a></li>
+            <li><a href="/navigation/support.html">Support</a></li>
+        </ul>
+    </nav>
+        <div class="page1">
+            <div class="pimg">
+                <img src="https://ik.imagekit.io/Techhouse/hero1.jpg?updatedAt=1768981124653" alt="">
+            <div class="page">
+            <h1>Premium Home Appliances for <br>Modern Living</h1>
+            <p>Shop from India's most trusted home appliance retailer. Quality products, expert <br>installation, and nationwide warranty support.</p>
+            <a href="/navigation/products.html">Explore Products</a>
+            </div>
+            </div>
+            <div class="category">
+                <h1>Shop by Category</h1>
+                <div class="cards">
+                    <div class="c1">
+                       <img src="https://ik.imagekit.io/Techhouse/smartapp.jpg?updatedAt=1768908210534" alt="">
+                        <span>Smart Home</span>
+                        </div>
+                    <div class="c1"> 
+                        <img src="https://ik.imagekit.io/Techhouse/pcareapp.jpg?updatedAt=1768908211878" alt=""> 
+                      <span>  Personal care</span>
+                    </div>
+                    <div class="c1">
+                        <img src="https://ik.imagekit.io/Techhouse/cleanapp.jpg?updatedAt=1768981123958" alt="">
+                        <span>Cleaning</span>
+                        </div>
+                    <div class="c1">
+                        <img src="https://ik.imagekit.io/Techhouse/ac.jpg?updatedAt=1768908209366" alt="">
+                          <span>Heating & Cooling</span>
+                        </div>
+                    <div class="c1">
+                        <img src="https://ik.imagekit.io/Techhouse/dishes.jpg?updatedAt=1768908212994" alt="">
+                      <span>  Kitchen </span>
+                        </div>
+                </div>
+            </div>
+            <div class="featur">
+                <div class="pg" style="background-color: #f1f3f6;">
+                    <h1>Featured Products</h1>
+                </div>
+                <div class="featured" style="background-color: #f1f3f6;">
+    <div class="ref">
+        <img src="https://ik.imagekit.io/Techhouse/refriger.jpg?updatedAt=1768908210551" alt="">
+        <div class="text" style="background-color: white;">
+            <span>Samsung</span>
+            <h3>ProCool Double Refrigerator</h3>
+            <p><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i style="color: rgb(204, 204, 204);" class="fa-solid fa-star"></i>   (4.5)</p>
+            <div class="blearn"><aside>$54,99</aside><a href="/prooducrdetail/refrigersam.html">Learn More</a></div>
+        </div>
+    </div>
+    <div class="ref">
+        <img src="https://ik.imagekit.io/Techhouse/washmach.jpg?updatedAt=1768908211296" alt="">
+        <div class="text" style="background-color: white;">
+            <span>LG</span>
+            <h3>WashMax Front Load Washing</h3>
+            <p><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i style="color: rgb(204, 204, 204);" class="fa-solid fa-star"></i>   (4.3)</p>
+             <div class="blearn"><aside>$29,99</aside><a href="/prooducrdetail/washinlg.html">Learn More</a></div>
+        </div>
+    </div>
+    <div class="ref">
+        <img src="https://ik.imagekit.io/Techhouse/televizor.jpg?updatedAt=1768908211667" alt="">
+        <div class="text" style="background-color: white;">
+            <span>Sony</span>
+            <h3>UltraView 55" 4K Smart LED TV</h3>
+            <p><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i style="color: rgb(204, 204, 204);" class="fa-solid fa-star"></i>   (4.7)</p>
+             <div class="blearn"><aside>$42,99</aside> <a href="/prooducrdetail/tvsamsung.html">Learn More</a></div>
+        </div>
+    </div>
+    <div class="ref">
+        <img src="https://ik.imagekit.io/Techhouse/condit.jpg?updatedAt=1768908204341" alt="">
+        <div class="text" style="background-color: white;">
+            <span>Daikin</span>
+            <h3>CoolBreeze 1.5 Ton Split AC</h3>
+            <p><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i style="color: rgb(204, 204, 204);" class="fa-solid fa-star"></i>   (4.6)</p>
+           <div class="blearn"><aside>$35,99</aside> <a href="/prooducrdetail/ac.html">Learn More</a></div>
+        </div>
+    </div>
+    </div>
+            </div>
+             <div class="featur">
+                <div class="pg">
+                    <h1>New Items</h1>
+                </div>
+                <div class="featured">
+    <div class="ref">
+        <img src="https://ik.imagekit.io/Techhouse/dyson.jpg?updatedAt=1768981122862" alt="">
+        <div class="text">
+            <span>Dyson</span>   <span style="padding: 3px;border-radius: 5px;background-color: rgb(127, 185, 240); color: white;">New</span>
+            <h3>Dyson Airwrap Co-anda2x</h3>
+            <p><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i style="color: rgb(204, 204, 204);" class="fa-solid fa-star"></i>   (4.5)</p>
+            <div class="blearn"><aside>$749,99</aside> <a href="/prooducrdetail/dyson.html">Learn More</a></div>
+        </div>
+    </div>
+    <div class="ref">
+        <img src="https://ik.imagekit.io/Techhouse/iphone.jpg?updatedAt=1768981124739" alt="">
+        <div class="text">
+            <span>Apple</span>   <span style="padding: 3px;border-radius: 5px;background-color: rgb(127, 185, 240); color: white;">New</span>
+            <h3>IPhone 17 Pro Max</h3>
+            <p><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i style="color: rgb(204, 204, 204);" class="fa-solid fa-star"></i>   (4.3)</p>
+            <div class="blearn"><aside>$129,99</aside> <a href="/prooducrdetail/learnproducts.html">Learn More</a></div>
+        </div>
+    </div>
+    <div class="ref">
+        <img src="https://ik.imagekit.io/Techhouse/d3.jpg?updatedAt=1768981123457" alt="">
+        <div class="text">
+            <span>Oculus</span>   <span style="padding: 3px;border-radius: 5px;background-color: rgb(127, 185, 240); color: white;">New</span>
+            <h3>Meta Oculus Guest 3 (VR)</h3>
+            <p><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i style="color: rgb(204, 204, 204);" class="fa-solid fa-star"></i>   (4.7)</p>
+             <div class="blearn"><aside>$51,99</aside> <a href="/prooducrdetail/metaoculus.html">Learn More</a></div>
+        </div>
+    </div>
+    <div class="ref">
+        <img src="https://ik.imagekit.io/Techhouse/dish.jpg?updatedAt=1768981123841" alt="">
+        <div class="text">
+            <span>Daikin</span>   <span style="padding: 3px;border-radius: 5px;background-color: rgb(127, 185, 240); color: white;">New</span>
+            <h3>Dishe 12 WJ929H289</h3>
+            <p><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i style="color: rgb(204, 204, 204);" class="fa-solid fa-star"></i>   (4.6)</p>
+            <div class="blearn"><aside>$37,99</aside> <a href="/prooducrdetail/dishes.html">Learn More</a></div>
+        </div>
+    </div>
+    </div>
+     </div>
+             <div class="featur">
+                <div class="pg">
+                    <h1>Sales</h1>
+                </div>
+                <div class="featured">
+    <div class="ref">
+        <img src="https://ik.imagekit.io/Techhouse/lap.jpg?updatedAt=1768981124741" alt="">
+        <div class="text">
+            <span>HP</span>   <span style="padding: 3px;border-radius: 5px;background-color: rgb(127, 185, 240); color: white;">Discount</span>
+            <h3>HP 25 ATQI10 PK</h3>
+            <p><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i style="color: rgb(204, 204, 204);" class="fa-solid fa-star"></i>   (4.5)</p>
+             <div class="blearn"><aside>$320,99</aside> <a href="/prooducrdetail/hp.html">Learn More</a></div>
+        </div>
+    </div>
+    <div class="ref">
+        <img src="https://ik.imagekit.io/Techhouse/toaster.jpg?updatedAt=1768908212193" alt="">
+        <div class="text">
+            <span>Bosch</span>    <span style="padding: 3px;border-radius: 5px;background-color: rgb(127, 185, 240); color: white;">Discount</span>
+            <h3>Toaster Bosch TA4T420</h3>
+            <p><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i style="color: rgb(204, 204, 204);" class="fa-solid fa-star"></i>   (4.3)</p>
+            <div class="blearn"><aside>$19,99</aside> <a href="/prooducrdetail/toaster.html">Learn More</a></div>
+        </div>
+    </div>
+    <div class="ref">
+        <img src="https://ik.imagekit.io/Techhouse/tv.jpg?updatedAt=1768908210017" alt="">
+        <div class="text">
+            <span>SAMSUNG</span>    <span style="padding: 3px;border-radius: 5px;background-color: rgb(127, 185, 240); color: white;">Discount</span>
+            <h3>VISION QG15 VAG75BIY 965</h3>
+            <p><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i style="color: rgb(204, 204, 204);" class="fa-solid fa-star"></i>   (4.7)</p>
+             <div class="blearn"><aside>$48,99</aside> <a href="/prooducrdetail/tvsale.html">Learn More</a></div>
+        </div>
+    </div>
+    <div class="ref">
+        <img src="https://ik.imagekit.io/Techhouse/pilesosnew.jpg?updatedAt=1768908211857" alt="">
+        <div class="text">
+            <span>MIDEA</span>   <span style="padding: 3px;border-radius: 5px;background-color: rgb(127, 185, 240); color: white;">Discount</span>
+            <h3>VACUUM CLEANER 220</h3>
+            <p><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i style="color: rgb(204, 204, 204);" class="fa-solid fa-star"></i>   (4.6)</p>
+             <div class="blearn"><aside>$39,99</aside> <a href="/prooducrdetail/pilesos.html">Learn More</a></div>
+        </div>
+    </div>
+    </div>
+<div class="membership">
+    <div class="pg" style="background-color: #f1f3f6;">
+        <h1>Our Memberships</h1>
+    </div>
+    <div class="mconcards" style="background-color: #f1f3f6;">
+        <div class="cardmember" style="background-color: #d8a85e;">
+            <h3>Bronze</h3>
+              <p><b style="font-size: 35px;color: black;">$10.00</b><sub>/Month</sub></p>
+              <div class="jusytifymember">
+                <p> <i style="padding-right: 10px; color: orange;" class="fa-solid fa-check"></i> Access to exclusive discounts</p>
+                <p><i style="padding-right: 10px; color: orange;" class="fa-solid fa-check"></i> Early access to new products</p>
+                  <p><i style="padding-right: 10px; color: orange;" class="fa-solid fa-check"></i>Monthly newsletters with tips & updates</p>
+                    <p><i style="padding-right: 10px; color: orange;" class="fa-solid fa-check"></i>Members-onnly online tutorials</p>
+              </div>
+              <button>Join Membership</button>
+        </div>
+        <div class="cardmember" style="background-color: #e7e7e7;">
+            <h3>Silver</h3>
+              <p><b style="font-size: 35px;color: black;">$15.00</b><sub>/Month</sub></p>
+              <div class="jusytifymember">
+                <p> <i style="padding-right: 10px; color: orange;" class="fa-solid fa-check"></i> Free standard delivery on oreders </p>
+                <p><i style="padding-right: 10px; color: orange;" class="fa-solid fa-check"></i>Priority customer support</p>
+                  <p><i style="padding-right: 10px; color: orange;" class="fa-solid fa-check"></i>Special member-only promotions</p>
+                    <p><i style="padding-right: 10px; color: orange;" class="fa-solid fa-check"></i>Seasonal DIY guides & hacks</p>
+              </div>
+              <button>Join Membership</button>
+        </div>
+        <div class="cardmember" style="background-color: #f0c42d;">
+            <h3>Gold</h3>
+              <p><b style="font-size: 35px;color: black;">$20.00</b><sub>/Month</sub></p>
+              <div class="jusytifymember">
+                <p> <i style="padding-right: 10px; color: orange;" class="fa-solid fa-check"></i> Free express delivery </p>
+                <p><i style="padding-right: 10px; color: orange;" class="fa-solid fa-check"></i>Invitations to special events/workshops</p>
+                  <p><i style="padding-right: 10px; color: orange;" class="fa-solid fa-check"></i>Extended warranty on selected products</p>
+                    <p><i style="padding-right: 10px; color: orange;" class="fa-solid fa-check"></i>Personalized products recommendations</p>
+              </div>
+              <button>Join Membership</button>
+        </div>
+        <div class="cardmember"style="background-color: #cadae5;" >
+            <h3>Business</h3>
+              <p><b style="font-size: 35px;color: black;">$50.00</b><sub>/Month</sub></p>
+              <div class="jusytifymember">
+                <p> <i style="padding-right: 10px; color: orange;" class="fa-solid fa-check"></i> Dedicated account manager</p>
+                <p><i style="padding-right: 10px; color: orange;" class="fa-solid fa-check"></i>Bulk order discounts</p>
+                  <p><i style="padding-right: 10px; color: orange;" class="fa-solid fa-check"></i>Priority support & service any locations</p>
+                    <p><i style="padding-right: 10px; color: orange;" class="fa-solid fa-check"></i>Customized business solutions</p>
+              </div>
+              <button>Join Membership</button>
+        </div>
+    </div>
+</div>
+                <div class="partners">
+                   <div class="pg">
+                      <h1>Our Partners</h1>
+                    </div>
+                    <div class="alogoccon">
+                    <div>
+                    <img src="https://ik.imagekit.io/Techhouse/samsunglogo.jpg?updatedAt=1768908206649" alt="">
+                    </div>
+                    <div>
+                    <img src="https://ik.imagekit.io/Techhouse/logapple.jpg?updatedAt=1768981120555" alt="">
+                    </div>
+                    <div>
+                    <img src="https://ik.imagekit.io/Techhouse/loglg.jpg?updatedAt=1768981122079" alt="">
+                    </div>
+                    <div>
+                    <img src="https://ik.imagekit.io/Techhouse/panasonic.jpg?updatedAt=1768908202649" alt="">
+                    </div>
+                    <div>
+                    <img src="https://ik.imagekit.io/Techhouse/logvivo.jpg?updatedAt=1768981118270" alt="">
+                    </div>
+                    <div>
+                    <img src="https://ik.imagekit.io/Techhouse/daikin.jpg?updatedAt=1768908202199" alt="">
+                    </div>
+                    <div>
+                    <img src="https://ik.imagekit.io/Techhouse/logdyson.jpg?updatedAt=1768981115814" alt="">
+                    </div>
+                    <div>
+                    <img src="https://ik.imagekit.io/Techhouse/karcherlogo.jpg?updatedAt=1768981114755" alt="">
+                    </div>
+                    <div>
+                    <img src="https://ik.imagekit.io/Techhouse/logsony.jpg?updatedAt=1768981117138" alt="">
+                    </div>
+                    </div>
+                </div>
+            <div class="reason">
+                <h1>Why Choose TechHouse Pro</h1>
+                <div class="cards">
+                    <div class="del">
+                   <span><i class="fa-solid fa-truck"></i></span>
+                        <h3>Free Delivery</h3>
+                        <p>Free installation and delivery on all orders above <br> $ 10,000</p>
+                    </div>
+                     <div class="del">
+                        <span><i class="fa-solid fa-award"></i></span>
+                        <h3>Extended Warranty</h3>
+                        <p>Comprehensive warranty coverage with hassle-free <br> claims</p>
+                    </div>
+                     <div class="del">
+                        <span><i class="fa-solid fa-phone"></i></span>
+                        <h3>24/7 Support</h3>
+                        <p>Round-the-clock customer support for all your <br> queries</p>
+                    </div>
+                     <div class="del">
+                        <span><i class="fa-solid fa-truck"></i></span>
+                        <h3>Certified Products</h3>
+                        <p>100% genuine products from authorized <br> manufactures</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ft">
+                <h1>Visit Our Showrooms</h1>
+                <p>Experience our products in person at 50+ physical stores across India. Our experts are <br>ready to assist you.</p>
+                <button type="button">Find Nearest Store</button>
+            </div>
+        </div>
+  <footer>
+        <div class="footer-top">
+            <div class="footer-col">
+                <h3>TechHouse Pro</h3>
+                <p>India's trusted home appliance retailer. Quality products, expert service, nationwide warranty.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Support</a></li>
+            </div>
+             <div class="footer-col">
+                <h3>Customer Support</h3>
+                <li><a href="#">Warranty Policy</a></li>
+                <li><a href="#">Delivery Information</a></li>
+                <li><a href="#">Returns & Exchanges</a></li>
+                <li><a href="#">Installation Service</a></li>
+            </div>
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-phone"></i> 1800-123-4567</p>
+                <p><i class="far fa-envelope"></i> support@techhouse.pro</p>
+                 <p><i class="far fa-location-dot"></i> Headquarters: Mumbai, Maharashtra</p>
+            </div>
+        </div>
+
+        <div class="store-locations">
+            <h1 style="text-align:center; margin-bottom:20px">Our Store Locations</h1>
+            <div class="location-grid">
+            </div><div>Mumbai</div><div>Delhi</div><div>Bangalore</div><div>Hyderabad</div><div>Pune</div><div>Chennai</div>
+            <div>Kolkata</div><div>Ahmedabad</div><div>Jaipur</div><div>Lucknow</div><div>Indore</div><div>Chandigarh</div>
+        </div>
+
+        <div class="copyright">
+            <p>&copy; 2026 TechHouse Pro. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
