@@ -7,12 +7,14 @@
     <style>
         body {
             margin: 0;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
             background-color: #0a0a0a;
             font-family: 'Courier New', Courier, monospace;
+            color: white;
         }
 
         .dark-minimal-btn {
@@ -30,6 +32,7 @@
             overflow: hidden;
             z-index: 1;
             transition: color 0.3s ease, transform 0.1s ease;
+            margin: 10px 0;
         }
 
         .dark-minimal-btn::before {
@@ -55,23 +58,89 @@
         .dark-minimal-btn:active {
             transform: scale(0.96);
         }
+
         .next-btn {
             position: absolute;
             top: 20px;
             right: 20px;
         }
+
+        #comment-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 40px;
+        }
+
+        textarea {
+            background: #111;
+            border: 1px solid #333;
+            color: white;
+            padding: 10px;
+            width: 320px;
+            height: 80px;
+            font-family: inherit;
+        }
     </style>
 </head>
 <body>
-    <button onclick="location.href='/homework2/hw2.html'" class="dark-minimal-btn next-btn">
-        Go to next class
+
+    <button onclick="location.href='/hw2.html'" class="dark-minimal-btn next-btn">
+        Next
     </button>
 
-    <button class="dark-minimal-btn" onclick="startProcess()">
+    <button class="dark-minimal-btn" onclick="typeof startProcess === 'function' && startProcess()">
         Start Process
     </button>
 
-    <script src="/script.js"></script>
-
+    <div id="comment-container" data-page-id="hw1">
+        <textarea id="commentInput" onkeydown="if(event.key==='Enter'){postComment()}" placeholder="Write a comment..."></textarea>
+        <button id="postBtn" class="dark-minimal-btn" onclick="postComment()">Post</button>
+        
+        <div id="displayComments" style="color: white; margin-top: 20px; text-align: left; width: 340px;"></div>
+    </div>  
+    <script>
+        function startProcess() {
+            // Challenge 1
+            console.log("5" + 5);        
+            console.log("5" - 5);        
+            console.log("5" * "2");      
+            console.log("10" / 2);       
+            console.log(5 + true);       
+            console.log("10" - true);    
+            console.log("5" + true);     
+            console.log(5 + null);       
+            console.log(5 + undefined);
+            // Challenge 2
+            console.log(Number("200") + 50);
+            console.log(String(25) + " years old"); 
+            console.log(Boolean("false")); 
+            console.log("10" - true);
+            // challenge 3
+            const temp = 30
+            let conventioner = (temp * 9/5) + 32
+            console.log(conventioner) 
+            // challenge 4
+            let totalBudget = prompt("Enter your total budget (e.g. 500.00):");
+            totalBudget = Number(totalBudget);
+            const expense1 = Number(prompt("Enter expense 1:"));
+            const expense2 = Number(prompt("Enter expense 2:"));
+            const expense3 = Number(prompt("Enter expense 3:"));
+            const totalExpenses = expense1 + expense2 + expense3;
+            const remaining = totalBudget - totalExpenses;
+            console.log("Total budget :",totalBudget)
+            console.log("you spent",expense1 , "first time")
+            console.log("you spent",expense2 , "second time")
+            console.log("you spent",expense3 , "third time")
+            console.log("after spending you have : ",remaining)
+            if (remaining < 0) {
+                console.warn(`Overspent! You are over budget`);
+            } 
+            else {
+                console.log("You're within budget.");
+            }
+        }
+    </script>
+    <script type="module" src="/app.js"></script>
 </body>
 </html>

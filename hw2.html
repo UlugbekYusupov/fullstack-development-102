@@ -7,12 +7,14 @@
     <style>
         body {
             margin: 0;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
             background-color: #0a0a0a;
             font-family: 'Courier New', Courier, monospace;
+            color: white;
         }
 
         .dark-minimal-btn {
@@ -30,6 +32,7 @@
             overflow: hidden;
             z-index: 1;
             transition: color 0.3s ease, transform 0.1s ease;
+            margin: 10px 0;
         }
 
         .dark-minimal-btn::before {
@@ -55,34 +58,59 @@
         .dark-minimal-btn:active {
             transform: scale(0.96);
         }
-
-        .back-btn {
+        .pre-btn{
             position: absolute;
             top: 20px;
             left: 20px;
         }
-
         .next-btn {
             position: absolute;
             top: 20px;
             right: 20px;
         }
+
+        #comment-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 40px;
+        }
+
+        textarea {
+            background: #111;
+            border: 1px solid #333;
+            color: white;
+            padding: 10px;
+            width: 320px;
+            height: 80px;
+            font-family: inherit;
+        }
     </style>
 </head>
 <body>
-    <button onclick="location.href='/index.html'" class="dark-minimal-btn back-btn">
-        Back to previous class
+
+    <button onclick="location.href='/index.html'" class="dark-minimal-btn pre-btn">
+        Previous
     </button>
 
-    <button onclick="location.href='/homework3/hw3.html'" class="dark-minimal-btn next-btn">
-        Go to next class
+    <button onclick="location.href='/hw3.html'" class="dark-minimal-btn next-btn">
+        Next
     </button>
 
-    <button class="dark-minimal-btn" onclick="startAction()">
+    <button class="dark-minimal-btn" onclick="typeof startProcess === 'function' && startProcess()">
         Start Process
     </button>
+
+    <div id="comment-container" data-page-id="hw2">
+        <textarea id="commentInput" onkeydown="if(event.key==='Enter'){postComment()}" placeholder="Write a comment..."></textarea>
+        <button id="postBtn" class="dark-minimal-btn" onclick="postComment()">Post</button>
+        
+        <div id="displayComments" style="color: white; margin-top: 20px; text-align: left; width: 340px;"></div>
+    </div>  
+
+    <script type="module" src="/app.js"></script>
     <script>
-        function startAction() {
+        function startProcess() {
             let choice = Number(prompt(
                 "Choose a challenge:\n" +
                 "1 - Count even & odd numbers\n" +
@@ -166,6 +194,5 @@
             }
         }
     </script>
-
 </body>
 </html>

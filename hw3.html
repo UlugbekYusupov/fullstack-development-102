@@ -7,7 +7,7 @@
     <style>
         body {
             margin: 0;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -32,7 +32,7 @@
             overflow: hidden;
             z-index: 1;
             transition: color 0.3s ease, transform 0.1s ease;
-            margin-top: 20px;
+            margin: 10px 0;
         }
 
         .dark-minimal-btn::before {
@@ -58,22 +58,56 @@
         .dark-minimal-btn:active {
             transform: scale(0.96);
         }
+        .pre-btn{
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        .next-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
 
-        #output {
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-top: 30px;
-            min-height: 1.5em;
+        #comment-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 40px;
+        }
+
+        textarea {
+            background: #111;
+            border: 1px solid #333;
+            color: white;
+            padding: 10px;
+            width: 320px;
+            height: 80px;
+            font-family: inherit;
         }
     </style>
 </head>
 <body>
+    <button onclick="location.href='/hw2.html'" class="dark-minimal-btn pre-btn">
+        Previous
+    </button>
 
-    <button class="dark-minimal-btn" onclick="startProcess()">
+    <button class="dark-minimal-btn" onclick="typeof startProcess === 'function' && startProcess()">
         Start Process
     </button>
     
     <div id="output"></div>
+
+    <div id="comment-container" data-page-id="hw3">
+        <hr style="width: 80%; height: 4px; background-color: white; border: none;">
+        <h1 style="text-align: center;">Comment Area</h1>
+        <textarea id="commentInput" onkeydown="if(event.key==='Enter'){postComment()}" placeholder="Write a comment..."></textarea>
+        <button id="postBtn" class="dark-minimal-btn" onclick="postComment()">Post</button>
+        
+        <div id="displayComments" style="color: white; margin-top: 20px; text-align: left; width: 340px;"></div>
+    </div>  
+
+    <script type="module" src="/app.js"></script>
 
     <script>
         function startProcess() {
