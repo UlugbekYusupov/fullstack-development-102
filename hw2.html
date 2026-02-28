@@ -101,12 +101,14 @@
         Start Process
     </button>
 
-    <div id="comment-container" data-page-id="hw2">
+    <div id="comment-container" data-page-id="hw3">
+        <hr style="width: 80%; height: 4px; background-color: white; border: none;">
+        <h1 style="text-align: center;">Comment Area</h1>
         <textarea id="commentInput" onkeydown="if(event.key==='Enter'){postComment()}" placeholder="Write a comment..."></textarea>
         <button id="postBtn" class="dark-minimal-btn" onclick="postComment()">Post</button>
         
         <div id="displayComments" style="color: white; margin-top: 20px; text-align: left; width: 340px;"></div>
-    </div>  
+    </div>
 
     <script type="module" src="/app.js"></script>
     <script>
