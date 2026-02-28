@@ -1,2 +1,7 @@
-# fullstack-development-102
-Khurshid khursandov`s branch . in here i will upload all my homeworks. please rate with honesty and try to give some harder challenges to improve the coding skills ,meaning it will be easy for us to pass the assignments with all "D"s 
+Khurhid Khursandov`s branch
+       ______          _______
+          / /         / ____/
+         / /          \ \   
+    __  / /            \ \  
+   / /_/ /         ____/ /  
+   \____/         /_____/
