@@ -1,1 +1,1 @@
-# fullstack-development-102
+# Fullstack development 102: Abdusalomjon
