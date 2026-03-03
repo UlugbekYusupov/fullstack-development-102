@@ -76,6 +76,32 @@
         if (sum === num) {
             console.log(num + " Armstrong soni");
         } }
+
+        // task 7
+        const marks = [80, 77, 88, 95, 68];
+
+        let sum = 0;
+        for (let i = 0; i < marks.length; i++) {
+            sum += marks[i];
+        }
+
+        let average = sum / marks.length;
+        console.log("O'rtacha baho: " + average);
+
+        let grade;
+        if (average < 60) {
+            grade = "F";
+        } else if (average < 70) {
+            grade = "D";
+        } else if (average < 80) {
+            grade = "C";
+        } else if (average < 90) {
+            grade = "B";
+        } else {
+            grade = "A";
+        }
+
+        console.log("Olingan baho: " + grade);
     </script>
 </body>
 </html>
