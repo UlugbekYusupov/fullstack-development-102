@@ -173,6 +173,7 @@
             color: var(--accent-2);
             font-size: 0.92rem;
             font-weight: 600;
+            white-space: pre-wrap;
         }
 
         .code-box {
@@ -315,12 +316,104 @@
                 </div>
                 <pre id="codeLg" class="code-box"></pre>
             </article>
+
+            <h1 class="section full">
+                CONTROL STATEMENTS
+            </h1>
+
+            <article class="card">
+                <h2>Compare Two Numbers</h2>
+                <label for="cmpA">Number 1</label>
+                <input id="cmpA" type="number" placeholder="e.g. 5">
+                <label for="cmpB">Number 2</label>
+                <input id="cmpB" type="number" placeholder="e.g. 10">
+                <div class="row">
+                    <button id="cmpBtn">Compare</button>
+                    <button class="code-toggle" data-function="compareTwoNumbers" data-target="codeCmp">Show Code</button>
+                    <div id="cmpResult" class="result">Result: -</div>
+                </div>
+                <pre id="codeCmp" class="code-box"></pre>
+            </article>
+
+            <article class="card">
+                <h2>First Negative Number</h2>
+                <label for="neg1">Number 1</label>
+                <input id="neg1" type="number" placeholder="e.g. 3">
+                <label for="neg2">Number 2</label>
+                <input id="neg2" type="number" placeholder="e.g. -7">
+                <label for="neg3">Number 3</label>
+                <input id="neg3" type="number" placeholder="e.g. 2">
+                <div class="row">
+                    <button id="negBtn">Check</button>
+                    <button class="code-toggle" data-function="firstNegativeNumber" data-target="codeNeg">Show Code</button>
+                    <div id="negResult" class="result">Result: -</div>
+                </div>
+                <pre id="codeNeg" class="code-box"></pre>
+            </article>
+
+            <article class="card">
+                <h2>Sort Three Numbers</h2>
+                <label for="sort1">Number 1</label>
+                <input id="sort1" type="number" placeholder="e.g. 0">
+                <label for="sort2">Number 2</label>
+                <input id="sort2" type="number" placeholder="e.g. -1">
+                <label for="sort3">Number 3</label>
+                <input id="sort3" type="number" placeholder="e.g. 4">
+                <div class="row">
+                    <button id="sortBtn">Sort</button>
+                    <button class="code-toggle" data-function="sortThreeNumbersAsc" data-target="codeSort">Show Code</button>
+                    <div id="sortResult" class="result">Result: -</div>
+                </div>
+                <pre id="codeSort" class="code-box"></pre>
+            </article>
+
+            <article class="card">
+                <h2>Odd / Even from 1 to 15</h2>
+                <div class="row">
+                    <button id="oeBtn">Generate</button>
+                    <button class="code-toggle" data-function="oddEvenFrom1To15" data-target="codeOe">Show Code</button>
+                    <div id="oeResult" class="result">Result: -</div>
+                </div>
+                <pre id="codeOe" class="code-box"></pre>
+            </article>
+
+            <article class="card">
+                <h2>Fizz Buzz (Contains 3 / 5)</h2>
+                <label for="fbLimit">Limit (exclusive)</label>
+                <input id="fbLimit" type="number" placeholder="e.g. 100">
+                <div class="row">
+                    <button id="fbBtn">Run</button>
+                    <button class="code-toggle" data-function="fizzBuzzByDigits" data-target="codeFb">Show Code</button>
+                    <div id="fbResult" class="result">Result: -</div>
+                </div>
+                <pre id="codeFb" class="code-box"></pre>
+            </article>
+
+            <article class="card">
+                <h2>Armstrong Numbers</h2>
+                <label for="armStart">Start</label>
+                <input id="armStart" type="number" placeholder="e.g. 100">
+                <label for="armEnd">End</label>
+                <input id="armEnd" type="number" placeholder="e.g. 999">
+                <div class="row">
+                    <button id="armBtn">Find</button>
+                    <button class="code-toggle" data-function="armstrongNumbersInRange" data-target="codeArm">Show Code</button>
+                    <div id="armResult" class="result">Result: -</div>
+                </div>
+                <pre id="codeArm" class="code-box"></pre>
+            </article>
+
+            <article class="card full">
+                <h2>Student Grade Letters</h2>
+                <div class="row">
+                    <button id="gradeBtn">Generate</button>
+                    <button class="code-toggle" data-function="calculateStudentLetterGrades" data-target="codeGrade">Show Code</button>
+                    <div id="gradeResult" class="result">Result: -</div>
+                </div>
+                <pre id="codeGrade" class="code-box"></pre>
+            </article>
         </section>
 
-  <h1 class="section full">
-                TO BE CONTINUED...
-            </h1>
-<p>Ai styled</p>
     </main>
 
     <script src="app.js"></script>
@@ -356,6 +449,52 @@
             const n = document.getElementById("lgN").value;
             const r = window.largestDigit(n);
             document.getElementById("lgResult").textContent = `Largest digit: ${r}`;
+        });
+
+        document.getElementById("cmpBtn").addEventListener("click", () => {
+            const a = document.getElementById("cmpA").value;
+            const b = document.getElementById("cmpB").value;
+            const r = window.compareTwoNumbers(a, b);
+            document.getElementById("cmpResult").textContent = `Result: ${r}`;
+        });
+
+        document.getElementById("negBtn").addEventListener("click", () => {
+            const n1 = document.getElementById("neg1").value;
+            const n2 = document.getElementById("neg2").value;
+            const n3 = document.getElementById("neg3").value;
+            const r = window.firstNegativeNumber(n1, n2, n3);
+            document.getElementById("negResult").textContent = `Result: ${r}`;
+        });
+
+        document.getElementById("sortBtn").addEventListener("click", () => {
+            const n1 = document.getElementById("sort1").value;
+            const n2 = document.getElementById("sort2").value;
+            const n3 = document.getElementById("sort3").value;
+            const r = window.sortThreeNumbersAsc(n1, n2, n3);
+            document.getElementById("sortResult").textContent = r ? `Sorted: ${r.join(", ")}` : "Result: Invalid input";
+        });
+
+        document.getElementById("oeBtn").addEventListener("click", () => {
+            const r = window.oddEvenFrom1To15();
+            document.getElementById("oeResult").textContent = r.join(" | ");
+        });
+
+        document.getElementById("fbBtn").addEventListener("click", () => {
+            const limit = document.getElementById("fbLimit").value || 100;
+            const r = window.fizzBuzzByDigits(limit);
+            document.getElementById("fbResult").textContent = r.join(", ");
+        });
+
+        document.getElementById("armBtn").addEventListener("click", () => {
+            const start = document.getElementById("armStart").value || 100;
+            const end = document.getElementById("armEnd").value || 999;
+            const r = window.armstrongNumbersInRange(start, end);
+            document.getElementById("armResult").textContent = r.length ? `Found: ${r.join(", ")}` : "Result: None found";
+        });
+
+        document.getElementById("gradeBtn").addEventListener("click", () => {
+            const r = window.calculateStudentLetterGrades();
+            document.getElementById("gradeResult").textContent = r.join(" | ");
         });
 
         document.querySelectorAll(".code-toggle").forEach((button) => {
