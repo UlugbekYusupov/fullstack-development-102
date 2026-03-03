@@ -42,7 +42,7 @@
 // console.log("Odd numbers:", odd);
 
 
-// let num = parseInt(prompt("Enter a number:"));
+// let num = 2345;
 
 // let reverse = 0;
 
@@ -101,4 +101,37 @@
 
 
 
+// const num1 = +prompt("enter the number 1: ");
+// const num2 = +prompt("enter the number 2: ");
+// const num3 = +prompt("enter the number 3: ");
 
+// if (num1 < 0) {
+//     alert("The signed number is: " + num1);
+// }
+// if (num2 < 0) {
+//     alert("The signed number is: " + num2);
+// }
+// if (num3 < 0) {
+//     alert("The signed number is: " + num3);
+// }
+
+
+// for (let i = 1; i <= 15; i++) {
+//     if (i % 2 === 0) {
+//         console.log(i + " is even");
+//     } else {
+//         console.log(i + " is odd");
+//     }
+// }
+
+for (let i = 1; i <= 100; i++) {
+    if (i % 3 === 0) {
+        console.log("Fizz");
+    } else if (i % 5 === 0) {
+        console.log("Buzz");
+    } else if (i % 3 === 0 && i % 5 === 0) {
+        console.log("FizzBuzz");
+    } else {
+        console.log(i);
+    }
+}
