@@ -226,23 +226,259 @@
 // }
 
 
-//7 
+// //7 
 
-let grades = [80, 77, 88, 95, 68]
-let avg = 0
-let sum = 0
-for (let i = 0; i < grades.length; i++) {
-    sum += grades[i]
+// let grades = [80, 77, 88, 95, 68]
+// let avg = 0
+// let sum = 0
+// for (let i = 0; i < grades.length; i++) {
+//     sum += grades[i]
+// }
+// avg = sum / grades.length
+// if (avg >= 90) {
+//     console.log("Grade: A")
+// } else if (avg >= 80) {
+//     console.log("Grade: B")
+// } else if (avg >= 70) {
+//     console.log("Grade: C")
+// } else if (avg >= 60) {
+//     console.log("Grade: D")
+// } else {
+//     console.log("Grade: F")
+// }
+
+
+
+// LESSON 5
+
+// Practice
+
+//1
+
+// function greet(name) {
+//     return `Hello, ${name}!`
+// }
+
+// let greet = function (name) {
+//     return `Hello, ${name}!`
+// }
+
+// let greet = (name) => {
+//     return `Hello, ${name}!`
+// }
+
+// (function (name) {
+//     return `Hello, ${name}!`
+// })('isoxon')
+
+// let greet = new Function('name', 'return `Hello, ${name}!`')
+
+
+//2
+
+// let num = Number(prompt("Enter a number:"))
+
+// function isPrime(num) {
+//     if (num <= 1) {
+//         return false
+//     }
+//     for (let i = 2; i <= Math.sqrt(num); i++) {
+//         if (num % i === 0) {
+//             return false
+//         }
+//     }
+//     return true
+// }
+
+
+
+// //3
+// let num = Number(prompt("Enter a number:"))
+
+// function countDigits(num) {
+//     let count = 0
+//     while (num >= 1) {
+//         num /= 10
+//         count++
+//     }
+//     return count
+// }
+
+
+
+//4 
+
+// let num = Number(prompt("Enter a number:"))
+
+// function isPalindrome(num) {
+//     let originalNum = num
+//     let reversedNum = 0
+//     while (num >= 1) {
+//         reversedNum *= 10
+//         reversedNum += num % 10
+//         num /= 10
+//         num = Math.floor(num)
+//     }
+//     return originalNum === reversedNum
+// }
+
+
+//5 
+
+// let num = Number(prompt("Enter a number:"))
+
+// function isArmstrong(num) {
+//     let originalNum = num
+//     let sum = 0
+//     let count = 0
+//     while (num >= 1) {
+//         num /= 10
+//         count++
+//     }
+//     num = originalNum
+//     while (num >= 1) {
+//         sum += (num % 10) ** count
+//         num /= 10
+//         num = Math.floor(num)
+//     }
+//     return originalNum === sum
+// }
+
+
+
+//6 
+// function createCounter(start) {
+//     let count = start
+
+//     return {
+//         increment() {
+//             count++
+//         },
+//         decrement() {
+//             count--
+//         },
+//         getCount() {
+//             return count
+//         }
+//     }
+// }
+
+
+// let counter = createCounter(5)
+// counter.increment()
+// counter.increment()
+// console.log(counter.getCount()) 
+// counter.decrement()
+// console.log(counter.getCount()) 
+
+
+// //7
+// function once(fn) {
+//     let called = false;
+
+//     return function (...args) {
+//         if (!called) {
+//             called = true;
+//             return fn.apply(this, args);
+//         }
+//     };
+// }
+
+
+// //8 
+
+// function lazyAdder(a) {
+//     return function (b) {
+//         return a + b
+//     }
+// }
+
+// let add5 = lazyAdder(5)
+// console.log(add5(10))
+// console.log(add5(20))
+
+// //9
+// function debounce(fn, delay) {
+//     let timer;
+
+//     return function (...args) {
+//         clearTimeout(timer);
+
+//         timer = setTimeout(() => {
+//             fn.apply(this, args);
+//         }, delay);
+//     };
+// }
+
+// function logMessage(message) {
+//     console.log(message);
+// }
+
+// let debouncedLog = debounce(logMessage, 1000);
+
+// debouncedLog("Hello, World!");
+// debouncedLog("Hello, World!");
+// debouncedLog("Hello, World!");
+
+//10 
+// function throttle(fn, interval) {
+//     let lastTime = 0;
+
+//     return function (...args) {
+//         const now = Date.now();
+
+//         if (now - lastTime >= interval) {
+//             lastTime = now;
+//             fn.apply(this, args);
+//         }
+//     };
+// }
+
+// function handleScroll() {
+//     console.log("Scrolling...");
+// }
+
+// const throttledScroll = throttle(handleScroll, 1000);
+
+// window.addEventListener("scroll", throttledScroll);
+
+
+//11
+function taskScheduler() {
+    let timers = [];
+
+    function schedule(task, delay) {
+        const id = setTimeout(() => {
+            task();
+
+            // удаляем выполненный таймер из массива
+            timers = timers.filter(timer => timer !== id);
+        }, delay);
+
+        timers.push(id);
+    }
+
+    function cancelAll() {
+        timers.forEach(id => clearTimeout(id));
+        timers = [];
+    }
+
+    return {
+        schedule,
+        cancelAll
+    };
 }
-avg = sum / grades.length
-if (avg >= 90) {
-    console.log("Grade: A")
-} else if (avg >= 80) {
-    console.log("Grade: B")
-} else if (avg >= 70) {
-    console.log("Grade: C")
-} else if (avg >= 60) {
-    console.log("Grade: D")
-} else {
-    console.log("Grade: F")
-}
+
+const scheduler = taskScheduler();
+
+scheduler.schedule(() => {
+    console.log("Task 1");
+}, 1000);
+
+scheduler.schedule(() => {
+    console.log("Task 2");
+}, 2000);
+
+scheduler.schedule(() => {
+    console.log("Task 3");
+}, 3000);
