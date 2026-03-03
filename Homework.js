@@ -1,3 +1,13 @@
+const consoleDiv = document.getElementById("consoleOutput");
+const originalLog = console.log;
+
+console.log = function (...messages) {
+    originalLog.apply(console, messages);
+
+    messages.forEach(msg => {
+        consoleDiv.innerHTML += msg + "\n";
+    });
+};
 // // 1
 // console.log("5" + 5);       // "55" string 
 // console.log("5" - 5);       // 0
@@ -207,7 +217,6 @@ let students = [
 
 let total= 0;
 for (let i= 0; i< students.length; i++) { total += students[i].marks; }
-
 let average = total / students.length;
 console.log("Average Marks: " + average);
 
