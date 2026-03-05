@@ -1,76 +1,27 @@
-// // var a = undefined;
+// #1
+console.log("5" + 5)
+console.log("5" - 5)
+console.log("5" * 2)
+console.log("10" / 2)
+console.log(5 + true)
+console.log("10" - true)
+console.log("5" + true)
+console.log(5 + null)
+console.log(5 + undefined)
 
-// // console.log(a);
-// // let a = 20;
+// #2
+console.log(200 + 50)
+console.log(25 + "years old")
+console.log(Boolean("false"))
+console.log("10" - true)
 
-// // greet();
+// #3
+const celsius = 30
+const fahrenheit = (celsius * 9/5) + 32
+console.log("Celsius:", celsius)
+console.log("Fahrenheit:", fahrenheit)
 
-// // function greet() {
-// //   console.log("hello");
-// // }
-
-// // console.log(Array())
-
-// // Array.prototype.greet = function () {
-// //   console.log("Arrayy prototypedan keyapdi");
-// // };
-
-// // Array().greet();
-
-// console.log(5 === "5");
-
-// console.log("Ulugbek" === "Ulugbek");
-
-// const user = {
-//   name: "Ulugbek",
-// };
-
-// const userr = user;
-
-// console.log(user || userr);
-
-// let number = prompt();
-
-// for (let i = 1; i < number; i++) {
-
-// }
-
-// let number = prompt("Enter a number : ")
-
-// i = 0
-
-// while(number > 0){
-
-//   let x = number % 10
-
-// }
-
-// for (let i = 0; i < 10; i++) {}
-
-// let i = 0;
-// while (i < 10) {
-//   i++;
-// }
-
-// do {
-//   i++;
-// } while (i < 10);
-
-// const user = {
-//   name: "Ulugbek",
-//   age: 20,
-//   country: "Uzbekistan",
-// };
-
-// let keys = Object.keys(user);
-
-// for (const key in user) {
-//   const element = user[key];
-//   console.log(element);
-// }
-
-// for (const element of keys) {
-//   console.log(element);
-// }
-
-// keys.forEach(function (element) {});
+// const celsius = Number(prompt("Enter temperature in Celsius:"));
+// const fahrenheit = (celsius * 9 / 5) + 32;
+// console.log(`Celsius: celsius`);
+// console.log(`Fahrenheit: fahrenheit`);
