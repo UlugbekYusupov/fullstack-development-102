@@ -187,3 +187,159 @@ else grade = "A";
 console.log("Task 7: Average =", average);
 console.log("Task 7: Grade =", grade);
 
+
+// Challenge 1 - greet(name) in 5 ways
+
+function greet(name) {
+    return "Hello, " + name + "!";
+}
+
+const greet2 = function(name) {
+    return "Hello, " + name + "!";
+};
+
+const greet3 = (name) => {
+    return "Hello, " + name + "!";
+};
+
+const greet4 = name => "Hello, " + name + "!";
+
+const greet5 = (name) => `Hello, ${name}!`;
+
+console.log(greet("Lily"));
+console.log(greet2("Lily"));
+console.log(greet3("Lily"));
+console.log(greet4("Lily"));
+console.log(greet5("Lily"));
+
+
+
+// Challenge 2 - Prime number
+
+function isPrime(n) {
+    if (n <= 1) return false;
+
+    for (let i = 2; i < n; i++) {
+        if (n % i === 0) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+console.log("Is 7 prime?", isPrime(7));
+
+
+
+// Challenge 3 - Count digits
+
+function countDigits(n) {
+    let count = 0;
+
+    while (n !== 0) {
+        n = Math.floor(n / 10);
+        count++;
+    }
+
+    return count;
+}
+
+console.log("Digits in 12345:", countDigits(12345));
+
+
+
+// Challenge 4 - Palindrome number
+
+function isPalindrome(n) {
+    let original = n;
+    let reversed = 0;
+
+    while (n > 0) {
+        let digit = n % 10;
+        reversed = reversed * 10 + digit;
+        n = Math.floor(n / 10);
+    }
+
+    return original === reversed;
+}
+
+console.log("Is 121 palindrome?", isPalindrome(121));
+
+
+
+// Challenge 5 - Armstrong number
+
+function isArmstrong(n) {
+    let original = n;
+    let digits = n.toString().length;
+    let sum = 0;
+
+    while (n > 0) {
+        let digit = n % 10;
+        sum += digit ** digits;
+        n = Math.floor(n / 10);
+    }
+
+    return sum === original;
+}
+
+console.log("Is 153 Armstrong?", isArmstrong(153));
+
+
+
+// Challenge 6 - Counter object
+
+function createCounter(start) {
+    let count = start;
+
+    return {
+        increment() {
+            count++;
+        },
+        decrement() {
+            count--;
+        },
+        getCount() {
+            return count;
+        }
+    };
+}
+
+const counter = createCounter(10);
+
+counter.increment();
+counter.increment();
+counter.decrement();
+
+console.log("Counter value:", counter.getCount());
+
+
+
+// Challenge 7 - Food order
+
+function orderFood(name, address, food) {
+    console.log(
+        "Dear " + name +
+        ", your ordered food " + food +
+        " will be ready in 15 minutes and will be delivered to your address " +
+        address
+    );
+}
+
+orderFood("Lily", "Tashkent", "Burger");
+
+
+
+// Challenge 8 - lazyAdder
+
+function lazyAdder(a) {
+    return function(b) {
+        return a + b;
+    };
+}
+
+const add5 = lazyAdder(5);
+
+console.log(add5(10));
+console.log(add5(20));
