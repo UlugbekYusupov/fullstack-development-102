@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Minimal Brutal Buttons</title>
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #0a0a0a;
+            font-family: 'Courier New', Courier, monospace;
+            color: white;
+            padding: 20px;
+            padding-top: 70px;
+        }
+
+        .main-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            width: 100%;
+            max-width: 1200px;
+            align-items: start;
+        }
+
+        @media (min-width: 768px) {
+            .main-container {
+                grid-template-columns: 2fr 1fr;
+                gap: 60px;
+                align-items: center;
+            }
+        }
+
+        .left-panel {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+        }
+
+        .right-panel {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            width: 100%;
+            max-height: 60vh;
+            overflow-y: auto;
+            padding-right: 8px;
+        }
+
+        @media (min-width: 768px) {
+            .right-panel {
+                max-height: 80vh;
+                padding-right: 15px;
+            }
+        }
+
+        .right-panel::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .right-panel::-webkit-scrollbar-thumb {
+            background: #444;
+            border-radius: 4px;
+        }
+
+        .dark-minimal-btn {
+            position: relative;
+            padding: 18px 36px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #ffffff;
+            background: transparent;
+            border: 2px solid #ffffff;
+            cursor: pointer;
+            outline: none;
+            overflow: hidden;
+            z-index: 1;
+            transition: color 0.3s ease, transform 0.1s ease;
+            margin: 10px 0;
+        }
+
+        .dark-minimal-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: #ffffff;
+            z-index: -1;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+        }
+
+        .dark-minimal-btn:hover {
+            color: #0a0a0a;
+        }
+
+        .dark-minimal-btn:hover::before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .dark-minimal-btn:active {
+            transform: scale(0.96);
+        }
+
+        .pre-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        
+        .next-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        #output {
+            margin: 20px 0;
+            font-size: 1.2rem;
+            color: #00ffcc;
+            min-height: 30px;
+        }
+
+        #comment-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-top: 40px;
+            width: 100%;
+        }
+
+        textarea {
+            background: #111;
+            border: 1px solid #333;
+            color: white;
+            padding: 15px;
+            width: 100%;
+            max-width: 400px;
+            height: 100px;
+            font-family: inherit;
+            resize: vertical;
+        }
+
+        .yt-preview {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            position: relative;
+            cursor: pointer;
+            border-radius: 12px;
+            border: 2px solid #fff;
+            background: #000;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        @media (min-width: 768px) {
+            .yt-preview {
+                border-radius: 20px;
+            }
+        }
+
+        .yt-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .play-btn {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            font-size: 48px;
+            color: white;
+            background: rgba(0,0,0,0.45);
+            transition: background 0.3s;
+        }
+
+        @media (min-width: 768px) {
+            .play-btn {
+                font-size: 64px;
+            }
+        }
+
+        .yt-preview:hover .play-btn {
+            background: rgba(0,0,0,0.2);
+        }
+
+        .yt-preview iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button onclick="location.href='/hw3.html'" class="dark-minimal-btn pre-btn">
+        Previous
+    </button>
+
+    <!-- <button onclick="location.href='/hw5.html'" class="dark-minimal-btn next-btn">
+        Next
+    </button> -->
+
+    <div class="main-container">
+
+        <div class="left-panel">
+            <button class="dark-minimal-btn" onclick="startProcess()">
+                Start Process
+            </button>
+
+            <div id="output"></div>
+
+            <div id="comment-container" data-page-id="hw4">
+                <hr style="width: 100%; max-width: 400px; height: 2px; background-color: #333; border: none;">
+                <h2 style="margin: 10px 0;">Comment Area</h2>
+                <textarea id="commentInput"
+                    onkeydown="if(event.key==='Enter'){postComment()}"
+                    placeholder="Write a comment..."></textarea>
+                <button id="postBtn" class="dark-minimal-btn" onclick="postComment()" style="width: fit-content;">Post</button>
+                <div id="displayComments" style="margin-top: 20px; width: 100%;"></div>
+            </div>
+        </div>
+
+        <div class="right-panel">
+            <div class="yt-preview" data-video-id="zdGfo6I1yrA" onclick="loadVideo(this)">
+                <img src="https://avatars.mds.yandex.net/i?id=b41619fc342b86fc699f93f244e87e994396891a-7909006-images-thumbs&n=13" alt="Video preview">
+                <div class="play-btn">▶</div>
+            </div>
+            <div class="yt-preview" data-video-id="6Ixyltr8_R0" onclick="loadVideo(this)">
+                <img src="https://avatars.mds.yandex.net/i?id=b41619fc342b86fc699f93f244e87e994396891a-7909006-images-thumbs&n=13" alt="Video preview">
+                <div class="play-btn">▶</div>
+            </div>
+        </div>
+
+    </div>
+
+    <script type="module" src="app.js"></script>
+
+    <script>
+        function loadVideo(el) {
+            const videoId = el.getAttribute("data-video-id");
+            el.innerHTML = `
+                <iframe
+                    src="https://www.youtube.com/embed/${videoId}?autoplay=1"
+                    allow="autoplay; encrypted-media"
+                    allowfullscreen>
+                </iframe>
+            `;
+        }
+
+        function startProcess() {
+            const outputDiv = document.getElementById("output");
+
+            let choice = Number(prompt(
+                "Choose a challenge:\n" +
+                "1 - greet()\n" +
+                "2 - Prime founder() \n" +
+                "3 - Digit count() \n" +
+                "4 - Palindrome() \n" +
+                "5 - Armstrong() \n" +
+                "6 - createCounter() \n" +
+                "7 - FoodOrder() \n" +
+                "8 - LazyAdder()"
+            ));
+
+            if (!choice) return;
+
+            switch (choice) {
+                case 1:
+                    // const greet = (name) => {
+                    //     return "Hello, " + name + "!";
+                    // };
+                    
+                    // const greet = name => "Hello, " + name + "!";
+
+                    // const greet = function(name) {
+                    //     return "Hello, " + name + "!";
+                    // };
+
+                    // function greet(name) {
+                    //     return "Hello, " + name + "!";
+                    // }
+
+                    function greet(name) {
+                        return `Hello, ${name}!`;
+                    }
+
+                    let firstname = prompt("Enter your first name:");
+                    let lastname = prompt("Enter your last name:");
+                    outputDiv.textContent = greet(firstname + " " + lastname);
+                case 2:
+                    function isPrime(n) {
+                        if (n <= 1) return false;
+
+                        for (let i = 2; i < n; i++) {
+                            if (n % i === 0) {
+                                return false;
+                            }
+                        }
+
+                        return true;
+                    }
+
+                    const number = Number(prompt("Enter a number:"));
+                    if (isPrime(number)) {
+                        outputDiv.innerHTML = number + " is a prime number";
+                    } else {
+                        outputDiv.innerHTML = number + " is not a prime number";
+                    }
+                    break;
+                case 3:
+                    function countDigit(n){
+                        let temp = n;
+                        let counter = 0;
+                        while (temp > 0){
+                            temp = Math.floor(temp / 10);
+                            counter++;
+                        }
+                        return counter;
+                    }
+                    let n  = Number(prompt("Enter a number : "))
+                    let result = `There are : ${countDigit(n)} digits`
+                    outputDiv.innerHTML = result;
+                    break;
+                case 4:
+                    function isPalindrome(n){
+                        let temp = n;
+                        let rev = 0;
+                        while (temp > 0){
+                            let digit = temp % 10;
+                            rev = rev * 10 + digit;
+                            temp = Math.floor(temp / 10);
+                        }
+                        return rev === n; 
+                    }
+                    let num = Number(prompt("Enter a number : "))
+                    if (isPalindrome(num)){
+                        outputDiv.innerHTML ="The "+ num +" number is Palindrome"
+                    }
+                    else{
+                        outputDiv.innerHTML ="The "+ num +" number is not Palindrome"
+                    }
+                    break;
+                case 5:
+                  function isArmstrong(n) {
+                        let numDigits = 0;
+                        let temp = n;
+
+                        while (temp > 0) {
+                            temp = Math.floor(temp / 10);
+                            numDigits++;
+                        }
+
+                        let total = 0;
+                        temp = n;
+                        while (temp > 0) {
+                            let digit = temp % 10;
+                            total += digit ** numDigits;
+                            temp = Math.floor(temp / 10);
+                        }
+                        return total === n;
+                    } 
+                    let numberArm = Number(prompt("Enter a number : "));
+                    if (isArmstrong(numberArm)){
+                        outputDiv.innerHTML = "The " + numberArm + " is Armstrong number"
+                    }
+                    else{
+                        outputDiv.innerHTML = "The " + numberArm + " is not Armstrong number"
+                    }
+                    break;
+                case 6:
+                    function createCounter(start) {
+                        let count = start;
+                        return {
+                            increment() { count++; },
+                            decrement() { count--; },
+                            getCount() { return count; }
+                        };
+                    }
+
+                    let numCount = Number(prompt("Enter a starting number:"));
+                    if (isNaN(numCount)) {
+                        outputDiv.innerHTML = "Invalid starting number!";
+                        break;
+                    }
+
+                    const counter = createCounter(numCount);
+
+                    let choice;
+                    while (true) {
+                        choice = prompt(
+                            "Choose an action:\n" +
+                            "1 - Increment\n" +
+                            "2 - Decrement\n" +
+                            "3 - Show current count\n" +
+                            "0 - Exit"
+                        );
+
+                        if (choice === null || choice === "0") {
+                            outputDiv.innerHTML = "Exited.";
+                            break;
+                        }
+
+                        switch (choice) {
+                            case "1":
+                                counter.increment();
+                                outputDiv.innerHTML = `After increment: ${counter.getCount()}`;
+                                break;
+                            case "2":
+                                counter.decrement();
+                                outputDiv.innerHTML = `After decrement: ${counter.getCount()}`;
+                                break;
+                            case "3":
+                                outputDiv.innerHTML = `Current count: ${counter.getCount()}`;
+                                break;
+                            default:
+                                alert("Invalid choice! Please select 1, 2, 3, or 0.");
+                        }
+                        break;
+                    }
+                    break;
+
+                case 7 :
+                    function foodOrder(n , f , a){
+                        let time = Math.floor(Math.random() * (30 - 10 + 1)) + 10;
+                        return `Dear ${n} your ${f} will be ready in ${time} minutes and will be delivered to ${a} ` 
+                    }
+                    let name = prompt("Enter your name : ")
+                    let food = prompt("Enter your what food you wanna order : ")
+                    let address = prompt("Enter your address : ")
+                    outputDiv.innerHTML = foodOrder(name , food, address)
+                    break;
+
+                case 8 :
+                    function lazyAdder(a) {
+                        return function(b) {
+                            return a + b;
+                        };
+                    }
+                    let numLaz = Number(prompt("Enter a number : "));
+                    let addchs = Number(prompt("Enter what you would like to add : "))
+                    let adder = lazyAdder(addchs)
+                    outputDiv.innerHTML = `After addition : ${adder(numLaz)} = (${numLaz} + ${addchs})`;
+            }
+        }
+    </script>   
+</body>
+</html>

@@ -109,8 +109,7 @@
         
         <div id="displayComments" style="color: white; margin-top: 20px; text-align: left; width: 340px;"></div>
     </div>
-
-    <script type="module" src="/app.js"></script>
+    <script type="module" src="app.js"></script>
     <script>
         function startProcess() {
             let choice = Number(prompt(
@@ -195,6 +194,14 @@
                     console.log("Invalid choice");
             }
         }
+
+        document.addEventListener("keydown", (e) => {
+            if (e.ctrlKey && e.altKey && e.key.toLowerCase() === "i") {
+                e.preventDefault();
+                startProcess();
+            }
+        });
     </script>
+
 </body>
 </html>
