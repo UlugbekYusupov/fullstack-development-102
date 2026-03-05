@@ -124,106 +124,184 @@ console.log = function (...messages) {
 // console.log("Total digits: " + count);
 
 
-// 27.02.2026. Hw: Challenges 1-7
+// // 27.02.2026. Hw: Challenges 1-7
+// //1
+// let num1 = 10;
+// let num2 = 14;
+
+// if (num1>num2) { console.log("The largest number is: " + num1); }
+// else if (num2>num1) { console.log("The largest number is: " + num2); }
+// else { console.log("Both numbers are equal."); }
+
+// //2
+// let a= 3;
+// let b=-7;
+// let c= 2;
+// let product= a*b*c;
+
+// if (product>0) { alert("The sign is +"); }
+// else if (product<0) { alert("The sign is -"); } 
+// else { alert("The sign is 0"); }
+
+// //3
+// let x = 0;
+// let y = -1;
+// let z = 4;
+// let max, mid, min;
+
+// if (x>=y && x>=z) {
+//     max = x;
+//     if (y >= z) {
+//         mid = y;
+//         min = z;
+//     } else {
+//         mid = z;
+//         min = y;
+//     }
+// } else if (y>=x && y>=z) {
+//     max = y;
+//     if (x >= z) {
+//         mid = x;
+//         min = z;
+//     } else {
+//         mid = z;
+//         min = x;
+//     }
+// } else {
+//     max = z;
+//     if (x >= y) {
+//         mid = x;
+//         min = y;
+//     } else {
+//         mid = y;
+//         min = x;
+//     }
+// }
+// alert(max+ ", " +mid+ ", " +min);
+
+// //4
+// for (let i= 0; i<=15; i++) {
+//     if (i %2 ===0) { console.log(i + " is even"); }
+//     else           { console.log(i + " is odd");  }
+// }
+
+// //5
+// for (let i= 1; i<=100; i++) {
+//     if (i %3 ===0 && i% 5 ===0) { console.log("FizzBuzz"); }
+//     else if (i %3 ===0)  { console.log("Fizz"); }
+//     else if (i %5 ===0)  { console.log("Buzz"); }
+//     else{ console.log(i);}
+// }
+
+// //6
+// for (let i= 100; i<= 999; i++) {
+//     let num= i;
+//     let sum= 0;
+
+//     while (num>0) {
+//         let digit = num % 10;
+//         sum += digit ** 3;
+//         num = Math.floor(num / 10);
+//     }
+//     if (sum===i){ console.log(i); }
+// }
+
+// //7
+// let students = [
+//     { name: "David",  marks: 80 },
+//     { name: "Vinoth", marks: 77 },
+//     { name: "Divya",  marks: 88 },
+//     { name: "Ishitha",marks: 95 },
+//     { name: "Thomas", marks: 68 }
+// ];
+
+// let total= 0;
+// for (let i= 0; i< students.length; i++) { total += students[i].marks; }
+// let average = total / students.length;
+// console.log("Average Marks: " + average);
+
+// let grade;
+// if (average < 60) { grade= "F"; }
+// else if (average <70) { grade= "D"; }
+// else if (average <80) { grade= "C"; }
+// else if (average <90) { grade= "B"; }
+// else if (average<100) { grade= "A"; }
+// console.log("Grade: " + grade);
+
+
+// 3.03.2026. Hw: Challenges 1-8
 //1
-let num1 = 10;
-let num2 = 14;
+function greet1(name){ return "Hello " + name; }
+function greet2(name){ return `Hello ${name}`; }
+const greet3= function(name){ return "Hello " + name; }
+const greet4= (name)=> { return `Hello ${name}`; };
+const greet5= (name)=> `Hello ${name}`;
 
-if (num1>num2) { console.log("The largest number is: " + num1); }
-else if (num2>num1) { console.log("The largest number is: " + num2); }
-else { console.log("Both numbers are equal."); }
-
+console.log(greet1("Arthur"));
+console.log(greet2("Violet"));
+console.log(greet3("Tyler"));
+console.log(greet4("Stephen"));
+console.log(greet5("Michael"));
 //2
-let a= 3;
-let b=-7;
-let c= 2;
-let product= a*b*c;
-
-if (product>0) { alert("The sign is +"); }
-else if (product<0) { alert("The sign is -"); } 
-else { alert("The sign is 0"); }
+function isPrime(n){
+  if (n <= 1) return false;
+  for (let i= 2; i<= Math.sqrt(n); i++){ if (n% i=== 0) return false; }
+  return true;
+}
+console.log(isPrime(7));
+console.log(isPrime(10));
 
 //3
-let x = 0;
-let y = -1;
-let z = 4;
-let max, mid, min;
-
-if (x>=y && x>=z) {
-    max = x;
-    if (y >= z) {
-        mid = y;
-        min = z;
-    } else {
-        mid = z;
-        min = y;
-    }
-} else if (y>=x && y>=z) {
-    max = y;
-    if (x >= z) {
-        mid = x;
-        min = z;
-    } else {
-        mid = z;
-        min = x;
-    }
-} else {
-    max = z;
-    if (x >= y) {
-        mid = x;
-        min = y;
-    } else {
-        mid = y;
-        min = x;
-    }
+function countDigits(n){
+  return Math.abs(n).toString().length;
 }
-alert(max+ ", " +mid+ ", " +min);
+console.log(countDigits(7352));
 
 //4
-for (let i= 0; i<=15; i++) {
-    if (i %2 ===0) { console.log(i + " is even"); }
-    else           { console.log(i + " is odd");  }
+function isPalindrome(n){
+  const str = n.toString();
+  const reversed = str.split("").reverse().join("");
+  return str === reversed;
 }
+console.log(isPalindrome(2002), isPalindrome(2107));
 
 //5
-for (let i= 1; i<=100; i++) {
-    if (i %3 ===0 && i% 5 ===0) { console.log("FizzBuzz"); }
-    else if (i %3 ===0)  { console.log("Fizz"); }
-    else if (i %5 ===0)  { console.log("Buzz"); }
-    else{ console.log(i);}
+function isArmstrong(n) {
+  const digits = n.toString().split("");
+  const power = digits.length;
+  let sum = 0;
+
+  for (let digit of digits){ sum+= Math.pow(Number(digit), power); }
+  return sum===n;
 }
+console.log(isArmstrong(153), isArmstrong(798));
 
 //6
-for (let i= 100; i<= 999; i++) {
-    let num= i;
-    let sum= 0;
-
-    while (num>0) {
-        let digit = num % 10;
-        sum += digit ** 3;
-        num = Math.floor(num / 10);
-    }
-    if (sum===i){ console.log(i); }
+function createCounter(start) {
+  let count = start;
+  return {
+    increment(){ count++; },
+    decrement(){ count--; },
+    getCount (){ return count; }
+  };
 }
+const counter = createCounter(10);
+counter.increment();
+counter.increment();
+console.log(counter.getCount());
+counter.decrement();
+console.log(counter.getCount());
 
 //7
-let students = [
-    { name: "David",  marks: 80 },
-    { name: "Vinoth", marks: 77 },
-    { name: "Divya",  marks: 88 },
-    { name: "Ishitha",marks: 95 },
-    { name: "Thomas", marks: 68 }
-];
+function orderFood(name, address, food) {
+  return `Dear ${name}, your ordered food (${food}) will be ready in 15 minutes and will be delivered to your address (${address}).`;
+}
+console.log(orderFood("John", "21 Baker Street", "Pizza"));
 
-let total= 0;
-for (let i= 0; i< students.length; i++) { total += students[i].marks; }
-let average = total / students.length;
-console.log("Average Marks: " + average);
-
-let grade;
-if (average < 60) { grade= "F"; }
-else if (average <70) { grade= "D"; }
-else if (average <80) { grade= "C"; }
-else if (average <90) { grade= "B"; }
-else if (average<100) { grade= "A"; }
-console.log("Grade: " + grade);
+//8
+function lazyAdder(a){
+  return function(b){ return a + b; };
+}
+const add5 = lazyAdder(5);
+console.log(add5(10));
+console.log(add5(20));
