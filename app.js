@@ -222,6 +222,118 @@ function calculateStudentLetterGrades(studentGrades) {
     return results;
 }
 
+
+
+
+// FUNCTIONS
+
+// CHALLANGE 1
+
+function hello(name){
+    console.log("hello " + name);
+}
+
+let welcome = function(name){
+    console.log("welcome " + name);
+}
+
+let greet = (name) => {
+    console.log("greet " + name);
+}
+
+(function(name){
+    console.log("hi " + name);
+})
+
+let greet2 = new Function("name", "console.log('greet2 ' + name);");
+
+
+
+// CHALLANGE 2
+
+
+function isprime(n){
+    if (n % 2 === 0) return true;
+    else return false;
+}
+
+// CHALLANGE 3
+
+function countdigits(n){
+    let count = 0;
+    let text = String(n);
+    while (text.length > 0) {
+        count++;
+        text = text.slice(0, -1);
+    }
+    return count;
+}
+
+// CHALLANGE 4
+
+
+function ispalindrome(n){
+    let text = String(n);
+    let reversed = text.split("").reverse().join("");
+    return text === reversed;
+}
+
+// CHALLANGE 5
+
+
+function isArmstrong(n) {
+    // bu funkssyaga man chunmadim AI qib berdi :)    
+    let text = String(n);
+    let power = text.length;
+    let sumOfPowers = text.split("").reduce((sum, d) => sum + Math.pow(Number(d), power), 0);
+    return sumOfPowers === n;
+}
+
+
+// CHALLANGE 6
+
+
+function createCounter(start = 0) {
+    let count = start;
+    let increment = function() {
+        count++;
+        return count;
+    }
+    let decrement = function() {
+        count--;
+        return count;
+    }
+    let getCount = function() {
+        return count;
+    }
+    return { increment, decrement, getCount };
+} 
+
+// CHALLANGE 7
+
+function once(fn) {
+// AI QIB BERDI
+    let called = false;
+    let result;
+    return function(...args) {
+        if (!called) {
+            result = fn.apply(this, args);
+            called = true;
+        }
+        return result;
+    }
+}
+
+// CHALLANGE 8
+
+function lazzyadder(a){
+    return function(b){
+        return a + b;
+    }
+}
+
+
+
 window.compareTwoNumbers = compareTwoNumbers;
 window.firstNegativeNumber = firstNegativeNumber;
 window.sortThreeNumbersAsc = sortThreeNumbersAsc;
