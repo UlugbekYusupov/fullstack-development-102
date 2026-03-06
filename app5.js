@@ -130,21 +130,21 @@
 // console.log(calculateTotalPrice(100, 3)); 
 // console.log(calculateTotalPrice(100, 5)); 
 
-function atmWithdraw(amount) {
-    if (amount % 10 !== 0) {
-        return "Error: Amount must be multiple of 10";
-    }
-    const bills = [100, 50, 20, 10];
-    const result = {};
+// function atmWithdraw(amount) {
+//     if (amount % 10 !== 0) {
+//         return "Error: Amount must be multiple of 10";
+//     }
+//     const bills = [100, 50, 20, 10];
+//     const result = {};
 
-    for (let bill of bills) {
-        const count = Math.floor(amount / bill);
-        if (count > 0) result[bill] = count;
-        amount = amount % bill;
-    }
+//     for (let bill of bills) {
+//         const count = Math.floor(amount / bill);
+//         if (count > 0) result[bill] = count;
+//         amount = amount % bill;
+//     }
 
-    return result;
-}
-console.log(atmWithdraw(130));
-console.log(atmWithdraw(70)); 
-console.log(atmWithdraw(125));
+//     return result;
+// }
+// console.log(atmWithdraw(130));
+// console.log(atmWithdraw(70)); 
+// console.log(atmWithdraw(125));
