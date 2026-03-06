@@ -5,220 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Khurshid's work hw4</title>
     <link rel="ico" href="/logo.png">
-    <style>
-        *, *::before, *::after {
-            box-sizing: border-box;
-        }
-        body {
-            margin: 0;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background-color: #0a0a0a;
-            font-family: 'Courier New', Courier, monospace;
-            color: white;
-            padding: 20px;
-            padding-top: 70px;
-        }
-
-        .main-container {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 40px;
-            width: 100%;
-            max-width: 1200px;
-            align-items: start;
-        }
-
-        @media (min-width: 768px) {
-            .main-container {
-                grid-template-columns: 2fr 1fr;
-                gap: 60px;
-                align-items: center;
-            }
-        }
-
-        .left-panel {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            width: 100%;
-        }
-
-        .right-panel {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 30px;
-            width: 100%;
-            max-height: 60vh;
-            overflow-y: auto;
-            padding-right: 8px;
-        }
-
-        @media (min-width: 768px) {
-            .right-panel {
-                max-height: 80vh;
-                padding-right: 15px;
-            }
-        }
-
-        .right-panel::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        .right-panel::-webkit-scrollbar-thumb {
-            background: #444;
-            border-radius: 4px;
-        }
-
-        .dark-minimal-btn {
-            position: relative;
-            padding: 18px 36px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #ffffff;
-            background: transparent;
-            border: 2px solid #ffffff;
-            cursor: pointer;
-            outline: none;
-            overflow: hidden;
-            z-index: 1;
-            transition: color 0.3s ease, transform 0.1s ease;
-            margin: 10px 0;
-        }
-
-        .dark-minimal-btn::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-color: #ffffff;
-            z-index: -1;
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
-        }
-
-        .dark-minimal-btn:hover {
-            color: #0a0a0a;
-        }
-
-        .dark-minimal-btn:hover::before {
-            transform: scaleX(1);
-            transform-origin: left;
-        }
-
-        .dark-minimal-btn:active {
-            transform: scale(0.96);
-        }
-
-        .pre-btn {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-        }
-        
-        .next-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-        }
-
-        #output {
-            margin: 20px 0;
-            font-size: 1.2rem;
-            color: #00ffcc;
-            min-height: 30px;
-        }
-
-        #comment-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            margin-top: 40px;
-            width: 100%;
-        }
-
-        textarea {
-            background: #111;
-            border: 1px solid #333;
-            color: white;
-            padding: 15px;
-            width: 100%;
-            max-width: 400px;
-            height: 100px;
-            font-family: inherit;
-            resize: vertical;
-        }
-
-        .yt-preview {
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            position: relative;
-            cursor: pointer;
-            border-radius: 12px;
-            border: 2px solid #fff;
-            background: #000;
-            overflow: hidden;
-            flex-shrink: 0;
-        }
-
-        @media (min-width: 768px) {
-            .yt-preview {
-                border-radius: 20px;
-            }
-        }
-
-        .yt-preview img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .play-btn {
-            position: absolute;
-            inset: 0;
-            display: grid;
-            place-items: center;
-            font-size: 48px;
-            color: white;
-            background: rgba(0,0,0,0.45);
-            transition: background 0.3s;
-        }
-
-        @media (min-width: 768px) {
-            .play-btn {
-                font-size: 64px;
-            }
-        }
-
-        .yt-preview:hover .play-btn {
-            background: rgba(0,0,0,0.2);
-        }
-
-        .yt-preview iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-    </style>
+    <link rel="stylesheet" href="/style.css">
 </head>
 
 <body>
 
+    <video autoplay loop muted playsinline class="bg-video">
+        <source src="https://ik.imagekit.io/Eduventure/animations/back.webm/ik-video.mp4?updatedAt=1772775481474" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="video-overlay"></div>
+
     <button onclick="location.href='/hw3.html'" class="dark-minimal-btn pre-btn">
         Previous
     </button>
-
-    <!-- <button onclick="location.href='/hw5.html'" class="dark-minimal-btn next-btn">
-        Next
-    </button> -->
 
     <div class="main-container">
 
@@ -289,20 +89,6 @@
 
             switch (choice) {
                 case 1:
-                    // const greet = (name) => {
-                    //     return "Hello, " + name + "!";
-                    // };
-                    
-                    // const greet = name => "Hello, " + name + "!";
-
-                    // const greet = function(name) {
-                    //     return "Hello, " + name + "!";
-                    // };
-
-                    // function greet(name) {
-                    //     return "Hello, " + name + "!";
-                    // };
-
                     function greet(name) {
                         return `Hello, ${name}!`;
                     }
@@ -310,6 +96,7 @@
                     let firstname = prompt("Enter your first name:");
                     let lastname = prompt("Enter your last name:");
                     outputDiv.textContent = greet(firstname + " " + lastname);
+                    break;
                 case 2:
                     function isPrime(n) {
                         if (n <= 1) return false;
@@ -408,9 +195,9 @@
 
                     const counter = createCounter(numCount);
 
-                    let choice;
+                    let subChoice;
                     while (true) {
-                        choice = prompt(
+                        subChoice = prompt(
                             "Choose an action:\n" +
                             "1 - Increment\n" +
                             "2 - Decrement\n" +
@@ -418,12 +205,12 @@
                             "0 - Exit"
                         );
 
-                        if (choice === null || choice === "0") {
+                        if (subChoice === null || subChoice === "0") {
                             outputDiv.innerHTML = "Exited.";
                             break;
                         }
 
-                        switch (choice) {
+                        switch (subChoice) {
                             case "1":
                                 counter.increment();
                                 outputDiv.innerHTML = `After increment: ${counter.getCount()}`;
@@ -516,10 +303,10 @@
                         let hasUpper = false;
                         let hasNumber = false;
                         let hasSpecial = false;
-                        const minLength = password.minLength >=8;
-                        for (let i = 0 ; i < password.minLength; i++){
+                        const minLength = password.length >= 8;
+                        for (let i = 0 ; i < password.length; i++){
                             const ch = password[i];
-                            if(!hasUpper && ch >= '0' && ch <='9'){
+                            if(!hasUpper && ch >= 'A' && ch <='Z'){
                                 hasUpper = true;
                             }
                             else if (!hasNumber && ch >= '0' && ch <= '9'){
@@ -633,14 +420,14 @@
                     cycle();
                     break;
                 case 5:
-                    function checkPasswordStrength(password) {
+                    function checkPasswordStrength2(password) {
                         let hasUpper = false;
                         let hasNumber = false;
                         let hasSpecial = false;
-                        const minLength = password.minLength >=8;
-                        for (let i = 0 ; i < password.minLength; i++){
+                        const minLength = password.length >= 8;
+                        for (let i = 0 ; i < password.length; i++){
                             const ch = password[i];
-                            if(!hasUpper && ch >= '0' && ch <='9'){
+                            if(!hasUpper && ch >= 'A' && ch <='Z'){
                                 hasUpper = true;
                             }
                             else if (!hasNumber && ch >= '0' && ch <= '9'){
@@ -666,7 +453,7 @@
                     }
 
                     const pasd = prompt("create password : ");
-                    let rslt = `The result : ${checkPasswordStrength(pasd)}`
+                    let rslt = `The result : ${checkPasswordStrength2(pasd)}`
                     outputDiv.innerHTML = rslt;
                     break;
 
@@ -760,4 +547,3 @@
     </script>   
 </body>
 </html>
-

@@ -5,90 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Khurshid's work hw3</title>
     <link rel="ico" href="/logo.png">
-    <style>
-        body {
-            margin: 0;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            background-color: #0a0a0a;
-            font-family: 'Courier New', Courier, monospace;
-            color: white;
-        }
-
-        .dark-minimal-btn {
-            position: relative;
-            padding: 18px 36px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #ffffff;
-            background: transparent;
-            border: 2px solid #ffffff;
-            cursor: pointer;
-            outline: none;
-            overflow: hidden;
-            z-index: 1;
-            transition: color 0.3s ease, transform 0.1s ease;
-            margin: 10px 0;
-        }
-
-        .dark-minimal-btn::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-color: #ffffff;
-            z-index: -1;
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
-        }
-
-        .dark-minimal-btn:hover {
-            color: #0a0a0a;
-        }
-
-        .dark-minimal-btn:hover::before {
-            transform: scaleX(1);
-            transform-origin: left;
-        }
-
-        .dark-minimal-btn:active {
-            transform: scale(0.96);
-        }
-        .pre-btn{
-            position: absolute;
-            top: 20px;
-            left: 20px;
-        }
-        .next-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-        }
-
-        #comment-container {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 40px;
-        }
-
-        textarea {
-            background: #111;
-            border: 1px solid #333;
-            color: white;
-            padding: 10px;
-            width: 320px;
-            height: 80px;
-            font-family: inherit;
-        }
-    </style>
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+    <video autoplay loop muted playsinline class="bg-video">
+        <source src="https://ik.imagekit.io/Eduventure/animations/back.webm/ik-video.mp4?updatedAt=1772775481474" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
     <button onclick="location.href='/hw2.html'" class="dark-minimal-btn pre-btn">
         Previous
     </button>
