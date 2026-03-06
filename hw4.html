@@ -464,6 +464,298 @@
                     outputDiv.innerHTML = `After addition : ${adder(numLaz)} = (${numLaz} + ${addchs})`;
             }
         }
+        function startAssignment() {
+            const outputDiv = document.getElementById("output");
+
+            let choice = Number(prompt(
+                "Choose a challenge:\n" +
+                "1 - Scenario 1 (Dynamic Pricing Calculation)\n" +
+                "2 - Scenario 2 (Password Strength Checker)\n" +
+                "3 - Scenario 3 (ATM Cash Withdrawal System)\n" +
+                "4 - Scenario 4 (traffic light) \n" +
+                "5 - Scenario 5 (Password Strength Checker)\n" +
+                "6 - Scenario 6 (Closures in Banking System)\n" +
+                "7 - Scenario 7 (Role-Based Access System)\n" +
+                "8 - Scenario 8 (Dynamic Tax Calculator)"
+            ));
+
+            if (!choice) return;
+
+            switch (choice) {
+                case 1:
+                    const shoppingCart = [];
+                    const numItems = Number(prompt("How many items do you want to buy?"));
+
+                    for (let i = 0; i < numItems; i++) {
+                        const price = Number(prompt(`Enter price for item ${i+1}:`));
+                        const quantity = Number(prompt(`Enter quantity for item ${i+1}:`));
+                        shoppingCart.push({ price, quantity });
+                    }
+
+                    function calculateTotal(cart) {
+                        let totalQuant = 0;
+                        let totalPrice = 0;
+                        for (let item of cart) {
+                            totalQuant += item.quantity;
+                            totalPrice += item.price * item.quantity;
+                        }
+
+                        let discount = 0;
+                        if (totalQuant >= 5) discount = 0.2;
+                        else if (totalQuant >= 3) discount = 0.1;
+
+                        return (totalPrice * (1 - discount)).toFixed(2);
+                    }
+
+                    outputDiv.innerHTML = "Total Price: $" + calculateTotal(shoppingCart);
+                    break;
+
+                case 2:
+                    function checkPasswordStrength(password) {
+                        let hasUpper = false;
+                        let hasNumber = false;
+                        let hasSpecial = false;
+                        const minLength = password.minLength >=8;
+                        for (let i = 0 ; i < password.minLength; i++){
+                            const ch = password[i];
+                            if(!hasUpper && ch >= '0' && ch <='9'){
+                                hasUpper = true;
+                            }
+                            else if (!hasNumber && ch >= '0' && ch <= '9'){
+                                hasNumber = true;
+                            }
+                            else if (!hasSpecial && (
+                                        (ch >= '!' && ch <= '/') || 
+                                        (ch >= ':' && ch <= '@') || 
+                                        (ch >= '[' && ch <= '`') || 
+                                        (ch >= '{' && ch <= '~')))
+                            {
+                                hasSpecial = true
+                            }
+                        }
+                        let strength = 0;
+                        if(minLength) strength++;
+                        if(hasUpper) strength++;
+                        if(hasNumber) strength++;
+                        if (hasSpecial) strength++;
+                        if (strength <= 1) return "Weak";
+                        else if (strength <= 3) return "Medium";
+                        else return "Strong";
+                    }
+
+                    const password = prompt("create password : ");
+                    let result = `The result : ${checkPasswordStrength(password)}`
+                    outputDiv.innerHTML = result;
+                    break;
+
+                case 3:
+                    function atmWithdrawal(amount) {
+                        if (amount % 10 !== 0) {
+                            return "Error: Amount must be in multiples of 10.";
+                        }
+
+                        const bills = [100, 50, 20, 10];
+                        const result = {};
+                        let remaining = amount;
+
+                        for (let bill of bills) {
+                            const count = Math.floor(remaining / bill);
+                            if (count > 0) {
+                                result[bill] = count;
+                                remaining -= bill * count;
+                            }
+                        }
+
+                        return result;
+                    }
+
+                    let withdrawAmount = Number(prompt("Enter the withdrawal amount: $"));
+                    const dispensed = atmWithdrawal(withdrawAmount);
+                    let outputHTML = "";
+
+                    if (typeof dispensed === "string") {
+                        outputHTML = dispensed; 
+                    } else {
+                        outputHTML = `<strong>Dispensed bills for $${withdrawAmount}:</strong><br>`;
+                        for (let bill in dispensed) {
+                            outputHTML += `$${bill} x ${dispensed[bill]}<br>`;
+                        }
+                    }
+
+                    outputDiv.innerHTML = outputHTML;
+                    break;
+                case 4:
+                    outputDiv.innerHTML = `
+                        <div id="traffic-light" style="display:flex; flex-direction:column; align-items:center; gap:15px; margin-top:20px;">
+                            <div id="red" style="width:100px; height:100px; border-radius:50%; background:#330000;"></div>
+                            <div id="yellow" style="width:100px; height:100px; border-radius:50%; background:#333300;"></div>
+                            <div id="green" style="width:100px; height:100px; border-radius:50%; background:#003300;"></div>
+                        </div>
+                    `;
+
+                    const lights = {
+                        red: document.getElementById("red"),
+                        green: document.getElementById("green"),
+                        yellow: document.getElementById("yellow")
+                    };
+
+                    const durations = {
+                        red: 5000,    
+                        green: 3000,  
+                        yellow: 2000  
+                    };
+
+                    let current = "red";
+
+                    function turnOn(light) {
+                        for (let key in lights) {
+                            lights[key].style.background = key === "red" ? "#330000" :
+                                                        key === "green" ? "#003300" :
+                                                        "#333300";
+                        }
+                        lights[light].style.background = light === "red" ? "#ff0000" :
+                                                        light === "green" ? "#00ff00" :
+                                                        "#ffff00";
+                    }
+
+                    function cycle() {
+                        turnOn(current);
+
+                        setTimeout(() => {
+                            if (current === "red") current = "yellow";
+                            else if (current === "yellow") current = "green";
+                            else if (current === "green") current = "red";
+
+                            cycle();
+                        }, durations[current]);
+                    }
+                    cycle();
+                    break;
+                case 5:
+                    function checkPasswordStrength(password) {
+                        let hasUpper = false;
+                        let hasNumber = false;
+                        let hasSpecial = false;
+                        const minLength = password.minLength >=8;
+                        for (let i = 0 ; i < password.minLength; i++){
+                            const ch = password[i];
+                            if(!hasUpper && ch >= '0' && ch <='9'){
+                                hasUpper = true;
+                            }
+                            else if (!hasNumber && ch >= '0' && ch <= '9'){
+                                hasNumber = true;
+                            }
+                            else if (!hasSpecial && (
+                                        (ch >= '!' && ch <= '/') || 
+                                        (ch >= ':' && ch <= '@') || 
+                                        (ch >= '[' && ch <= '`') || 
+                                        (ch >= '{' && ch <= '~')))
+                            {
+                                hasSpecial = true
+                            }
+                        }
+                        let strength = 0;
+                        if(minLength) strength++;
+                        if(hasUpper) strength++;
+                        if(hasNumber) strength++;
+                        if (hasSpecial) strength++;
+                        if (strength <= 1) return "Weak";
+                        else if (strength <= 3) return "Medium";
+                        else return "Strong";
+                    }
+
+                    const pasd = prompt("create password : ");
+                    let rslt = `The result : ${checkPasswordStrength(pasd)}`
+                    outputDiv.innerHTML = rslt;
+                    break;
+
+                case 6:
+                    let startingBalance = Number(prompt("Enter initial balance for your account:"));
+                    if (isNaN(startingBalance) || startingBalance < 0) {
+                        outputDiv.innerHTML = "Invalid starting balance!";
+                        break;
+                    }
+
+                    const account = bankAccount(startingBalance);
+
+                    while (true) {
+                        const action = prompt(
+                            "Bank Account Actions:\n" +
+                            "1 - Deposit\n" +
+                            "2 - Withdraw\n" +
+                            "3 - View Balance\n" +
+                            "0 - Exit"
+                        );
+
+                        if (action === null || action === "0") {
+                            outputDiv.innerHTML = "Exited Bank Account.";
+                            break;
+                        }
+
+                        switch (action) {
+                            case "1":
+                                const dep = Number(prompt("Enter amount to deposit:"));
+                                outputDiv.innerHTML = account.deposit(dep);
+                                break;
+                            case "2":
+                                const withdr = Number(prompt("Enter amount to withdraw:"));
+                                outputDiv.innerHTML = account.withdraw(withdr);
+                                break;
+                            case "3":
+                                outputDiv.innerHTML = account.getBalance();
+                                break;
+                            default:
+                                alert("Invalid choice! Please select 1, 2, 3, or 0.");
+                        }
+                    }
+                    break;
+                case 7:
+                    function startRoleSystem() {
+                        const outputDiv = document.getElementById("output");
+                        const role = prompt("Enter your role (admin, editor, viewer):").toLowerCase();
+
+                        const permissions = {
+                            admin: ["add", "edit", "delete", "view"],
+                            editor: ["edit", "view"],
+                            viewer: ["view"]
+                        };
+
+                        const user = {
+                            perform(action) {
+                                if (permissions[role]?.includes(action)) {
+                                    return `${role} performed '${action}'`;
+                                } else {
+                                    return `Access denied: ${role} cannot perform '${action}'`;
+                                }
+                            }
+                        };
+
+                        const action = prompt("Choose an action: add, edit, delete, view").toLowerCase();
+                        outputDiv.innerHTML = user.perform(action);
+                    }
+                        startRoleSystem();
+                        break;
+                case 8:
+                    function calculateTax(salary) {
+                        if (salary < 10000) return 0;
+                        else if (salary < 50000) return salary * 0.10;
+                        else return salary * 0.20;
+                    }
+
+                    const salary = Number(prompt("Enter your salary:"));
+                    if (isNaN(salary) || salary < 0) {
+                        outputDiv.innerHTML = "Invalid salary!";
+                    } else {
+                        const tax = calculateTax(salary);
+                        outputDiv.innerHTML = `Your salary: $${salary}<br>Tax to pay: $${tax.toFixed(2)}`;
+                    }
+                    break;
+
+                default:
+                    alert("Invalid choice!");
+            }
+        }
+
     </script>   
 </body>
 </html>
