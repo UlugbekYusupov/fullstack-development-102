@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // CHallange 1 
+    // Way 1
+    function greet(name) {
+         return `Hello, ${name}!`;
+    }
+    console.log(greet("Mirzobek"))
+
+    // Way 2
+    const greeT = function(name) {
+        return `Hello, ${name}!`;
+    };
+    console.log(greeT(name="Mirzobek"))
+
+    // Way 3
+    const Greet = (name) => `Hello, ${name}!`;
+    console.log(Greet("Ali"))
+
+    // Way 4 
+    const gReet = new Function('name', 'return "Hello, " + name + "!";');
+    console.log(gReet("Sarvar"))
+
+    // Way 5
+    const greeter = {
+        grEEt(name) {
+            return `Hello, ${name}!`;
+        }
+    };
+    
+    // CHallange 2
+    function isPrime(n) {
+    if (n <= 1) return false;
+    if (n <= 3) return true;
+    if (n % 2 === 0 || n % 3 === 0) return false;
+    
+    for (let i = 5; i * i <= n; i += 6) {
+        if (n % i === 0 || n % (i + 2) === 0) return false;
+    }
+    return true;
+    }
+
+    console.log(isPrime(2));  
+    console.log(isPrime(17)); 
+    console.log(isPrime(4));  
+    console.log(isPrime(1));  
+
+    // CHallange 3
+    function countDigits(n) {
+    n = Math.abs(n);
+    return n.toString().length;
+    }
+
+    console.log(countDigits(12345));  
+    console.log(countDigits(10));      
+    console.log(countDigits(-987));  
+    
+    // CHallange 4
+    function isPalindrome(str) {
+    let j = str.length - 1
+    for (let i = 0; i < str.length / 2; i++) {
+        if (str[i] != str[j]) {
+            return false;
+        }
+        j--;
+    }
+    return true;
+    }
+
+    let str1 = "racecar";
+    let str2 = "akka";
+    let str3 = "ammo";
+
+    console.log(isPalindrome(str1));
+    console.log(isPalindrome(str2));
+    console.log(isPalindrome(str3));
+
+    // Challenge 5 
+    function isArmstrong(n) {
+    if (n < 0) return false;
+    const numStr = n.toString();
+    const numDigits = numStr.length;
+    let sum = 0;
+    let temp = n;
+    
+    while (temp > 0) {
+        const digit = temp % 10;
+        sum += Math.pow(digit, numDigits);
+        temp = Math.floor(temp / 10);
+    }
+    
+    return sum === n;
+    }
+
+    console.log(isArmstrong(153));   
+    console.log(isArmstrong(370));   
+    console.log(isArmstrong(371));  
+    console.log(isArmstrong(9474));  
+    console.log(isArmstrong(123));   
+
+    // CHallange 6 
+    function createCounter(start) {
+    let count = start; 
+    
+    return {
+        increment() {
+            count++;
+            return count;
+        },
+        decrement() {
+            count--;
+            return count; 
+        },
+        getCount() {
+            return count;
+        }
+    }; }
+
+    const counter = createCounter(10);
+    console.log(counter.getCount());  
+    counter.increment();
+    counter.increment();
+    console.log(counter.getCount()); 
+    counter.decrement();
+    counter.decrement();
+    counter.decrement();
+    counter.decrement();
+    console.log(counter.getCount());  
+
+    // CHallenge 7 
+    function orderFood(name, address, food) {
+    const message = `Dear ${name}, your ordered food (${food}) will be ready in 15 minutes and will be delivered to your address (${address})`;
+    console.log(message);
+    return message;
+    }
+    orderFood("Mirzobek","Tashkent city","Pizza")
+    
+    // CHallenge 8 
+    function lazyAdder(a) {
+    return function(b) {
+        return a + b;
+    }; }
+
+    const add5 = lazyAdder(5);
+    console.log(add5(10));
+    console.log(add5(20)); 
+
+    const add10 = lazyAdder(10);
+    console.log(add10(5));  
+    console.log(add10(15)); 
+
+    const add100 = lazyAdder(100);
+    console.log(add100(50));  
+    console.log(add100(200));
+
+    </script>
+</body>
+</html>
