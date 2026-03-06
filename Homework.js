@@ -326,85 +326,68 @@ function checkPasswordStrength(password) {
   if (/[A-Z]/.test(password)) requirementsMet++;
   if (/[0-9]/.test(password)) requirementsMet++;
   if (/[!@#$%^&*(),.?":{}|<>]/.test(password)) requirementsMet++;
-
   if (requirementsMet <= 2) return "Weak";
   if (requirementsMet === 3) return "Medium";
   if (requirementsMet === 4) return "Strong";
 }
-
-// Example usage:
-console.log(checkPasswordStrength("Pass123!")); // "Strong"
-console.log(checkPasswordStrength("password")); // "Weak"
+console.log(checkPasswordStrength("Pass123!"));
+console.log(checkPasswordStrength("password"));
 
 //3
 function withdrawCash(amount) {
-  if (amount % 10 !== 0) {
-    return "Error: Amount must be a multiple of $10.";
-  }
+  if (amount% 10 !==0){ return "Error: Amount must be a multiple of $10."; }
+  const bills= [100, 50, 20, 10];
+  let remaining= amount;
+  let result= {};
 
-  const bills = [100, 50, 20, 10];
-  let remaining = amount;
-  let result = {};
-
-  bills.forEach(bill => {
+  bills.forEach(bill=> {
     if (remaining >= bill) {
-      let count = Math.floor(remaining / bill);
+      let count= Math.floor(remaining / bill);
       result[`$${bill}`] = count;
       remaining %= bill;
     }
   });
-
   return result;
 }
-
-// Example usage:
 console.log(withdrawCash(130)); // { "$100": 1, "$20": 1, "$10": 1 }
-console.log(withdrawCash(135)); // "Error: Amount must be a multiple of $10."
+console.log(withdrawCash(135)); // 
 
 //4
-// Helper function to create a delay
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 async function startTrafficLight() {
-  while (true) { // Loop to keep the cycle running indefinitely
+  while (true){
     console.log("Light: RED (Stop)");
-    await delay(5000); // Wait 5 seconds
-
+    await delay(5000);
     console.log("Light: GREEN (Go)");
-    await delay(3000); // Wait 3 seconds
-
+    await delay(3000);
     console.log("Light: YELLOW (Slow down)");
-    await delay(2000); // Wait 2 seconds
+    await delay(2000);
   }
 }
-
-// Start the simulation
 startTrafficLight();
 
 //5
 function checkPasswordStrength(pw) {
   const rules = [
-    pw.length >= 8,                // Min 8 chars
-    /[A-Z]/.test(pw),              // One uppercase
-    /[0-9]/.test(pw),              // One number
-    /[!@#$%^&*]/.test(pw)          // One special char
+    pw.length >= 8,
+    /[A-Z]/.test(pw),
+    /[0-9]/.test(pw),
+    /[!@#$%^&*]/.test(pw)
   ];
+  const score = rules.filter(Boolean).length;
 
-  const score = rules.filter(Boolean).length; // Count how many rules are true
-
-  if (score <= 2) return "Weak";   //
-  if (score === 3) return "Medium"; //
-  return "Strong";                 //
+  if (score <= 2) return "Weak";
+  if (score === 3) return "Medium";
+  return "Strong";
 }
-
-// Quick tests
-console.log(checkPasswordStrength("abc123"));      // Weak
-console.log(checkPasswordStrength("Abc12345"));    // Medium
-console.log(checkPasswordStrength("Abc12345!"));   // Strong
+console.log(checkPasswordStrength("abc123"));    // Weak
+console.log(checkPasswordStrength("Abc12345"));  // Medium
+console.log(checkPasswordStrength("Abc12345!")); // Strong
 
 //6
 function bankAccount(initialBalance) {
-  let balance = initialBalance; // Private variable
+  let balance = initialBalance;
 
   return {
     deposit: function(amount) {
@@ -423,25 +406,18 @@ function bankAccount(initialBalance) {
     }
   };
 }
-
 const myAccount = bankAccount(100);
-console.log(myAccount.viewBalance()); // "Current balance: $100"
+console.log(myAccount.viewBalance());
 
 //7
 function getPermissions(role) {
   switch (role.toLowerCase()) {
-    case 'admin':
-      return ["add", "edit", "delete", "view"]; // Admin capabilities
-    case 'editor':
-      return ["edit", "view"]; // Editor capabilities
-    case 'viewer':
-      return ["view"]; // Viewer capabilities
-    default:
-      return "Role not recognized.";
+    case 'admin': return ["add", "edit", "delete", "view"];
+    case 'editor': return ["edit", "view"];
+    case 'viewer': return ["view"];
+    default: return "Role not recognized.";
   }
 }
-
-// Example usage:
 const userRole = 'editor';
 console.log(`As an ${userRole}, you can: ${getPermissions(userRole).join(', ')}`);
 
@@ -449,16 +425,9 @@ console.log(`As an ${userRole}, you can: ${getPermissions(userRole).join(', ')}`
 function calculateTax(salary) {
   let taxAmount = 0;
 
-  if (salary >= 50000) {
-    taxAmount = salary * 0.20; // 20% tax for $50,000+
-  } else if (salary >= 10000) {
-    taxAmount = salary * 0.10; // 10% tax for $10,000 - $50,000
-  } else {
-    taxAmount = 0; // No tax for under $10,000
-  }
-
-  return `For a salary of $${salary}, the tax is $${taxAmount}.`;
+  if (salary >= 50000)  { taxAmount = salary * 0.20; } 
+  else if(salary>=10000){ taxAmount = salary * 0.10; }
+  else { taxAmount = 0; }
+  return `For a salary of $${salary}, the tax is $${taxAmount}`;
 }
-
-// Example usage:
-console.log(calculateTax(60000)); // "For a salary of $60000, the tax is $12000."
+console.log(calculateTax(60000));
