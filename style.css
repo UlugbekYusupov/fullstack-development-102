@@ -50,8 +50,8 @@ body {
 
 @media (min-width: 768px) {
     .main-container {
-        grid-template-columns: 2fr 1fr;
-        gap: 60px;
+        grid-template-columns: 1.2fr 1fr; 
+        gap: 40px;
         align-items: center;
     }
 }
@@ -70,6 +70,8 @@ body {
     align-items: center;
     gap: 30px;
     width: 100%;
+    max-width: 450px; 
+    margin: 0 auto;
     max-height: 60vh;
     overflow-y: auto;
     padding-right: 8px;
@@ -175,6 +177,7 @@ textarea {
 
 .yt-preview {
     width: 100%;
+    min-width: 280px; 
     aspect-ratio: 16 / 9;
     position: relative;
     cursor: pointer;
@@ -184,7 +187,13 @@ textarea {
     overflow: hidden;
     flex-shrink: 0;
 }
-
+.yt-preview video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    object-position: 80% center;
+    border-radius: inherit;
+}
 @media (min-width: 768px) {
     .yt-preview {
         border-radius: 20px;
@@ -194,7 +203,7 @@ textarea {
 .yt-preview img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover; 
 }
 
 .play-btn {
