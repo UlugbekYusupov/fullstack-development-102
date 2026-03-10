@@ -307,34 +307,34 @@ console.log = function (...messages) {
 // console.log(add5(20));
 
 
-// 6.03.2026. Hw: Challenges 1-8
+// 6.03.2026. Assignment: Challenges 1-8
 //1
-function calculateTotal(price, quantity){
+function total(price, quantity){
   let discount = 0;
   if (quantity>= 5){ discount= 0.20; }
   else if (quantity>= 3){ discount= 0.10; }
   const total= (price*quantity)*(1-discount);
   return total.toFixed(2);
 }
-console.log(`Total for 6 items at $14 each: $${calculateTotal(14, 6)}`);
+console.log(`Total for 6 items at $14 each: $${total(14, 6)}`);
 
 //2
-function checkPasswordStrength(password) {
+function checkPass(password) {
   let requirementsMet = 0;
 
   if (password.length >= 8) requirementsMet++;
   if (/[A-Z]/.test(password)) requirementsMet++;
   if (/[0-9]/.test(password)) requirementsMet++;
   if (/[!@#$%^&*(),.?":{}|<>]/.test(password)) requirementsMet++;
-  if (requirementsMet <= 2) return "Weak";
+  if (requirementsMet <= 2)  return "Weak"  ;
   if (requirementsMet === 3) return "Medium";
   if (requirementsMet === 4) return "Strong";
 }
-console.log(checkPasswordStrength("Pass123!"));
-console.log(checkPasswordStrength("password"));
+console.log(checkPass("Pass123!"));
+console.log(checkPass("password"));
 
 //3
-function withdrawCash(amount) {
+function withdraw(amount) {
   if (amount% 10 !==0){ return "Error: Amount must be a multiple of $10."; }
   const bills= [100, 50, 20, 10];
   let remaining= amount;
@@ -349,12 +349,11 @@ function withdrawCash(amount) {
   });
   return result;
 }
-console.log(withdrawCash(130)); // { "$100": 1, "$20": 1, "$10": 1 }
-console.log(withdrawCash(135)); // 
+console.log(withdraw(130)); // { "$100": 1, "$20": 1, "$10": 1 }
+console.log(withdraw(135));
 
 //4
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-
 async function startTrafficLight() {
   while (true){
     console.log("Light: RED (Stop)");
@@ -368,7 +367,7 @@ async function startTrafficLight() {
 startTrafficLight();
 
 //5
-function checkPasswordStrength(pw) {
+function password(pw) {
   const rules = [
     pw.length >= 8,
     /[A-Z]/.test(pw),
@@ -381,12 +380,12 @@ function checkPasswordStrength(pw) {
   if (score === 3) return "Medium";
   return "Strong";
 }
-console.log(checkPasswordStrength("abc123"));    // Weak
-console.log(checkPasswordStrength("Abc12345"));  // Medium
-console.log(checkPasswordStrength("Abc12345!")); // Strong
+console.log(password("abc123"));    // Weak
+console.log(password("Abc12345"));  // Medium
+console.log(password("Abc12345!")); // Strong
 
 //6
-function bankAccount(initialBalance) {
+function bank(initialBalance) {
   let balance = initialBalance;
 
   return {
@@ -406,11 +405,11 @@ function bankAccount(initialBalance) {
     }
   };
 }
-const myAccount = bankAccount(100);
+const myAccount = bank(100);
 console.log(myAccount.viewBalance());
 
 //7
-function getPermissions(role) {
+function mission(role) {
   switch (role.toLowerCase()) {
     case 'admin': return ["add", "edit", "delete", "view"];
     case 'editor': return ["edit", "view"];
@@ -419,15 +418,15 @@ function getPermissions(role) {
   }
 }
 const userRole = 'editor';
-console.log(`As an ${userRole}, you can: ${getPermissions(userRole).join(', ')}`);
+console.log(`As an ${userRole}, you can: ${mission(userRole).join(', ')}`);
 
 //8
-function calculateTax(salary) {
-  let taxAmount = 0;
+function Tax(salary) {
+  let taxx = 0;
 
-  if (salary >= 50000)  { taxAmount = salary * 0.20; } 
-  else if(salary>=10000){ taxAmount = salary * 0.10; }
-  else { taxAmount = 0; }
-  return `For a salary of $${salary}, the tax is $${taxAmount}`;
+  if (salary >= 50000)  { taxx = salary * 0.20; } 
+  else if(salary>=10000){ taxx = salary * 0.10; }
+  else { taxx = 0; }
+  return `For a salary of $${salary}, the tax is $${taxx}`;
 }
-console.log(calculateTax(60000));
+console.log(Tax(60000));
