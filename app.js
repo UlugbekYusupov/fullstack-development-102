@@ -122,7 +122,7 @@ let greet3 = (name) => {
 };
 console.log(greet3("Shirin"))
 
-let greet4 = name => `Hello, ${name}!`;
+let greet4 = name => "Hello, " + name + "!";
 console.log(greet4("Shirin"))
 
 let greet5 = function(name) {
@@ -211,3 +211,118 @@ const add5 = lazyAdder(5);
 
 console.log(add5(10)); // 15
 console.log(add5(20)); // 25
+
+// #Assignment
+        // Challange 1 
+        function calculateTotal(prices) {
+            const itemCount = prices.length;
+            let total = prices.reduce((sum, price) => sum + price, 0);
+    
+            if (itemCount >= 5) {
+                total *= 0.8; 
+            } else if (itemCount >= 3) {
+                total *= 0.9; 
+            }
+    
+            return total;
+        }
+
+        console.log(calculateTotal([10, 20, 30]));        
+        console.log(calculateTotal([5, 15, 25, 35, 45])); 
+
+        // Challenge 2 
+        function checkPasswordStrength(password) {
+            const hasLength = password.length >= 8;
+            const hasUpper = /[A-Z]/.test(password);
+            const hasNumber = /[0-9]/.test(password);
+            const hasSpecial = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password);
+
+            const conditionsMet = [hasUpper, hasNumber, hasSpecial].filter(Boolean).length;
+
+            if (!hasLength) return "Weak";
+            if (conditionsMet === 3) return "Strong";
+            if (conditionsMet === 2) return "Medium";
+            return "Weak";
+        }
+
+        console.log(checkPasswordStrength("Pass123!"));    
+        console.log(checkPasswordStrength("password"));    
+        console.log(checkPasswordStrength("Password1"));
+
+        //Challenge 4
+        function trafficLightSimulation() {
+            const lights = [
+                { color: 'Red', duration: 5000 },
+                { color: 'Green', duration: 3000 },
+                { color: 'Yellow', duration: 2000 }
+            ];
+
+            let index = 0;
+
+            function showLight() {
+                const current = lights[index];
+                console.log(current.color);
+
+                index = (index + 1) % lights.length;
+                setTimeout(showLight, current.duration);
+            }
+
+            showLight();
+        }
+
+        trafficLightSimulation();
+        
+
+        // Challenge 6 
+        function bankAccount(initialBalance = 0) {
+            let balance = initialBalance;  
+
+            return {
+                deposit(amount) {
+                    if (amount > 0) {
+                        balance += amount;
+                        console.log(`Deposited $${amount}. New balance: $${balance}`);
+                    } else {
+                        console.log('Deposit amount must be positive');
+                    }
+                },
+                withdraw(amount) {
+                    if (amount > 0 && amount <= balance) {
+                        balance -= amount;
+                        console.log(`Withdrew $${amount}. New balance: $${balance}`);
+                    } else {
+                        console.log('Insufficient funds or invalid amount');
+                    }
+                },
+                getBalance() {
+                    return balance;
+                }
+            };
+        }
+
+        const myAccount = bankAccount(100);
+        myAccount.deposit(50);   
+        myAccount.withdraw(30);  
+        console.log(myAccount.getBalance());  
+
+
+        // Challenge 8 
+        function calculateTax(income) {
+            if (income < 0) return 0;
+
+            let tax = 0;
+
+            if (income > 50000) {
+                tax += (income - 50000) * 0.20;
+                income = 50000;
+            }
+            if (income > 10000) {
+                tax += (income - 10000) * 0.10;
+            }
+    
+            return tax;
+        }
+
+        console.log(calculateTax(5000)); 
+        console.log(calculateTax(30000));  
+        console.log(calculateTax(75000)); 
