@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>document</title>
+</head>
+<style>
+    button{
+        padding: 10px;
+         border-radius: 7px;
+        border-color: brown solid ;
+        border-width: 3px; 
+
+   }
+</style>
+<body>
+    <button onclick="plus()">+</button>
+    <button onclick="minus()">-</button>
+    <button onclick="reset()">reset</button>
+    <button onclick="plus2()">+2</button>
+</body>
+<script src="additional.js">
+    let count = 0
+
+    function plus() {
+    count += 1
+    console.log(count)
+    }
+    function minus() {
+        count -=1
+        console.log(count)
+    }
+    function reset() {
+        count = 0
+        console.log(count)
+    }
+    function plus2() {
+        count +=2
+        console.log(count)
+    }
+</script>
+</html>
+
