@@ -1,13 +1,12 @@
 const consoleDiv = document.getElementById("consoleOutput");
 const originalLog = console.log;
-
 console.log = function (...messages) {
     originalLog.apply(console, messages);
-
     messages.forEach(msg => {
         consoleDiv.innerHTML += msg + "\n";
     });
 };
+
 // // 1
 // console.log("5" + 5);       // "55" string 
 // console.log("5" - 5);       // 0
@@ -307,8 +306,8 @@ console.log = function (...messages) {
 // console.log(add5(20));
 
 
-// 6.03.2026. Assignment: Challenges 1-8
-//1
+// // 6.03.2026. Assignment: Challenges 1-8
+// //1
 function total(price, quantity){
   let discount = 0;
   if (quantity>= 5){ discount= 0.20; }
@@ -430,3 +429,6 @@ function Tax(salary) {
   return `For a salary of $${salary}, the tax is $${taxx}`;
 }
 console.log(Tax(60000));
+
+
+// 10.03.2026. HW: Challenges 1-9
