@@ -432,3 +432,97 @@ console.log(Tax(60000));
 
 
 // 10.03.2026. HW: Challenges 1-9
+//1
+const first= (array, n)=> {
+  if (array==null) return void 0;
+  if (n==null) return array[0];
+  if (n<0) return array.slice(n);
+  return array.slice(0, n);
+};
+console.log(first([7, 9, 0, -2]));
+console.log(first([], 3));
+console.log(first([7, 9, 0, -2], 3));
+console.log(first([7, 9, 0, -2], 6));
+console.log(first([7, 9, 0, -2], -3));
+
+//2
+const last=(array, n)=> {
+  if (array==null) return void 0;
+  if (n==null) return array[array.length - 1];
+  return array.slice(Math.max(array.length - n, 0));
+};
+console.log(last([7, 9, 0, -2]));
+console.log(last([7, 9, 0, -2], 3));
+console.log(last([7, 9, 0, -2], 6));
+
+//3
+const myColor = ["Red", "Green", "White", "Black"];
+const result = myColor.join(",");
+console.log(result);
+
+//4
+const insertDashes = (num) => {
+  return num.toString().split('').join('-');
+};
+console.log(insertDashes(025468));
+
+//5
+var arr1 = [-3, 8, 7, 6, 5, -4, 3, 2, 1];
+arr1.sort((a, b) => a - b);
+console.log(arr1.join(','));
+
+//6
+var arr1 = [3, 'a', 'a', 'a', 2, 3, 'a', 3, 'a', 2, 4, 9, 3];
+let mf = 1;
+let m = 0;
+let item;
+
+for (let i= 0; i< arr1.length; i++) {
+  for (let j= i; j< arr1.length; j++) {
+    if (arr1[i] == arr1[j]) m++;
+    if (mf< m) {
+      mf=m;
+      item= arr1[i];
+    }
+  }
+  m = 0;
+}
+console.log(`${item} ( ${mf} times )`);
+
+//7
+const swapCase = (str) => {
+  return str.split('').map(char => {
+    if (char === char.toUpperCase()) {
+      return char.toLowerCase();
+    } else {
+      return char.toUpperCase();
+    }
+  }).join('');
+};
+console.log(swapCase('Eight-Handled Sword Divergent Sila Divine General mAHORAGA'));
+
+//8
+const color = ["Blue ", "Green", "Red", "Orange", "Violet", "Indigo", "Yellow "];
+const o = ["th", "st", "nd", "rd"];
+
+for (let i = 0; i < color.length; i++) {
+  let num = i + 1;
+  let suffix = (num <= 3) ? o[num] : o[0];
+  console.log(`${num}${suffix} choice is ${color[i].trim()}.`);
+}
+
+//9
+const array1 = [1, 0, 2, 3, 4];
+const array2 = [3, 5, 6, 7, 8, 13];
+const sumArrays = (arr1, arr2) => {
+  const maxLength = Math.max(arr1.length, arr2.length);
+  const result = [];
+
+  for (let i = 0; i < maxLength; i++) {
+    const val1 = arr1[i] || 0;
+    const val2 = arr2[i] || 0;
+    result.push(val1 + val2);
+  }
+  return result;
+};
+console.log(sumArrays(array1, array2));
