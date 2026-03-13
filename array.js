@@ -11,6 +11,7 @@ console.log(colors.at(2));
 
 console.log("===========challange 1=============")
 
+
 function first(arr, n) {
     if (n === undefined) {
         return arr[0];
@@ -19,6 +20,7 @@ function first(arr, n) {
 }
 
 console.log(first(colors));
+document.getElementById("challange1").innerHTML = first(colors);
 
 // challange 2
 
@@ -35,6 +37,8 @@ function last(arr, n) {
 
 console.log(last(colors, 3));
 
+document.getElementById("challange2").innerHTML = last(colors, 3);
+
 // challange 3
 console.log("===========challange 3=============")
 
@@ -46,6 +50,7 @@ function joinall(arr) {
     return newstring;
 }
 console.log(joinall(colors));
+document.getElementById("challange3").innerHTML = joinall(colors);
 
 // challange 4
 
@@ -61,6 +66,8 @@ function fill(arr) {
 }
 console.log(fill(nums2));
 
+document.getElementById("challange4").innerHTML = fill(nums2);
+
 
 // challange 5
 
@@ -72,7 +79,7 @@ function sorting(arr) {
 
 console.log(sorting(colors));
 
-
+document.getElementById("challange5").innerHTML = sorting(colors);
 // challange 6
 
 console.log("===========challange 6=============")
@@ -98,7 +105,7 @@ function frequency(arr) {
     console.log(item + " ( " + maxFrequency + " times )");
     
 }
-frequency();
+document.getElementById("challange6").innerHTML = frequency();
 // ==========================EXERSICE==========================================
 
 console.log("===========EXERSICE=============")
@@ -144,7 +151,9 @@ function swaper(text){
     return text;
 }
 
+
 console.log(swaper("Hello World!"));
+document.getElementById("challange7").innerHTML = swaper("Hello World!");
 
 // challange 8
 console.log("===========challange 8=============")
@@ -158,7 +167,7 @@ for (let i = 0; i < colors2.length; i++){
     else if (i === 2){ order = 'rd';}
     console.log(` ${i+1} ${order} choise is ${colors2[i]}`);
 }
-
+document.getElementById("challange8").innerHTML = `1st choise is ${colors2[0]}, 2nd choise is ${colors2[1]}, 3rd choise is ${colors2[2]}, 4th choise is ${colors2[3]}, 5th choise is ${colors2[4]}`;
 // challange 9
 console.log("===========challange 9=============")
 
@@ -179,3 +188,4 @@ for (let i = 0; i < maxi.length; i ++){
 }
 document.getElementById("ordinal").innerHTML = output;
 console.log(output)
+document.getElementById("challange9").innerHTML = output;
