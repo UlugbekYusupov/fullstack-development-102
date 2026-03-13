@@ -464,7 +464,7 @@ console.log(result);
 const insertDashes = (num) => {
   return num.toString().split('').join('-');
 };
-console.log(insertDashes(025468));
+console.log(insertDashes(25468));
 
 //5
 var arr1 = [-3, 8, 7, 6, 5, -4, 3, 2, 1];
