@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khurshid's work hw4</title>
+    <link rel="icon" href="/logo.png">
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+    <video autoplay loop muted playsinline class="bg-video">
+        <source src="https://ik.imagekit.io/Eduventure/animations/back.webm/ik-video.mp4?updatedAt=1772775481474" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="video-overlay"></div>
+
+    <button onclick="location.href='/hw3.html'" class="dark-minimal-btn pre-btn">
+        Previous
+    </button>
+
+    <div class="main-container">
+
+        <div class="left-panel">
+            <button class="dark-minimal-btn" onclick="startProcess()">
+                Start Process Practice
+            </button>
+            <div id="output"></div>
+
+            <div id="comment-container" data-page-id="hw4">
+                <hr style="width: 100%; max-width: 400px; height: 2px; background-color: #333; border: none;">
+                <h2 style="margin: 10px 0;">Comment Area</h2>
+                <textarea id="commentInput"
+                    onkeydown="if(event.key==='Enter'){postComment()}"
+                    placeholder="Write a comment..."></textarea>
+                <button id="postBtn" class="dark-minimal-btn" onclick="postComment()" style="width: fit-content;">Post</button>
+                <div id="displayComments" style="margin-top: 20px; width: 100%;"></div>
+            </div>
+        </div>
+
+        <div class="right-panel">
+            <div class="yt-preview" data-video-id="wssvLtVSFeI" onclick="loadVideo(this)">
+                <video autoplay loop muted playsinline class="preview-media">
+                    <source src="https://ik.imagekit.io/Eduventure/animations/8.webm" type="video/webm">
+                </video>
+                <div class="play-btn">▶</div>
+            </div>
+
+            <div class="yt-preview" data-video-id="W6NZfCO5SIk" onclick="loadVideo(this)">
+                <video autoplay loop muted playsinline class="preview-media">
+                    <source src="https://ik.imagekit.io/Eduventure/animations/8.webm" type="video/webm">
+                </video>
+                <div class="play-btn">▶</div>
+            </div>
+        </div>
+
+    </div>
+
+    <script type="module" src="app.js"></script>
+
+    <script>
+        function loadVideo(el) {
+            const videoId = el.getAttribute("data-video-id");
+            el.innerHTML = `
+                <iframe
+                    src="https://www.youtube.com/embed/${videoId}?autoplay=1"
+                    allow="autoplay; encrypted-media"
+                    allowfullscreen>
+                </iframe>
+            `;
+        }
+
+        function startProcess() {
+            const outputDiv = document.getElementById("output");
+
+            let choice = Number(prompt(
+                "Choose a challenge:\n" +
+                "1 - Get first element of array\n" +
+                "2 - Get last element(s) of array\n" +
+                "3 - Join array into string\n" +
+                "4 - Join numbers with dashes\n" +
+                "5 - Sort numbers\n" +
+                "6 - Find most frequent item in array\n" +
+                "7 - Swap case of string\n" +
+                "8 - Display colors with ordinal numbers\n" +
+                "9 - Sum elements of two arrays by index"
+            ));
+
+            if (!choice) return;
+
+            switch (choice) {
+                case 1:
+                    function first(arr) {
+                        return arr[0];
+                    }
+                    let count = Number(prompt("Enter how many elements you wanna add : "));
+                    let arr = [];
+                    for (let i = 0; i < count; i++) {
+                        let num = Number(prompt("Enter a number:"));
+                        arr.push(num);
+                    }
+                    outputDiv.innerHTML = "First element: " + first(arr);
+                    break;
+
+                case 2:
+                    function last(arr, n) {
+                        if (n === undefined) return arr[arr.length - 1];
+                        if (n >= arr.length) return arr;
+
+                        let result = [];
+                        for (let i = arr.length - n; i < arr.length; i++) {
+                            result.push(arr[i]);
+                        }
+                        return result;
+                    }
+
+                    let count2 = Number(prompt("Enter how many elements you wanna add : "));
+                    let arr2 = [];
+                    for (let i = 0; i < count2; i++) {
+                        let num = Number(prompt("Enter a number:"));
+                        arr2.push(num);
+                    }
+                    let n2 = Number(prompt("Enter how many last numbers you wanna get : "));
+                    outputDiv.innerHTML = last(arr2, n2);
+                    break;
+
+                case 3:
+                    let myColor = [];
+                    let countColor = Number(prompt("Enter how many colors you want to add : "));
+                    for (let i = 0; i < countColor; i++) {
+                        let color = prompt("Enter a color:");
+                        myColor.push(color);
+                    }
+                    outputDiv.innerHTML = myColor.join(",");
+                    break;
+
+                case 4:
+                    let arr4 = [];
+                    let count4 = Number(prompt("Enter how many numbers you wanna add : "));
+                    for (let i = 0; i < count4; i++) {
+                        let num = Number(prompt("Enter the number : "));
+                        arr4.push(num);
+                    }
+                    outputDiv.innerHTML = "Result: " + arr4.join("-");
+                    break;
+
+                case 5:
+                    let arr5 = [];
+                    let count5 = Number(prompt("Enter how many numbers you wanna add : "));
+                    for (let i = 0; i < count5; i++) {
+                        let num = Number(prompt("Enter the number : "));
+                        arr5.push(num);
+                    }
+                    arr5.sort((a, b) => a - b);
+                    outputDiv.innerHTML = "Result: " + arr5.join(", ");
+                    break;
+
+                case 6:
+                    let arr6 = [];
+                    let count6 = Number(prompt("Enter how many items you wanna add : "));
+                    for (let i = 0; i < count6; i++) {
+                        let item = prompt("Enter item :");
+                        arr6.push(item);
+                    }
+
+                    let freq = {};
+                    for (let i = 0; i < arr6.length; i++) {
+                        let el = arr6[i];
+                        if (freq[el]) {
+                            freq[el]++;
+                        } else {
+                            freq[el] = 1;
+                        }
+                    }
+
+                    let maxCount = 0;
+                    let mostFreq = null;
+                    for (let key in freq) {
+                        if (freq[key] > maxCount) {
+                            maxCount = freq[key];
+                            mostFreq = key;
+                        }
+                    }
+
+                    outputDiv.innerHTML = `Most frequent item: ${mostFreq} (${maxCount} times)`;
+                    break;
+
+                case 7:
+                    let str = prompt("Enter a string:");
+
+                    function swapCase(s) {
+                        let result = "";
+
+                        for (let i = 0; i < s.length; i++) {
+                            let ch = s[i];
+
+                            if (ch >= 'A' && ch <= 'Z') {
+                                result += ch.toLowerCase();
+                            } else if (ch >= 'a' && ch <= 'z') { 
+                                result += ch.toUpperCase();
+                            } else {
+                                result += ch;
+                            }
+                        }
+
+                        return result;
+                    }
+
+                    outputDiv.innerHTML = swapCase(str);
+                    break;
+
+                case 8:
+                    let colorArr = ["Blue", "Green", "Red", "Orange", "Violet", "Indigo", "Yellow"];
+                    let result8 = "";
+
+                    for (let i = 0; i < colorArr.length; i++) {
+                        let number = i + 1;
+                        if (number === 1) number = "1st";
+                        else if (number === 2) number = "2nd";
+                        else if (number === 3) number = "3rd";
+                        else number += "th";
+
+                        result8 += `${number} choice is ${colorArr[i]}.<br>`;
+                    }
+
+                    outputDiv.innerHTML = result8;
+                    break;
+
+                case 9:
+                    let arrFirst = [];
+                    let countFirst = Number(prompt("Enter how many numbers you want to add to first array: "));
+                    let arrSecond = [];
+                    let countSecond = Number(prompt("Enter how many numbers you want to add to second array: "));
+
+                    for (let i = 0; i < countFirst; i++) {
+                        let num = Number(prompt("Enter number for first array: "));
+                        arrFirst.push(num);
+                    }
+
+                    for (let i = 0; i < countSecond; i++) {
+                        let num = Number(prompt("Enter number for second array: "));
+                        arrSecond.push(num);
+                    }
+
+                    let result9 = [];
+                    let maxLength;
+                    if (arrFirst.length > arrSecond.length) maxLength = arrFirst.length;
+                    else maxLength = arrSecond.length;
+
+                    for (let i = 0; i < maxLength; i++) {
+                        let val1, val2;
+
+                        if (i < arrFirst.length) val1 = arrFirst[i];
+                        else val1 = 0;
+
+                        if (i < arrSecond.length) val2 = arrSecond[i];
+                        else val2 = 0;
+
+                        result9.push(val1 + val2);
+                    }
+
+                    outputDiv.innerHTML = "Result: [" + result9 + "]";
+                    break;
+            }
+        }
+
+    </script>   
+    <script src="sw.js"></script></body>
+</html>
