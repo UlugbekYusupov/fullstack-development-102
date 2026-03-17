@@ -435,113 +435,286 @@
 // console.log(pets.includes("at"));
 // // Expected output: false
 
+// // #Practice
+// // #1
+// function first(arr, n) {
+//     if (arr == null || arr.length === 0) return [];
+//     if (n == null) {
+//     return arr[0]; 
+//     }
+//     if (n < 0) {
+//     return n;
+//     }
+//     return arr.slice(0, n);
+// }
+
+// console.log(first([7, 9, 0, -2]));        
+// console.log(first([], 3));                
+// console.log(first([7, 9, 0, -2], 3));     
+// console.log(first([7, 9, 0, -2], 6));     
+// console.log(first([7, 9, 0, -2], -3));   
+
+// // #2
+// function last(arr, n) {
+//     if (arr == null || arr.length === 0) return [];
+//     if (n == null) {
+//     return arr[arr.length - 1];
+//     }
+//     return arr.slice(Math.max(arr.length - n, 0));
+// }
+
+// console.log(last([7, 9, 0, -2]));      
+// console.log(last([7, 9, 0, -2], 3));  
+// console.log(last([7, 9, 0, -2], 6));  
+
+// // #3
+// let myColor = ["Red", "Green", "White", "Black"];
+// let result = myColor.join(",");
+// console.log(result);
+
+// // #4
+
+// // #5
+// const nums = [-3, 8, 7, 6, 5, -4, 3, 2, 1];
+// nums.sort((a,b) => a - b)
+// console.log(nums);
+
+// // #6
+// var arr1 = [3, 'a', 'a', 'a', 2, 3, 'a', 3, 'a', 2, 4, 9, 3];
+// function mostFrequent(arr) {
+//     let count = {};
+//     let maxItem;
+//     let maxCount = 0;
+//     for (let item of arr) {
+//         count[item] = (count[item] || 0) + 1;
+
+//         if (count[item] > maxCount) {
+//             maxCount = count[item];
+//             maxItem = item;
+//         }
+//     }
+//     return maxItem + " ( " + maxCount + " times )";
+// }
+// console.log(mostFrequent(arr1));
+
+// // #7
+// function swapCase(str) {
+//     let result = "";
+//     for (let char of str) {
+//         if (char === char.toUpperCase()) {
+//             result += char.toLowerCase();
+//         } else {
+//             result += char.toUpperCase();
+//         }
+//     }
+
+//     return result;
+// }
+// console.log(swapCase("The Quick Brown Fox"));
+
+// // #8
+// var color = ["Blue", "Green", "Red", "Orange", "Violet", "Indigo", "Yellow"];
+// var o = ["th","st","nd","rd"];
+
+// for (let i = 0; i < color.length; i++) {
+//     let ordinal;
+
+//     if (i === 0) {
+//         ordinal = o[1]; 
+//     } else if (i === 1) {
+//         ordinal = o[2]; 
+//     } else if (i === 2) {
+//         ordinal = o[3]; 
+//     } else {
+//         ordinal = o[0]; 
+//     }
+// console.log((i + 1) + ordinal + " choice is " + color[i] + ".");
+// }
+
+// // #9
+// var array1 = [1,0,2,3,4];
+// var array2 = [3,5,6,7,8,13];
+// function sumArrays(arr1, arr2) {
+//     let result = [];
+//     let maxLength = Math.max(arr1.length, arr2.length);
+//     for (let i = 0; i < maxLength; i++) {
+//         let val1 = arr1[i] || 0;
+//         let val2 = arr2[i] || 0;
+//         result.push(val1 + val2);
+//     }
+//     return result;
+// }
+// console.log(sumArrays(array1, array2));
+
+
+// // ----------lesson 6----------
+// // 1
+// let car = {
+//     brand: "Tesla",
+//     model: "Model S",
+//     year: 2024,
+//     start: function () {
+//         console.log("Car is starting...");
+//     }
+// };
+// console.log(car.brand); 
+// car.start(); 
+
+// // 2
+// let person = new Object();
+// person.name = "Alice";
+// person.age = 25;
+// person.greet = function () {
+//     return `Hello, my name is ${this.name}`;
+// };
+
+// console.log(person.greet());
+
+// // 3
+// function createPerson(name,age) {
+//     return {
+//         name,
+//         age,
+//         greet () {
+//             return `Hi I'm ${this.name}, and I'm ${this.age} years old`;
+//         }
+//     };
+// }
+// let person1 = createPerson("Alice",25);
+// let person2 = createPerson("Bob",30);
+// console.log(person1.greet());
+// console.log(person2.greet());
+
+// // 4
+// function Person(name, age) {
+//     this.name = name;
+//     this.age = age;
+//     this.greet = function() {
+//         return `Hi I'm ${this.name}, and I'm ${this.age} years old`; 
+//     };
+// }
+// let person3 = new Person("Alice",25);
+// let person4 = new Person("Bob",30);
+// console.log(person3.greet());
+// console.log(person4.greet());
+
+// // 5
+// let animal = {
+//     type: "Mammal",
+//     makeSound() {
+//         console.log("Some generic animal sound");
+//     }
+// };
+// let dog = Object.create(animal);
+// dog.breed = "Golden Retriever";
+// dog.makeSound();
+// console.log(dog.type);
+
+// // 6
+// class Person1{
+//     constructor(name, age) {
+//         this.name = name;
+//         this.age = age;
+//     }
+//     greet() {
+//         return `Hello, my name is ${this.name}`;
+//     }
+// }
+// let person5 = new Person1("Alice", 25);
+// console.log(person5.greet());
+
+// // 7
+// const config= Object.freeze({
+//     theme:"dark",
+//     version:"1.0.0"
+// });
+// config.theme = "light";
+// console.log(config.theme);
+
 // #Practice
-// #1
-function first(arr, n) {
-    if (arr == null || arr.length === 0) return [];
-    if (n == null) {
-    return arr[0]; 
+// 1
+const students=[
+    {name: "Alice", scores:[80,90,100]},
+    {name: "Bob", scores:[50,60,70]},
+    {name: "Alice", scores:[30,40,20]}
+
+]
+let avg=[]
+for(let i=0; i<students.length; i++){
+    let sum=students[i].scores.reduce(function(prev,next){
+        return prev+next;
+    })
+    let eachEvg=sum/students[i].scores.length
+    avg.push(eachEvg);
+}
+avg.sort();
+console.log(`The result is ${Math.max(...avg)}`);
+
+// 2
+const cart=[
+    {id:1,name:"Laptop",price:900, quantity:1},
+    {id:2,name:"Mouse",price:50, quantity:2},
+    {id:3,name:"keyboard",price:100, quantity:1},
+]
+let total=0
+for(let i=0; i<cart.length; i++){
+    let eachTotal=cart[i].price*cart[i].quantity
+    if (eachTotal>100){
+        eachTotal+=eachTotal*0.1
+        total+=eachTotal
     }
-    if (n < 0) {
-    return n;
+}
+console.log(`the result is $${total}`)
+// 4
+let posts = [
+    { author: "Ali", likes: 50, comments: 10, shares: 5 },
+    { author: "Vali", likes: 120, comments: 20, shares: 10 },
+    { author: "Hasan", likes: 80, comments: 15, shares: 8 }
+];
+
+let mostLiked = posts[0];
+
+for (let i = 1; i < posts.length; i++) {
+    if (posts[i].likes > mostLiked.likes) {
+        mostLiked = posts[i];
     }
-    return arr.slice(0, n);
 }
 
-console.log(first([7, 9, 0, -2]));        
-console.log(first([], 3));                
-console.log(first([7, 9, 0, -2], 3));     
-console.log(first([7, 9, 0, -2], 6));     
-console.log(first([7, 9, 0, -2], -3));   
+console.log("Most liked post:", mostLiked);
 
-// #2
-function last(arr, n) {
-    if (arr == null || arr.length === 0) return [];
-    if (n == null) {
-    return arr[arr.length - 1];
-    }
-    return arr.slice(Math.max(arr.length - n, 0));
+let engagement = 0;
+
+for (let i = 0; i < posts.length; i++) {
+    engagement += posts[i].likes + posts[i].comments + posts[i].shares;
 }
+console.log("Total engagement:", engagement);
 
-console.log(last([7, 9, 0, -2]));      
-console.log(last([7, 9, 0, -2], 3));  
-console.log(last([7, 9, 0, -2], 6));  
+// 5
+let teams = [
+    { name: "Team A", wins: 10, losses: 2, points: 30 },
+    { name: "Team B", wins: 8, losses: 4, points: 24 },
+    { name: "Team C", wins: 12, losses: 1, points: 36 }
+];
 
-// #3
-let myColor = ["Red", "Green", "White", "Black"];
-let result = myColor.join(",");
-console.log(result);
+teams.sort(function(a, b) {
+    return b.points - a.points;
+});
 
-// #4
+console.log(teams);
 
-// #5
-const nums = [-3, 8, 7, 6, 5, -4, 3, 2, 1];
-nums.sort((a,b) => a - b)
-console.log(nums);
+let bestTeam = teams[0];
 
-// #6
-var arr1 = [3, 'a', 'a', 'a', 2, 3, 'a', 3, 'a', 2, 4, 9, 3];
-function mostFrequent(arr) {
-    let count = {};
-    let maxItem;
-    let maxCount = 0;
-    for (let item of arr) {
-        count[item] = (count[item] || 0) + 1;
+console.log("Best team:", bestTeam.name);
 
-        if (count[item] > maxCount) {
-            maxCount = count[item];
-            maxItem = item;
-        }
-    }
-    return maxItem + " ( " + maxCount + " times )";
+// 6
+const inventory=[
+    {itemName:"Laptop", category:"Electronics",  stock:5},
+    {itemName:"Phone", category:"Electronics",  stock:10},
+]
+function findTotalByCategory(category){
+    return inventory
+    .filter((item)=> item.category===category)
+    .reduce((sum,item)=>sum+item.stock,0);
+    
 }
-console.log(mostFrequent(arr1));
-
-// #7
-function swapCase(str) {
-    let result = "";
-    for (let char of str) {
-        if (char === char.toUpperCase()) {
-            result += char.toLowerCase();
-        } else {
-            result += char.toUpperCase();
-        }
-    }
-
-    return result;
-}
-console.log(swapCase("The Quick Brown Fox"));
-
-// #8
-var color = ["Blue", "Green", "Red", "Orange", "Violet", "Indigo", "Yellow"];
-var o = ["th","st","nd","rd"];
-
-for (let i = 0; i < color.length; i++) {
-    let ordinal;
-
-    if (i === 0) {
-        ordinal = o[1]; 
-    } else if (i === 1) {
-        ordinal = o[2]; 
-    } else if (i === 2) {
-        ordinal = o[3]; 
-    } else {
-        ordinal = o[0]; 
-    }
-console.log((i + 1) + ordinal + " choice is " + color[i] + ".");
-}
-
-// #9
-var array1 = [1,0,2,3,4];
-var array2 = [3,5,6,7,8,13];
-function sumArrays(arr1, arr2) {
-    let result = [];
-    let maxLength = Math.max(arr1.length, arr2.length);
-    for (let i = 0; i < maxLength; i++) {
-        let val1 = arr1[i] || 0;
-        let val2 = arr2[i] || 0;
-        result.push(val1 + val2);
-    }
-    return result;
-}
-console.log(sumArrays(array1, array2));
+console.log(findTotalByCategory("Electronics"));
