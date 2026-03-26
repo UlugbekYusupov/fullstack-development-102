@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg-top: #1c2730;
+        --bg-bottom: #3a4b5b;
+        --card-border: #e8f0f8;
+        --text: #f4f7fb;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+        font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+        color: var(--text);
+        background: linear-gradient(180deg, var(--bg-top), var(--bg-bottom));
+      }
+
+      #main-heading {
+        margin: 0;
+        font-size: clamp(32px, 4vw, 52px);
+        font-weight: 600;
+        letter-spacing: 0.5px;
+      }
+
+      .container {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .boxes {
+        border: 2px solid var(--card-border);
+        border-radius: 18px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      .reveal-btn {
+        width: 200px;
+        height: 260px;
+        background: transparent;
+        color: var(--text);
+        border: 2px solid var(--card-border);
+        border-radius: 18px;
+        font-size: 26px;
+        font-weight: 600;
+        line-height: 1.2;
+        cursor: pointer;
+      }
+
+      .hidden-content {
+        width: min(760px, 70vw);
+        min-height: 260px;
+        padding: 28px 32px;
+        text-align: center;
+        font-size: 18px;
+        line-height: 1.7;
+        display: none;
+      }
+      .hidden-content.reveal-btn {
+        display: block;
+      }
+      .div2 {
+        display: grid;
+        border: 5px solid white;
+        padding: 30px;
+        justify-content: center;
+        justify-items: center;
+      }
+      .div1 {
+        display: grid;
+        border: 5px solid white;
+        padding: 30px;
+        justify-content: center;
+        justify-items: center;
+      }
+      button {
+        padding: 5px 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="main-heading">Event Listeners</h1>
+    <!-- <div class="container">
+      <div class="boxes box-1">
+        <h1 id="heading">Example 1</h1>
+        <button onclick="alert('I really hate Javascript')" type="button">
+          Enter
+        </button>
+      </div>
+      <div class="boxes box-2">
+        <h1 id="heading">Example 2</h1>
+        <button class="btn-2" type="button">Enter</button>
+      </div>
+      <div class="boxes box-3">
+        <h1 id="heading">Example 3</h1>
+        <button class="btn-3" type="button">Enter</button>
+      </div>
+    </div> -->
+
+    <!-- <div class="container">
+
+      <button class="reveal-btn" type="button">Reveal More</button>
+      <div class="hidden-content boxes">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia distinctio
+        hic facilis, repudiandae incidunt quisquam neque officiis quibusdam cum
+        quam suscipit dolorem animi aliquid harum. Unde sed illo aut officiis
+        inventore quod quibusdam, ipsam aliquam reprehenderit ad minima sit
+        ipsa? Ducimus nesciunt laudantium deleniti porro maxime molestias
+        reiciendis, hic omnis?
+      </div>
+    </div> -->
+
+    <div class="div2">
+      2
+      <div class="div1">
+        1
+        <button>Click</button>
+      </div>
+    </div>
+    <script src="domlearning.js"></script>
+  </body>
+</html>
