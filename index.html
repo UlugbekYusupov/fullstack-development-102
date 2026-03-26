@@ -3,9 +3,186 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>To-Do UI</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        background: #f5f5f5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      /* MAIN CARD */
+      .container {
+        width: 400px;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .title {
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+
+      /* TASK ITEM */
+      .task {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 12px;
+        margin-bottom: 12px;
+      }
+
+      .task-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .task-title {
+        font-weight: bold;
+      }
+
+      .task-desc {
+        font-size: 13px;
+        margin: 5px 0 10px;
+        color: #555;
+      }
+
+      .delete-btn {
+        background: #e60000;
+        color: white;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      /* STATUS BADGES */
+      .badge {
+        font-size: 11px;
+        padding: 4px 8px;
+        border-radius: 6px;
+        color: white;
+      }
+
+      .pending {
+        background: orange;
+      }
+
+      .progress {
+        background: blue;
+      }
+
+      .completed {
+        background: green;
+      }
+
+      /* ADD BUTTON */
+      .add-btn {
+        width: 100%;
+        background: #1e73e8;
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 6px;
+        margin-top: 10px;
+        cursor: pointer;
+      }
+
+      /* MODAL */
+      .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+
+        display: none;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .modal-box {
+        background: white;
+        width: 300px;
+        padding: 20px;
+        border-radius: 10px;
+      }
+
+      .modal-title {
+        text-align: center;
+        margin-bottom: 15px;
+      }
+
+      input,
+      textarea,
+      select {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+
+      .save-btn {
+        width: 100%;
+        background: #1e73e8;
+        color: white;
+        border: none;
+        padding: 8px;
+        border-radius: 5px;
+        margin-bottom: 8px;
+      }
+
+      .close-btn {
+        width: 100%;
+        background: red;
+        color: white;
+        border: none;
+        padding: 8px;
+        border-radius: 5px;
+      }
+    </style>
   </head>
+
   <body>
-    <script src="app.js"></script>
+    <div class="container">
+      <div class="title">Interactive To-Do List</div>
+      <div id="taskList"></div>
+      <button class="add-btn" id="addTask">Add Task</button>
+    </div>
+
+    <!-- MODAL (static preview) -->
+    <div class="modal" id="modal">
+      <div class="modal-box">
+        <div class="modal-title">Add Task</div>
+
+        <input id="title" type="text" placeholder="Task Title" />
+        <textarea id="description" placeholder="Task Description"></textarea>
+
+        <select id="status">
+          <option value="pending">Pending</option>
+          <option value="in-progress">In Progress</option>
+          <option value="completed">Completed</option>
+        </select>
+
+        <button id="saveBtn" class="save-btn">Save Task</button>
+        <button id="closeBtn" class="close-btn">Close</button>
+      </div>
+    </div>
+    <script src="index.js"></script>
   </body>
 </html>

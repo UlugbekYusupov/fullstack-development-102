@@ -1,0 +1,41 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  padding: 20px;
+  gap: 10px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 5px;
+}
+
+h2 {
+  margin: 0;
+  text-align: center;
+}
+
+input {
+  padding: 8px;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+#switcherBtn {
+  background-color: white;
+  border: none;
+  color: blue;
+}
+
+#signBtn {
+  background-color: blue;
+  color: white;
+  border: none;
+}
+
+.hidden {
+  display: none;
+}
