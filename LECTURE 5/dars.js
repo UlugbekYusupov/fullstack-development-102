@@ -5,12 +5,14 @@
 // const greet4= (name)=> { return `Hello ${name}`; };
 // const greet5= (name)=> `Hello ${name}`;
 
+// 
 // console.log(greet1("Arthur"));
 // console.log(greet2("Violet"));
 // console.log(greet3("Tyler"));
 // console.log(greet4("Stephen"));
 // console.log(greet5("Michael"));
-// //2
+
+//2
 // function isPrime(n){
 //   if (n <= 1) return false;
 //   for (let i= 2; i<= Math.sqrt(n); i++){ if (n% i=== 0) return false; }
@@ -76,7 +78,6 @@
 
 
 //  Assignment: Challenges 
-//1
 // function total(price, quantity){
 //   let discount = 0;
 //   if (quantity>= 5){ discount= 0.20; }
