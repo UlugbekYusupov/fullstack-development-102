@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+<style>
+    body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.card {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    width: 380px;
+    text-align: center;
+}
+
+.hidden { display: none; } /* Formani yashirish uchun */
+
+h2 { margin-bottom: 25px; font-weight: bold; }
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-outline {
+    width: 100%;
+    padding: 12px;
+    background: transparent;
+    color: #007bff;
+    border: 2px solid #007bff;
+    border-radius: 8px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.toggle-text {
+    margin-top: 20px;
+    color: #007bff;
+    cursor: pointer;
+}
+</style>    
+</head>
+<body>
+    <div class="container">
+    <div id="signup-card" class="card">
+        <h2>Sign Up</h2>
+        <input type="text" placeholder="Username">
+        <input type="email" placeholder="Email">
+        <input type="password" placeholder="Password">
+        <button class="btn-primary">Submit</button>
+        <p class="toggle-link" id="go-to-login">Already have an account? Login</p>
+    </div>
+
+    <div id="login-card" class="card hidden">
+        <h2>Login</h2>
+        <input type="email" placeholder="Email">
+        <input type="password" placeholder="Password">
+        <button class="btn-primary">Submit</button>
+        <button class="btn-outline" id="go-to-signup">Don't have an account? Sign Up</button>
+    </div>
+</div>
+<script src="/lesson_8/login.js"></script>
+</body>
+</html>

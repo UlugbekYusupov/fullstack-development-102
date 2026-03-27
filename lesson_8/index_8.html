@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    text-align: center;
+    width: 350px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 20px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+input:focus {
+    border-color: #007bff;
+}
+
+#strength-badge {
+    display: none; /* Dastlab ko'rinmaydi */
+    color: white;
+    padding: 8px 25px;
+    border-radius: 6px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+/* Kuchlilik darajalari uchun ranglar */
+.weak { background-color: #ff0000; }
+.medium { background-color: #ffa500; }
+.strong { background-color: #008000; }
+    </style>
+</head>
+<body>
+<div class="card">
+    <h2>Password Strength Checker</h2>
+    <input type="password" id="password" placeholder="Enter password">
+    <div id="strength-badge"></div>
+</div>
+
+<script src="/lesson_8/app_8.js"></script>
+</body>
+</html>
