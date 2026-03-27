@@ -5,7 +5,6 @@ passwordInput.addEventListener("input", checkStrength);
 
 function checkStrength() {
     const password = passwordInput.value;
-
     let strength = 0;
 
     if (password.length >= 6) strength++;
@@ -13,7 +12,6 @@ function checkStrength() {
     if (/[0-9]/.test(password)) strength++;
     if (/[\W]/.test(password)) strength++;
 
-    // Reset classes
     strengthText.className = "strength";
 
     if (password.length === 0) {
