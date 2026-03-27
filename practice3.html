@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Practice 3 – Calculator</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; background: #e8e8e8; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+    .calc { background: #f5f5f5; border-radius: 16px; padding: 20px; width: 260px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+    #display { width: 100%; background: #e0e0e0; border: none; border-radius: 8px; padding: 14px 12px; font-size: 1.5rem; text-align: right; margin-bottom: 14px; outline: none; color: #333; }
+    .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    button { padding: 16px 0; border: none; border-radius: 8px; font-size: 1rem; cursor: pointer; background: #fff; color: #333; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: opacity 0.1s; }
+    button:active { opacity: 0.7; }
+    .orange { background: #f5a623; color: #fff; }
+    .green  { background: #4caf50; color: #fff; }
+    .span2  { grid-column: span 2; }
+  </style>
+</head>
+<body>
+  <div class="calc">
+    <input type="text" id="display" readonly value="" />
+    <div class="grid">
+      <button class="orange" onclick="clearAll()">C</button>
+      <button class="orange" onclick="deleteLast()">DEL</button>
+      <button class="orange" onclick="appendVal('%')">%</button>
+      <button class="orange" onclick="appendVal('÷')">÷</button>
+
+      <button onclick="appendVal('7')">7</button>
+      <button onclick="appendVal('8')">8</button>
+      <button onclick="appendVal('9')">9</button>
+      <button class="orange" onclick="appendVal('×')">×</button>
+
+      <button onclick="appendVal('4')">4</button>
+      <button onclick="appendVal('5')">5</button>
+      <button onclick="appendVal('6')">6</button>
+      <button class="orange" onclick="appendVal('−')">−</button>
+
+      <button onclick="appendVal('1')">1</button>
+      <button onclick="appendVal('2')">2</button>
+      <button onclick="appendVal('3')">3</button>
+      <button class="orange" onclick="appendVal('+')">+</button>
+
+      <button class="span2" onclick="appendVal('0')">0</button>
+      <button onclick="appendVal('.')">.</button>
+      <button class="green" onclick="calculate()">=</button>
+    </div>
+  </div>
+
+  <script>
+    const display = document.getElementById("display");
+
+    function appendVal(val) {
+      display.value += val;
+    }
+
+    function clearAll() {
+      display.value = "";
+    }
+
+    function deleteLast() {
+      display.value = display.value.slice(0, -1);
+    }
+
+    function calculate() {
+      try {
+        let expr = display.value
+          .replace(/×/g, "*")
+          .replace(/÷/g, "/")
+          .replace(/−/g, "-")
+          .replace(/(\d+)%/g, "($1/100)");
+        display.value = eval(expr);
+      } catch {
+        display.value = "Error";
+      }
+    }
+  </script>
+</body>
+</html>

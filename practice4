@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Practice 4 – Traffic Light</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; background: #e8e8e8; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; gap: 28px; }
+    .light-box { background: #111; border-radius: 16px; padding: 20px 28px; display: flex; flex-direction: column; gap: 18px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+    .light { width: 90px; height: 90px; border-radius: 50%; background: #444; transition: background 0.4s; }
+    .light.red-on    { background: #e53935; box-shadow: 0 0 24px #e53935; }
+    .light.yellow-on { background: #fdd835; box-shadow: 0 0 24px #fdd835; }
+    .light.green-on  { background: #43a047; box-shadow: 0 0 24px #43a047; }
+    #status { font-size: 1.1rem; font-weight: bold; color: #333; letter-spacing: 1px; }
+    .controls { display: flex; gap: 12px; }
+    button { padding: 10px 28px; border: none; border-radius: 8px; font-size: 1rem; font-weight: bold; color: #fff; cursor: pointer; }
+    #btn-start { background: #43a047; }
+    #btn-stop  { background: #e53935; }
+    button:hover { opacity: 0.85; }
+  </style>
+</head>
+<body>
+
+  <div class="light-box">
+    <div class="light" id="red"></div>
+    <div class="light" id="yellow"></div>
+    <div class="light" id="green"></div>
+  </div>
+
+  <p id="status">Press Start</p>
+
+  <div class="controls">
+    <button id="btn-start" onclick="startLight()">Start</button>
+    <button id="btn-stop"  onclick="stopLight()">Stop</button>
+  </div>
+
+  <script>
+    const sequence = [
+      { light: "red",    label: "STOP",       duration: 3000 },
+      { light: "yellow", label: "SLOW DOWN",  duration: 2000 },
+      { light: "green",  label: "GO",         duration: 3000 },
+    ];
+
+    let currentIndex = 0;
+    let timer = null;
+
+    function clearLights() {
+      ["red", "yellow", "green"].forEach(l => {
+        document.getElementById(l).className = "light";
+      });
+    }
+
+    function showLight(index) {
+      clearLights();
+      const current = sequence[index];
+      document.getElementById(current.light).classList.add(current.light + "-on");
+      document.getElementById("status").textContent = current.label;
+    }
+
+    function next() {
+      currentIndex = (currentIndex + 1) % sequence.length;
+      showLight(currentIndex);
+      timer = setTimeout(next, sequence[currentIndex].duration);
+    }
+
+    function startLight() {
+      if (timer) return; // already running
+      currentIndex = 0;
+      showLight(currentIndex);
+      timer = setTimeout(next, sequence[currentIndex].duration);
+    }
+
+    function stopLight() {
+      clearTimeout(timer);
+      timer = null;
+      clearLights();
+      document.getElementById("status").textContent = "Stopped";
+    }
+  </script>
+
+</body>
+</html>

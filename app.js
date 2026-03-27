@@ -824,90 +824,94 @@
 
 
 
-// #Practice
-// 1
-const students=[
-    {name: "Alice", scores:[80,90,100]},
-    {name: "Bob", scores:[50,60,70]},
-    {name: "Alice", scores:[30,40,20]}
+// // #Practice
+// // 1
+// const students=[
+//     {name: "Alice", scores:[80,90,100]},
+//     {name: "Bob", scores:[50,60,70]},
+//     {name: "Alice", scores:[30,40,20]}
 
-]
-let avg=[]
-for(let i=0; i<students.length; i++){
-    let sum=students[i].scores.reduce(function(prev,next){
-        return prev+next;
-    })
-    let eachEvg=sum/students[i].scores.length
-    avg.push(eachEvg);
-}
-avg.sort();
-console.log(`The result is ${Math.max(...avg)}`);
+// ]
+// let avg=[]
+// for(let i=0; i<students.length; i++){
+//     let sum=students[i].scores.reduce(function(prev,next){
+//         return prev+next;
+//     })
+//     let eachEvg=sum/students[i].scores.length
+//     avg.push(eachEvg);
+// }
+// avg.sort();
+// console.log(`The result is ${Math.max(...avg)}`);
 
-// 2
-const cart=[
-    {id:1,name:"Laptop",price:900, quantity:1},
-    {id:2,name:"Mouse",price:50, quantity:2},
-    {id:3,name:"keyboard",price:100, quantity:1},
-]
-let total=0
-for(let i=0; i<cart.length; i++){
-    let eachTotal=cart[i].price*cart[i].quantity
-    if (eachTotal>100){
-        eachTotal+=eachTotal*0.1
-        total+=eachTotal
-    }
-}
-console.log(`the result is $${total}`)
-// 4
-let posts = [
-    { author: "Ali", likes: 50, comments: 10, shares: 5 },
-    { author: "Vali", likes: 120, comments: 20, shares: 10 },
-    { author: "Hasan", likes: 80, comments: 15, shares: 8 }
-];
+// // 2
+// const cart=[
+//     {id:1,name:"Laptop",price:900, quantity:1},
+//     {id:2,name:"Mouse",price:50, quantity:2},
+//     {id:3,name:"keyboard",price:100, quantity:1},
+// ]
+// let total=0
+// for(let i=0; i<cart.length; i++){
+//     let eachTotal=cart[i].price*cart[i].quantity
+//     if (eachTotal>100){
+//         eachTotal+=eachTotal*0.1
+//         total+=eachTotal
+//     }
+// }
+// console.log(`the result is $${total}`)
+// // 4
+// let posts = [
+//     { author: "Ali", likes: 50, comments: 10, shares: 5 },
+//     { author: "Vali", likes: 120, comments: 20, shares: 10 },
+//     { author: "Hasan", likes: 80, comments: 15, shares: 8 }
+// ];
 
-let mostLiked = posts[0];
+// let mostLiked = posts[0];
 
-for (let i = 1; i < posts.length; i++) {
-    if (posts[i].likes > mostLiked.likes) {
-        mostLiked = posts[i];
-    }
-}
+// for (let i = 1; i < posts.length; i++) {
+//     if (posts[i].likes > mostLiked.likes) {
+//         mostLiked = posts[i];
+//     }
+// }
 
-console.log("Most liked post:", mostLiked);
+// console.log("Most liked post:", mostLiked);
 
-let engagement = 0;
+// let engagement = 0;
 
-for (let i = 0; i < posts.length; i++) {
-    engagement += posts[i].likes + posts[i].comments + posts[i].shares;
-}
-console.log("Total engagement:", engagement);
+// for (let i = 0; i < posts.length; i++) {
+//     engagement += posts[i].likes + posts[i].comments + posts[i].shares;
+// }
+// console.log("Total engagement:", engagement);
 
-// 5
-let teams = [
-    { name: "Team A", wins: 10, losses: 2, points: 30 },
-    { name: "Team B", wins: 8, losses: 4, points: 24 },
-    { name: "Team C", wins: 12, losses: 1, points: 36 }
-];
+// // 5
+// let teams = [
+//     { name: "Team A", wins: 10, losses: 2, points: 30 },
+//     { name: "Team B", wins: 8, losses: 4, points: 24 },
+//     { name: "Team C", wins: 12, losses: 1, points: 36 }
+// ];
 
-teams.sort(function(a, b) {
-    return b.points - a.points;
-});
+// teams.sort(function(a, b) {
+//     return b.points - a.points;
+// });
 
-console.log(teams);
+// console.log(teams);
 
-let bestTeam = teams[0];
+// let bestTeam = teams[0];
 
-console.log("Best team:", bestTeam.name);
+// console.log("Best team:", bestTeam.name);
 
-// 6
-const inventory=[
-    {itemName:"Laptop", category:"Electronics",  stock:5},
-    {itemName:"Phone", category:"Electronics",  stock:10},
-]
-function findTotalByCategory(category){
-    return inventory
-    .filter((item)=> item.category===category)
-    .reduce((sum,item)=>sum+item.stock,0);
+// // 6
+// const inventory=[
+//     {itemName:"Laptop", category:"Electronics",  stock:5},
+//     {itemName:"Phone", category:"Electronics",  stock:10},
+// ]
+// function findTotalByCategory(category){
+//     return inventory
+//     .filter((item)=> item.category===category)
+//     .reduce((sum,item)=>sum+item.stock,0);
     
-}
-console.log(findTotalByCategory("Electronics"));
+// }
+// console.log(findTotalByCategory("Electronics"));
+
+
+
+

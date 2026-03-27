@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Practice 2 – Password Strength Checker</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; background: #f0f0f0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+    .container { background: #fff; border-radius: 12px; padding: 36px 32px; width: 100%; max-width: 400px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); text-align: center; }
+    h2 { font-size: 1.3rem; margin-bottom: 20px; }
+    input[type="password"] { width: 100%; padding: 12px 14px; border: 2px solid #1a73e8; border-radius: 6px; font-size: 1rem; outline: none; }
+    input[type="password"]:focus { border-color: #1558b0; }
+    .badge { display: inline-block; margin-top: 18px; padding: 8px 28px; border-radius: 6px; color: #fff; font-weight: bold; font-size: 1rem; min-width: 110px; }
+    .badge.weak   { background: #e53935; }
+    .badge.medium { background: #f0a500; }
+    .badge.strong { background: #2e7d32; }
+    .badge.hidden { display: none; }
+    .hint { margin-top: 12px; font-size: 0.82rem; color: #888; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Password Strength Checker</h2>
+    <input type="password" id="pwd" placeholder="Enter password" oninput="checkStrength()" />
+    <div id="badge" class="badge hidden"></div>
+    <p class="hint" id="hint"></p>
+  </div>
+
+  <script>
+    function checkStrength() {
+      const pwd   = document.getElementById("pwd").value;
+      const badge = document.getElementById("badge");
+      const hint  = document.getElementById("hint");
+
+      if (pwd.length === 0) {
+        badge.className = "badge hidden";
+        hint.textContent = "";
+        return;
+      }
+
+      let score = 0;
+      if (pwd.length >= 6)  score++;
+      if (pwd.length >= 10) score++;
+      if (/[A-Z]/.test(pwd)) score++;
+      if (/[0-9]/.test(pwd)) score++;
+      if (/[^A-Za-z0-9]/.test(pwd)) score++;
+
+      if (score <= 2) {
+        badge.className = "badge weak";
+        badge.textContent = "Weak";
+        hint.textContent = "Try adding numbers, uppercase letters, or symbols.";
+      } else if (score <= 3) {
+        badge.className = "badge medium";
+        badge.textContent = "Medium";
+        hint.textContent = "Getting better! Add more variety to strengthen it.";
+      } else {
+        badge.className = "badge strong";
+        badge.textContent = "Strong";
+        hint.textContent = "Great password!";
+      }
+    }
+  </script>
+</body>
+</html>

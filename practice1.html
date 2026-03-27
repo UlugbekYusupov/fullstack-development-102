@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Practice 1 – Interactive To-Do List</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; background: #f0f0f0; display: flex; justify-content: center; padding: 40px 16px; }
+    .container { background: #fff; border-radius: 12px; padding: 24px; width: 100%; max-width: 480px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); }
+    h2 { text-align: center; margin-bottom: 20px; font-size: 1.2rem; }
+    .task-card { border: 1px solid #ddd; border-radius: 8px; padding: 14px 16px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: flex-start; }
+    .task-info { flex: 1; }
+    .task-title { font-weight: bold; font-size: 0.95rem; }
+    .task-desc { font-size: 0.85rem; color: #555; margin-top: 4px; }
+    .task-right { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+    .badge { padding: 3px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; color: #fff; }
+    .badge.pending    { background: #f0a500; }
+    .badge.in-progress { background: #1a73e8; }
+    .badge.completed  { background: #28a745; }
+    .btn-delete { background: #e53935; color: #fff; border: none; padding: 6px 14px; border-radius: 5px; cursor: pointer; font-size: 0.82rem; }
+    .btn-delete:hover { background: #c62828; }
+    .btn-add { width: 100%; padding: 12px; background: #1a73e8; color: #fff; border: none; border-radius: 6px; font-size: 1rem; cursor: pointer; margin-top: 8px; }
+    .btn-add:hover { background: #1558b0; }
+
+    /* Modal */
+    .overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); justify-content: center; align-items: center; z-index: 10; }
+    .overlay.active { display: flex; }
+    .modal { background: #fff; border-radius: 10px; padding: 28px 24px; width: 340px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+    .modal h3 { text-align: center; margin-bottom: 16px; }
+    .modal input, .modal textarea, .modal select { width: 100%; padding: 10px; margin-bottom: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 0.9rem; }
+    .modal textarea { height: 80px; resize: none; }
+    .btn-save  { width: 100%; padding: 11px; background: #1a73e8; color: #fff; border: none; border-radius: 6px; font-size: 1rem; cursor: pointer; margin-bottom: 8px; }
+    .btn-close { width: 100%; padding: 11px; background: #e53935; color: #fff; border: none; border-radius: 6px; font-size: 1rem; cursor: pointer; }
+    .btn-save:hover  { background: #1558b0; }
+    .btn-close:hover { background: #c62828; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Interactive To-Do List</h2>
+    <div id="task-list"></div>
+    <button class="btn-add" onclick="openModal()">Add Task</button>
+  </div>
+
+  <div class="overlay" id="overlay">
+    <div class="modal">
+      <h3>Add Task</h3>
+      <input type="text" id="task-title" placeholder="Task Title" />
+      <textarea id="task-desc" placeholder="Task Description"></textarea>
+      <select id="task-status">
+        <option value="pending">Pending</option>
+        <option value="in-progress">In Progress</option>
+        <option value="completed">Completed</option>
+      </select>
+      <button class="btn-save" onclick="saveTask()">Save Task</button>
+      <button class="btn-close" onclick="closeModal()">Close</button>
+    </div>
+  </div>
+
+  <script>
+    const tasks = [
+      { id: 1, title: "Task 1", desc: "Description for Task 1", status: "pending" },
+      { id: 2, title: "Task 2", desc: "Description for Task 2", status: "in-progress" },
+      { id: 3, title: "Task 3", desc: "Description for Task 3", status: "completed" },
+    ];
+    let nextId = 4;
+
+    function renderTasks() {
+      const list = document.getElementById("task-list");
+      list.innerHTML = "";
+      tasks.forEach(task => {
+        const card = document.createElement("div");
+        card.className = "task-card";
+        card.innerHTML = `
+          <div class="task-info">
+            <div class="task-title">${task.title}</div>
+            <div class="task-desc">${task.desc}</div>
+            <button class="btn-delete" onclick="deleteTask(${task.id})">Delete</button>
+          </div>
+          <div class="task-right">
+            <span class="badge ${task.status}">${task.status}</span>
+          </div>
+        `;
+        list.appendChild(card);
+      });
+    }
+
+    function deleteTask(id) {
+      const index = tasks.findIndex(t => t.id === id);
+      if (index !== -1) tasks.splice(index, 1);
+      renderTasks();
+    }
+
+    function openModal() {
+      document.getElementById("overlay").classList.add("active");
+      document.getElementById("task-title").value = "";
+      document.getElementById("task-desc").value = "";
+      document.getElementById("task-status").value = "pending";
+    }
+
+    function closeModal() {
+      document.getElementById("overlay").classList.remove("active");
+    }
+
+    function saveTask() {
+      const title  = document.getElementById("task-title").value.trim();
+      const desc   = document.getElementById("task-desc").value.trim();
+      const status = document.getElementById("task-status").value;
+      if (!title) { alert("Please enter a task title!"); return; }
+      tasks.push({ id: nextId++, title, desc, status });
+      renderTasks();
+      closeModal();
+    }
+
+    renderTasks();
+  </script>
+</body>
+</html>
+
+
+
+
