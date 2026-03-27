@@ -1,63 +1,60 @@
-const taskList = document.getElementById('task-list');
-const modalOverlay = document.getElementById('modal-overlay');
-const openModalBtn = document.getElementById('open-modal-btn');
-const closeModalBtn = document.getElementById('close-modal-btn');
-const saveTaskBtn = document.getElementById('save-task-btn');
+const theTaskList = document.getElementById('theTaskList');
+const thePopupOverlay = document.getElementById('thePopupOverlay');
+const openPopupButton = document.getElementById('openPopupButton');
+const closePopupButton = document.getElementById('closePopupButton');
+const saveTaskButton = document.getElementById('saveTaskButton');
 
-// Initial Data
-let tasks = [
-    { title: "Task 1", desc: "Description for Task 1", status: "pending" },
-    { title: "Task 2", desc: "Description for Task 2", status: "in progress" },
-    { title: "Task 3", desc: "Description for Task 3", status: "completed" }
+let myMemoryList = [
+    { title: "Task 1", note: "Description 1", status: "pending" },
+    { title: "Task 2", note: "Description 2", status: "inProgress" },
+    { title: "Task 3", note: "Description 3", status: "completed" }
 ];
 
-// Function to render tasks
-function renderTasks() {
-    taskList.innerHTML = "";
-    tasks.forEach((task, index) => {
-        const statusClass = task.status.replace(/\s+/g, '-');
-        const card = document.createElement('div');
-        card.className = 'task-card';
-        card.innerHTML = `
-            <span class="status-badge status-${statusClass}">${task.status}</span>
-            <h3>${task.title}</h3>
-            <p>${task.desc}</p>
-            <button class="btn-delete" onclick="deleteTask(${index})">Delete</button>
+function refreshTheScreen() {
+    theTaskList.innerHTML = ""; 
+
+    myMemoryList.forEach((item, position) => {
+        const taskBox = document.createElement('div');
+        taskBox.className = "singleTaskCard";
+        taskBox.innerHTML = `
+            <span class="statusLabel ${item.status}">${item.status}</span>
+            <h3>${item.title}</h3>
+            <p>${item.note}</p>
+            <button class="removeBtn" onclick="throwAwayTask(${position})">Delete</button>
         `;
-        taskList.appendChild(card);
+        theTaskList.appendChild(taskBox);
     });
 }
 
-// Function to add new task
-saveTaskBtn.addEventListener('click', () => {
-    const title = document.getElementById('task-title').value;
-    const desc = document.getElementById('task-desc').value;
-    const status = document.getElementById('task-status').value;
+saveTaskButton.addEventListener('click', () => {
+    const titleFromUser = document.getElementById('userInputTitle').value;
+    const noteFromUser = document.getElementById('userInputNote').value;
+    const statusFromUser = document.getElementById('userSelectedStatus').value;
 
-    if (title && desc) {
-        tasks.push({ title, desc, status });
-        renderTasks();
-        closeModal();
-        // Clear inputs
-        document.getElementById('task-title').value = "";
-        document.getElementById('task-desc').value = "";
-    } else {
-        alert("Please fill in all fields");
+    if (titleFromUser !== "" && noteFromUser !== "") {
+        myMemoryList.push({ 
+            title: titleFromUser, 
+            note: noteFromUser, 
+            status: statusFromUser 
+        });
+        
+        refreshTheScreen();
+        hideThePopup();
+        
+        document.getElementById('userInputTitle').value = "";
+        document.getElementById('userInputNote').value = "";
     }
 });
 
-// Delete Task
-function deleteTask(index) {
-    tasks.splice(index, 1);
-    renderTasks();
+function throwAwayTask(indexNumber) {
+    myMemoryList.splice(indexNumber, 1);
+    refreshTheScreen();
 }
 
-// Modal Toggle Functions
-function openModal() { modalOverlay.style.display = 'flex'; }
-function closeModal() { modalOverlay.style.display = 'none'; }
+function showThePopup() { thePopupOverlay.style.display = "flex"; }
+function hideThePopup() { thePopupOverlay.style.display = "none"; }
 
-openModalBtn.addEventListener('click', openModal);
-closeModalBtn.addEventListener('click', closeModal);
+openPopupButton.onclick = showThePopup;
+closePopupButton.onclick = hideThePopup;
 
-// Initial Render
-renderTasks();
+refreshTheScreen();
