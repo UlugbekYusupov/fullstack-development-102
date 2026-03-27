@@ -6,6 +6,9 @@
     <title>Homeworks</title>
 
     <style>
+
+        /* Console Output */
+        /*
         body {
             font-family: 'Segoe UI';
             padding: 20px;
@@ -18,13 +21,70 @@
             white-space: pre-wrap;
             font-family: monospace;
             font-size: 20px;
+        } */
+
+        body {
+            font-family: 'Segoe UI';
+            background-color: #444444;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
         }
+        .card {
+            background: rgb(245, 245, 245);
+            padding: 60px;
+            border-radius: 15px;
+            text-align: center;
+            width: 500px;
+        }
+        h2 {
+            margin-top: -10px;
+            margin-bottom: 30px;
+            font-size: 30px;
+        }
+        input {
+            width: 99%;
+            padding: 15px 0 15px 15px;
+            border: 3px solid #aaa;
+            border-radius: 10px;
+            font-size: 20px;
+            outline: none;
+            transition: border-color 0.5s;
+        }
+        input:focus { border: 3px solid #002fff; }
+        .badge {
+            margin-top: 30px;
+            padding: 10px 20px;
+            border-radius:10px;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            display: inline-block;
+            transition: all 0.5s ease;
+        }
+        .hidden { display: none; }
+        .weak   { background-color: #ff0011; }
+        .medium { background-color: #ffaa00; }
+        .strong { background-color: #10d410; }
     </style>
 
 </head>
 <body>
-    <h1>Console Output:</h1>
-    <div id="consoleOutput"></div>
+    <!-- Console Checks -->
+
+    <!-- <h1>Console Output:</h1>
+    <div id="consoleOutput"></div> -->
+
+
+    <!-- Password Strength Checker -->
+
+    <div class="card">
+        <h2>Password Strength Checker</h2>
+        <input type="password" id="passwordInput" placeholder="Enter password">
+        <div id="strengthBadge" class="badge hidden"></div>
+    </div>
 
     <script src="Homework.js"></script>
 </body>
