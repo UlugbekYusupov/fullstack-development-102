@@ -30,5 +30,5 @@ self.addEventListener('fetch', event => {
   );
 });
 if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js');
+  navigator.serviceWorker.register('sw.js');
 }

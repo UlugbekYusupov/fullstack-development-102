@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khurshid's work hw6</title>
+    <link rel="icon" href="logo.png">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .todo-card,
+        .password-card,
+        .calculator-card,
+        .traffic-card,
+        .modal {
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 18px;
+            background: rgba(8, 8, 8, 0.72);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .todo-card,
+        .password-card,
+        .calculator-card,
+        .traffic-card {
+            max-width: 560px;
+            padding: 28px;
+        }
+
+        .todo-card h2,
+        .password-card h2,
+        .calculator-card h2,
+        .traffic-card h2,
+        .modal h3 {
+            margin: 0 0 14px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .todo-subtitle {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.78);
+            line-height: 1.7;
+            text-align: center;
+        }
+
+        .todo-card,
+        .password-card,
+        .calculator-card,
+        .traffic-card,
+        .auth-card {
+            display: none;
+            gap: 18px;
+        }
+
+        .todo-card.active,
+        .password-card.active,
+        .calculator-card.active,
+        .traffic-card.active,
+        .auth-card.active {
+            display: flex;
+            flex-direction: column;
+            animation: fadeInUp 0.3s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .todo-card .dark-minimal-btn,
+        .password-card .dark-minimal-btn,
+        .calculator-card .dark-minimal-btn,
+        .traffic-card .dark-minimal-btn {
+            width: 100%;
+            margin: 0;
+            padding: 14px 20px;
+        }
+
+        #output {
+            max-width: 560px;
+            min-height: 52px;
+            text-align: center;
+            white-space: pre-line;
+        }
+
+        #task-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            min-height: 90px;
+        }
+
+        .task-item {
+            padding: 18px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .task-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .task-title {
+            font-size: 1rem;
+            font-weight: bold;
+            word-break: break-word;
+        }
+
+        .task-desc {
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.6;
+            word-break: break-word;
+        }
+
+        .badge {
+            padding: 5px 12px;
+            border: 1px solid transparent;
+            border-radius: 999px;
+            font-size: 0.72rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .badge.pending {
+            color: #ffd27d;
+            border-color: rgba(255, 210, 125, 0.55);
+            background: rgba(255, 210, 125, 0.12);
+        }
+
+        .badge.in-progress {
+            color: #8dd5ff;
+            border-color: rgba(141, 213, 255, 0.55);
+            background: rgba(141, 213, 255, 0.12);
+        }
+
+        .badge.completed {
+            color: #8ff0b2;
+            border-color: rgba(143, 240, 178, 0.55);
+            background: rgba(143, 240, 178, 0.12);
+        }
+
+        .task-item .dark-minimal-btn {
+            width: fit-content;
+            padding: 10px 18px;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .empty-state {
+            padding: 22px 10px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.62);
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+        }
+
+        .password-card input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #333;
+            border-radius: 10px;
+            background: #111;
+            color: white;
+            font-family: inherit;
+            font-size: 0.95rem;
+        }
+
+        .password-result {
+            padding: 18px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.86);
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        .calculator-shell {
+            align-self: center;
+            width: min(100%, 260px);
+            padding: 12px;
+            border-radius: 22px;
+            background: linear-gradient(180deg, #f8f8f8 0%, #ececec 100%);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 16px 30px rgba(0, 0, 0, 0.18);
+        }
+
+        .calculator-display {
+            min-height: 78px;
+            padding: 16px;
+            border-radius: 16px;
+            background: #ffffff;
+            color: #111;
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            text-align: right;
+            overflow-wrap: anywhere;
+            box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.08);
+        }
+
+        .calculator-grid {
+            margin-top: 12px;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 8px;
+        }
+
+        .calc-btn {
+            min-height: 52px;
+            border: none;
+            border-radius: 10px;
+            background: #ffffff;
+            color: #111;
+            font-size: 1rem;
+            font-weight: 700;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+            cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .calc-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.14);
+        }
+
+        .calc-btn.wide {
+            grid-column: span 2;
+        }
+
+        .calc-btn.action,
+        .calc-btn.operator {
+            background: #ff9418;
+            color: white;
+        }
+
+        .calc-btn.equals {
+            background: #29a847;
+            color: white;
+        }
+
+        .traffic-stage {
+            display: grid;
+            place-items: center;
+            gap: 18px;
+        }
+
+        .traffic-body {
+            width: 108px;
+            padding: 18px 14px;
+            border-radius: 18px;
+            background: #040404;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            box-shadow: 0 18px 30px rgba(0, 0, 0, 0.28);
+        }
+
+        .traffic-bulb {
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            background: #7c7c7c;
+            opacity: 0.4;
+            transition: opacity 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+        }
+
+        .traffic-bulb.active {
+            opacity: 1;
+            transform: scale(1.04);
+        }
+
+        .traffic-bulb.red.active {
+            background: #ff3b30;
+            box-shadow: 0 0 18px rgba(255, 59, 48, 0.65);
+        }
+
+        .traffic-bulb.yellow.active {
+            background: #ffd60a;
+            box-shadow: 0 0 18px rgba(255, 214, 10, 0.65);
+        }
+
+        .traffic-bulb.green.active {
+            background: #1dbb36;
+            box-shadow: 0 0 18px rgba(29, 187, 54, 0.65);
+        }
+
+        .traffic-controls {
+            width: 100%;
+            max-width: 320px;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .auth-card {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .auth-workspace {
+            display: block;
+            width: 100%;
+        }
+
+        .auth-panel {
+            display: none;
+            width: min(100%, 360px);
+            margin: 0 auto;
+            padding: 16px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.96);
+            border: 1px solid rgba(20, 20, 20, 0.08);
+            box-shadow: 0 18px 36px rgba(0, 0, 0, 0.22);
+            color: #111;
+            font-family: Arial, Helvetica, sans-serif;
+            transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+        }
+
+        .auth-panel.active {
+            display: block;
+            transform: translateY(-2px);
+            border-color: #1f74ea;
+            box-shadow: 0 20px 42px rgba(0, 0, 0, 0.28);
+        }
+
+        .auth-panel h2 {
+            margin: 0 0 18px;
+            text-align: center;
+            color: #111;
+            font-size: 1.9rem;
+            font-weight: 700;
+        }
+
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .auth-input {
+            width: 100%;
+            min-height: 46px;
+            padding: 12px 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            background: #fff;
+            color: #111;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.16s ease, box-shadow 0.16s ease;
+        }
+
+        .auth-input:focus {
+            border-color: #1f74ea;
+            box-shadow: 0 0 0 3px rgba(31, 116, 234, 0.16);
+        }
+
+        .auth-submit,
+        .auth-ghost {
+            min-height: 44px;
+            border-radius: 4px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+        }
+
+        .auth-submit:hover,
+        .auth-ghost:hover {
+            transform: translateY(-1px);
+        }
+
+        .auth-submit {
+            border: none;
+            background: #1f74ea;
+            color: white;
+            box-shadow: 0 10px 18px rgba(31, 116, 234, 0.18);
+        }
+
+        .auth-ghost {
+            border: 2px solid #1f74ea;
+            background: white;
+            color: #1f74ea;
+        }
+
+        .auth-switch-btn {
+            align-self: center;
+            width: auto;
+            border: none;
+            background: transparent;
+            color: #1f74ea;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 0.95rem;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .auth-switch-btn:hover {
+            text-decoration: underline;
+        }
+
+        .auth-message {
+            margin: 4px 0 0;
+            padding: 14px 16px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            background: rgba(255, 255, 255, 0.08);
+            color: rgba(255, 255, 255, 0.9);
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        .auth-message.success {
+            color: #d6ffe6;
+            border-color: rgba(106, 219, 149, 0.4);
+            background: rgba(34, 143, 73, 0.2);
+        }
+
+        .auth-message.error {
+            color: #ffd4d4;
+            border-color: rgba(255, 139, 139, 0.38);
+            background: rgba(170, 42, 42, 0.2);
+        }
+
+        .right-panel.auth-mode {
+            max-width: 400px;
+            max-height: none;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: 20;
+        }
+
+        .modal-overlay.open {
+            display: flex;
+        }
+
+        .modal {
+            max-width: 440px;
+            padding: 28px;
+        }
+
+        .modal input,
+        .modal textarea,
+        .modal select {
+            width: 100%;
+            margin-bottom: 12px;
+            padding: 12px 14px;
+            border: 1px solid #333;
+            border-radius: 10px;
+            background: #111;
+            color: white;
+            font-family: inherit;
+            font-size: 0.95rem;
+        }
+
+        .modal textarea {
+            min-height: 96px;
+            resize: vertical;
+        }
+
+        .modal-actions {
+            display: grid;
+            gap: 10px;
+        }
+
+        .modal-actions .dark-minimal-btn {
+            width: 100%;
+            margin: 0;
+            padding: 14px 20px;
+        }
+
+        .error-msg {
+            display: none;
+            margin: -2px 0 12px;
+            color: #ff9a9a;
+            text-align: left;
+        }
+
+        .error-msg.show {
+            display: block;
+        }
+
+        @media (max-width: 767px) {
+                .todo-card,
+            .password-card,
+            .calculator-card,
+            .traffic-card,
+            .modal {
+                padding: 22px;
+            }
+
+            .task-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .auth-card,
+            .right-panel.auth-mode {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <video autoplay loop muted playsinline class="bg-video">
+        <source src="https://ik.imagekit.io/Eduventure/animations/back.webm/ik-video.mp4?updatedAt=1772775481474" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="video-overlay"></div>
+
+    <button onclick="location.href='hw5.html'" class="dark-minimal-btn pre-btn">
+        Previous
+    </button>
+
+    <button onclick="location.href='cls7.html'" class="dark-minimal-btn next-btn">
+        Next
+    </button>
+
+    <div class="main-container">
+        <div class="left-panel">
+            <button class="dark-minimal-btn" onclick="startProcess()">
+                Start Process Practice
+            </button>
+
+            <div id="output"></div>
+
+            <div id="comment-container" data-page-id="hw6">
+                <hr style="width: 100%; max-width: 400px; height: 2px; background-color: #333; border: none;">
+                <h2 style="margin: 10px 0;">Comment Area</h2>
+                <textarea
+                    id="commentInput"
+                    onkeydown="if(event.key==='Enter'){postComment()}"
+                    placeholder="Write a comment..."></textarea>
+                <button id="postBtn" class="dark-minimal-btn" onclick="postComment()" style="width: fit-content;">Post</button>
+                <div id="displayComments" style="margin-top: 20px; width: 100%;"></div>
+            </div>
+        </div>
+
+        <div class="right-panel">
+            <section class="todo-card" id="todo-app">
+                <h2>Interactive To-Do List</h2>
+                <p class="todo-subtitle">Add new tasks, manage their status, and remove completed work whenever you want.</p>
+                <div id="task-list"></div>
+                <button class="dark-minimal-btn" onclick="openModal()">Add Task</button>
+            </section>
+
+            <section class="password-card" id="password-checker">
+                <h2>Password Strength Checker</h2>
+                <p class="todo-subtitle">Type a password below and check its strength without using prompts.</p>
+                <input type="password" id="password-input" placeholder="Create password">
+                <p class="error-msg" id="password-error">Please enter a password first.</p>
+                <button class="dark-minimal-btn" onclick="checkPasswordFromInput()">Check Password</button>
+                <div class="password-result" id="password-result">The result will appear here.</div>
+            </section>
+
+            <section class="calculator-card" id="calculator-app">
+                <h2>Calculator</h2>
+                <p class="todo-subtitle">Use the buttons below to calculate without prompts.</p>
+                <div class="calculator-shell">
+                    <div class="calculator-display" id="calculator-display">0</div>
+                    <div class="calculator-grid">
+                        <button class="calc-btn action" onclick="clearCalculator()">C</button>
+                        <button class="calc-btn action" onclick="deleteCalculator()">DEL</button>
+                        <button class="calc-btn action" onclick="pressCalculator('%')">%</button>
+                        <button class="calc-btn operator" onclick="pressCalculator('/')">/</button>
+                        <button class="calc-btn" onclick="pressCalculator('7')">7</button>
+                        <button class="calc-btn" onclick="pressCalculator('8')">8</button>
+                        <button class="calc-btn" onclick="pressCalculator('9')">9</button>
+                        <button class="calc-btn operator" onclick="pressCalculator('*')">*</button>
+                        <button class="calc-btn" onclick="pressCalculator('4')">4</button>
+                        <button class="calc-btn" onclick="pressCalculator('5')">5</button>
+                        <button class="calc-btn" onclick="pressCalculator('6')">6</button>
+                        <button class="calc-btn operator" onclick="pressCalculator('-')">-</button>
+                        <button class="calc-btn" onclick="pressCalculator('1')">1</button>
+                        <button class="calc-btn" onclick="pressCalculator('2')">2</button>
+                        <button class="calc-btn" onclick="pressCalculator('3')">3</button>
+                        <button class="calc-btn operator" onclick="pressCalculator('+')">+</button>
+                        <button class="calc-btn wide" onclick="pressCalculator('0')">0</button>
+                        <button class="calc-btn" onclick="pressCalculator('.')">.</button>
+                        <button class="calc-btn equals" onclick="calculateCalculator()">=</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="traffic-card" id="traffic-light-app">
+                <h2>Traffic Light</h2>
+                <div class="traffic-stage">
+                    <div class="traffic-body">
+                        <div class="traffic-bulb red" id="traffic-red"></div>
+                        <div class="traffic-bulb yellow" id="traffic-yellow"></div>
+                        <div class="traffic-bulb green active" id="traffic-green"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="auth-card" id="auth-task">
+                <div class="auth-workspace">
+                    <div class="auth-panel active" id="signup-panel">
+                        <h2>Sign Up</h2>
+                        <div class="auth-form">
+                            <input class="auth-input" type="text" id="signup-username" placeholder="Username">
+                            <input class="auth-input" type="email" id="signup-email" placeholder="Email">
+                            <input class="auth-input" type="password" id="signup-password" placeholder="Password">
+                            <button class="auth-submit" type="button" onclick="signUpUser()">Submit</button>
+                            <button class="auth-switch-btn" type="button" onclick="switchAuthMode('login')">Already have an account? Login</button>
+                        </div>
+                    </div>
+
+                    <div class="auth-panel" id="login-panel">
+                        <h2>Login</h2>
+                        <div class="auth-form">
+                            <input class="auth-input" type="email" id="login-email" placeholder="Email">
+                            <input class="auth-input" type="password" id="login-password" placeholder="Password">
+                            <button class="auth-submit" type="button" onclick="loginUser()">Submit</button>
+                            <button class="auth-ghost" type="button" onclick="switchAuthMode('signup')">Don't have an account? Sign Up</button>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="auth-message" id="auth-message" aria-live="polite">No account found. Create one to continue.</p>
+            </section>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal">
+            <h3>Add Task</h3>
+            <input type="text" id="task-title" placeholder="Task Title">
+            <p class="error-msg" id="title-error">Please enter a task title.</p>
+            <textarea id="task-desc" placeholder="Task Description"></textarea>
+            <select id="task-status">
+                <option value="pending">Pending</option>
+                <option value="in-progress">In Progress</option>
+                <option value="completed">Completed</option>
+            </select>
+            <div class="modal-actions">
+                <button class="dark-minimal-btn" onclick="saveTask()">Save Task</button>
+                <button class="dark-minimal-btn" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="app.js"></script>
+    <script>
+        const outputDiv = document.getElementById("output");
+        const rightPanel = document.querySelector(".right-panel");
+        const todoApp = document.getElementById("todo-app");
+        const passwordChecker = document.getElementById("password-checker");
+        const calculatorApp = document.getElementById("calculator-app");
+        const calculatorDisplay = document.getElementById("calculator-display");
+        const trafficLightApp = document.getElementById("traffic-light-app");
+        const authTask = document.getElementById("auth-task");
+        const signupPanel = document.getElementById("signup-panel");
+        const loginPanel = document.getElementById("login-panel");
+        const passwordInput = document.getElementById("password-input");
+        const passwordError = document.getElementById("password-error");
+        const passwordResult = document.getElementById("password-result");
+        const modalOverlay = document.getElementById("modal-overlay");
+        const signupUsernameInput = document.getElementById("signup-username");
+        const signupEmailInput = document.getElementById("signup-email");
+        const signupPasswordInput = document.getElementById("signup-password");
+        const loginEmailInput = document.getElementById("login-email");
+        const loginPasswordInput = document.getElementById("login-password");
+        const authMessage = document.getElementById("auth-message");
+        const trafficLights = {
+            red: document.getElementById("traffic-red"),
+            yellow: document.getElementById("traffic-yellow"),
+            green: document.getElementById("traffic-green")
+        };
+        const authStorageKey = "hw6-auth-account";
+
+        let tasks = [
+            { id: 1, title: "Task 1", desc: "Description for Task 1", status: "pending" },
+            { id: 2, title: "Task 2", desc: "Description for Task 2", status: "in-progress" },
+            { id: 3, title: "Task 3", desc: "Description for Task 3", status: "completed" }
+        ];
+
+        let nextId = 4;
+
+        const statusLabel = {
+            pending: "Pending",
+            "in-progress": "In Progress",
+            completed: "Completed"
+        };
+
+        let calculatorExpression = "";
+        let trafficTimer = null;
+        let currentTrafficLight = "green";
+        let savedAccount = loadSavedAccount();
+        const trafficDurations = {
+            green: 3000,
+            yellow: 1500,
+            red: 4000
+        };
+
+        function hideInteractiveCards() {
+            todoApp.classList.remove("active");
+            passwordChecker.classList.remove("active");
+            calculatorApp.classList.remove("active");
+            trafficLightApp.classList.remove("active");
+            authTask.classList.remove("active");
+            rightPanel.classList.remove("auth-mode");
+            stopTrafficLight();
+            closeModal();
+        }
+
+        function showTodoApp() {
+            hideInteractiveCards();
+            todoApp.classList.add("active");
+        }
+
+        function showPasswordChecker() {
+            hideInteractiveCards();
+            passwordChecker.classList.add("active");
+        }
+
+        function showCalculator() {
+            hideInteractiveCards();
+            calculatorApp.classList.add("active");
+        }
+
+        function showTrafficLight() {
+            hideInteractiveCards();
+            trafficLightApp.classList.add("active");
+            currentTrafficLight = "green";
+            startTrafficLight();
+        }
+
+        function showAuthTask() {
+            hideInteractiveCards();
+            authTask.classList.add("active");
+            rightPanel.classList.add("auth-mode");
+            savedAccount = loadSavedAccount();
+
+            if (savedAccount) {
+                loginEmailInput.value = savedAccount.email;
+                loginPasswordInput.value = "";
+                switchAuthMode("login");
+            } else {
+                switchAuthMode("signup");
+            }
+        }
+
+        function setAuthMessage(message, type = "") {
+            authMessage.textContent = message;
+            authMessage.className = "auth-message";
+
+            if (type) {
+                authMessage.classList.add(type);
+            }
+        }
+
+        function loadSavedAccount() {
+            try {
+                const storedAccount = localStorage.getItem(authStorageKey);
+                return storedAccount ? JSON.parse(storedAccount) : null;
+            } catch (error) {
+                return null;
+            }
+        }
+
+        function persistAccount(account) {
+            savedAccount = account;
+
+            try {
+                if (account) {
+                    localStorage.setItem(authStorageKey, JSON.stringify(account));
+                } else {
+                    localStorage.removeItem(authStorageKey);
+                }
+            } catch (error) {
+                // Ignore localStorage errors and keep the form usable.
+            }
+        }
+
+        function switchAuthMode(target, preserveMessage = false) {
+            const isSignup = target === "signup";
+
+            signupPanel.classList.toggle("active", isSignup);
+            loginPanel.classList.toggle("active", !isSignup);
+
+            if (!preserveMessage) {
+                if (isSignup) {
+                    setAuthMessage(savedAccount ? "Create a new account or switch back to login." : "No account found. Create one to continue.");
+                } else if (savedAccount) {
+                    setAuthMessage("Account found. Sign in with your saved email and password.");
+                } else {
+                    setAuthMessage("No account saved yet. Please sign up first.", "error");
+                }
+            }
+
+            if (!authTask.classList.contains("active")) {
+                return;
+            }
+
+            if (isSignup) {
+                signupUsernameInput.focus();
+            } else {
+                loginEmailInput.focus();
+            }
+        }
+
+        function validateEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        function signUpUser() {
+            const username = signupUsernameInput.value.trim();
+            const email = signupEmailInput.value.trim();
+            const password = signupPasswordInput.value;
+
+            if (!username || !email || !password) {
+                setAuthMessage("Please fill in username, email, and password.", "error");
+                switchAuthMode("signup", true);
+                return;
+            }
+
+            if (!validateEmail(email)) {
+                setAuthMessage("Please enter a valid email address for sign up.", "error");
+                switchAuthMode("signup", true);
+                signupEmailInput.focus();
+                return;
+            }
+
+            if (password.length < 6) {
+                setAuthMessage("Password must be at least 6 characters long.", "error");
+                switchAuthMode("signup", true);
+                signupPasswordInput.focus();
+                return;
+            }
+
+            persistAccount({
+                username,
+                email,
+                password
+            });
+
+            loginEmailInput.value = email;
+            loginPasswordInput.value = "";
+            signupPasswordInput.value = "";
+
+            setAuthMessage(`Account created for ${username}. You can log in now.`, "success");
+            outputDiv.textContent = `Account created for ${username}. Try the login card next.`;
+            switchAuthMode("login", true);
+            loginPasswordInput.focus();
+        }
+
+        function loginUser() {
+            savedAccount = loadSavedAccount();
+            const email = loginEmailInput.value.trim();
+            const password = loginPasswordInput.value;
+
+            if (!savedAccount) {
+                setAuthMessage("No account saved yet. Please sign up first.", "error");
+                outputDiv.textContent = "No account found yet. Please sign up first.";
+                switchAuthMode("signup", true);
+                return;
+            }
+
+            if (!email || !password) {
+                setAuthMessage("Please enter both email and password to log in.", "error");
+                switchAuthMode("login", true);
+                return;
+            }
+
+            if (email !== savedAccount.email || password !== savedAccount.password) {
+                setAuthMessage("Incorrect email or password. Please try again.", "error");
+                outputDiv.textContent = "Login failed. Check your email and password.";
+                switchAuthMode("login", true);
+                loginPasswordInput.focus();
+                return;
+            }
+
+            setAuthMessage(`Welcome back, ${savedAccount.username}. Login successful.`, "success");
+            outputDiv.textContent = `Welcome back, ${savedAccount.username}.`;
+        }
+
+        function checkPasswordStrength2(password) {
+            let hasUpper = false;
+            let hasNumber = false;
+            let hasSpecial = false;
+            const minLength = password.length >= 8;
+
+            for (let i = 0; i < password.length; i++) {
+                const ch = password[i];
+
+                if (!hasUpper && ch >= "A" && ch <= "Z") {
+                    hasUpper = true;
+                } else if (!hasNumber && ch >= "0" && ch <= "9") {
+                    hasNumber = true;
+                } else if (!hasSpecial && (
+                    (ch >= "!" && ch <= "/") ||
+                    (ch >= ":" && ch <= "@") ||
+                    (ch >= "[" && ch <= "`") ||
+                    (ch >= "{" && ch <= "~")
+                )) {
+                    hasSpecial = true;
+                }
+            }
+
+            let strength = 0;
+            if (minLength) strength++;
+            if (hasUpper) strength++;
+            if (hasNumber) strength++;
+            if (hasSpecial) strength++;
+
+            if (strength <= 1) return "Weak";
+            if (strength <= 3) return "Medium";
+            return "Strong";
+        }
+
+        function checkPasswordFromInput() {
+            const password = passwordInput.value.trim();
+
+            if (!password) {
+                passwordError.classList.add("show");
+                passwordResult.textContent = "The result will appear here.";
+                passwordInput.focus();
+                return;
+            }
+
+            passwordError.classList.remove("show");
+            passwordResult.textContent = `The result : ${checkPasswordStrength2(password)}`;
+            outputDiv.textContent = "Password Strength Checker is ready. Type a password in the input field.";
+        }
+
+        function updateCalculatorDisplay(value = calculatorExpression || "0") {
+            calculatorDisplay.textContent = value;
+        }
+
+        function clearCalculator() {
+            calculatorExpression = "";
+            updateCalculatorDisplay();
+        }
+
+        function deleteCalculator() {
+            if (calculatorDisplay.textContent === "Error") {
+                clearCalculator();
+                return;
+            }
+
+            calculatorExpression = calculatorExpression.slice(0, -1);
+            updateCalculatorDisplay();
+        }
+
+        function pressCalculator(value) {
+            if (calculatorDisplay.textContent === "Error") {
+                calculatorExpression = "";
+            }
+
+            const operators = "+-*/";
+            const lastChar = calculatorExpression.slice(-1);
+            const currentNumber = calculatorExpression.split(/[+\-*/]/).pop() || "";
+
+            if (value === ".") {
+                if (lastChar === "%") {
+                    return;
+                }
+
+                if (currentNumber.includes(".")) {
+                    return;
+                }
+
+                if (!calculatorExpression || operators.includes(lastChar)) {
+                    calculatorExpression += "0.";
+                } else {
+                    calculatorExpression += ".";
+                }
+            } else if (operators.includes(value)) {
+                if (!calculatorExpression && value !== "-") {
+                    return;
+                }
+
+                if (operators.includes(lastChar)) {
+                    calculatorExpression = calculatorExpression.slice(0, -1) + value;
+                } else if (lastChar === ".") {
+                    return;
+                } else {
+                    calculatorExpression += value;
+                }
+            } else if (value === "%") {
+                if (!calculatorExpression || operators.includes(lastChar) || lastChar === "." || lastChar === "%") {
+                    return;
+                }
+
+                if (currentNumber.includes("%")) {
+                    return;
+                }
+
+                calculatorExpression += value;
+            } else {
+                if (lastChar === "%") {
+                    return;
+                }
+
+                calculatorExpression += value;
+            }
+
+            updateCalculatorDisplay();
+        }
+
+        function calculateCalculator() {
+            if (!calculatorExpression) {
+                return;
+            }
+
+            try {
+                const normalizedExpression = calculatorExpression.replace(/(\d+(\.\d+)?)%/g, "($1/100)");
+                const result = Function(`"use strict"; return (${normalizedExpression});`)();
+
+                if (!Number.isFinite(result)) {
+                    throw new Error("Invalid result");
+                }
+
+                calculatorExpression = String(Number(result.toFixed(10)));
+                updateCalculatorDisplay();
+                outputDiv.textContent = "Calculator is ready. Use the buttons to continue calculating.";
+            } catch (error) {
+                calculatorExpression = "";
+                updateCalculatorDisplay("Error");
+            }
+        }
+
+        function setTrafficLight(activeLight) {
+            Object.keys(trafficLights).forEach((light) => {
+                trafficLights[light].classList.toggle("active", light === activeLight);
+            });
+        }
+
+        function stopTrafficLight() {
+            if (trafficTimer) {
+                clearTimeout(trafficTimer);
+                trafficTimer = null;
+            }
+        }
+
+        function startTrafficLight() {
+            stopTrafficLight();
+            setTrafficLight(currentTrafficLight);
+            trafficTimer = setTimeout(cycleTrafficLight, trafficDurations[currentTrafficLight]);
+        }
+
+        function cycleTrafficLight() {
+            if (currentTrafficLight === "green") {
+                currentTrafficLight = "yellow";
+            } else if (currentTrafficLight === "yellow") {
+                currentTrafficLight = "red";
+            } else {
+                currentTrafficLight = "green";
+            }
+
+            setTrafficLight(currentTrafficLight);
+            trafficTimer = setTimeout(cycleTrafficLight, trafficDurations[currentTrafficLight]);
+        }
+
+        function startProcess() {
+            const choice = Number(prompt(
+                "Choose a challenge:\n" +
+                "1 - Interactive To-Do List\n" +
+                "2 - Password Strength Checker\n" +
+                "3 - Calculator\n" +
+                "4 - Traffic Light\n" +
+                "5 - Sign Up / Login Form"
+            ));
+
+            if (!choice) return;
+
+            switch (choice) {
+                case 1:
+                    showTodoApp();
+                    renderTasks();
+                    outputDiv.textContent = "Interactive To-Do List is ready. You can add or delete tasks now.";
+                    break;
+                case 2:
+                    showPasswordChecker();
+                    passwordInput.value = "";
+                    passwordError.classList.remove("show");
+                    passwordResult.textContent = "The result will appear here.";
+                    outputDiv.textContent = "Password Strength Checker is ready. Type a password in the input field.";
+                    passwordInput.focus();
+                    break;
+                case 3:
+                    showCalculator();
+                    clearCalculator();
+                    outputDiv.textContent = "Calculator is ready. Use the buttons on the right.";
+                    break;
+                case 4:
+                    showTrafficLight();
+                    outputDiv.textContent = "Traffic Light is ready and cycling now.";
+                    break;
+                case 5:
+                    showAuthTask();
+                    outputDiv.textContent = "Sign up or log in using the forms on the right.";
+                    break;
+                default:
+                    hideInteractiveCards();
+                    outputDiv.textContent = "Invalid choice.";
+            }
+        }
+
+        function renderTasks() {
+            const list = document.getElementById("task-list");
+
+            if (tasks.length === 0) {
+                list.innerHTML = '<p class="empty-state">No tasks yet. Add one to get started.</p>';
+                return;
+            }
+
+            list.innerHTML = tasks.map((task) => `
+                <div class="task-item" id="task-${task.id}">
+                    <div class="task-header">
+                        <span class="task-title">${escHtml(task.title)}</span>
+                        <span class="badge ${task.status}">${statusLabel[task.status]}</span>
+                    </div>
+                    <span class="task-desc">${escHtml(task.desc)}</span>
+                    <button class="dark-minimal-btn" onclick="deleteTask(${task.id})">Delete</button>
+                </div>
+            `).join("");
+        }
+
+        function deleteTask(id) {
+            const taskElement = document.getElementById(`task-${id}`);
+
+            if (!taskElement) return;
+
+            taskElement.style.transition = "opacity 0.22s ease, transform 0.22s ease";
+            taskElement.style.opacity = "0";
+            taskElement.style.transform = "translateX(18px)";
+
+            setTimeout(() => {
+                tasks = tasks.filter((task) => task.id !== id);
+                renderTasks();
+            }, 220);
+        }
+
+        function openModal() {
+            if (!todoApp.classList.contains("active")) {
+                outputDiv.textContent = "Start the process and choose case 1 first.";
+                return;
+            }
+
+            document.getElementById("task-title").value = "";
+            document.getElementById("task-desc").value = "";
+            document.getElementById("task-status").value = "pending";
+            document.getElementById("title-error").classList.remove("show");
+            modalOverlay.classList.add("open");
+        }
+
+        function closeModal() {
+            modalOverlay.classList.remove("open");
+        }
+
+        function saveTask() {
+            const title = document.getElementById("task-title").value.trim();
+            const desc = document.getElementById("task-desc").value.trim();
+            const status = document.getElementById("task-status").value;
+            const errorElement = document.getElementById("title-error");
+
+            if (!title) {
+                errorElement.classList.add("show");
+                document.getElementById("task-title").focus();
+                return;
+            }
+
+            errorElement.classList.remove("show");
+
+            tasks.push({
+                id: nextId++,
+                title,
+                desc,
+                status
+            });
+
+            renderTasks();
+            closeModal();
+        }
+
+        modalOverlay.addEventListener("click", function (event) {
+            if (event.target === modalOverlay) {
+                closeModal();
+            }
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") {
+                closeModal();
+            }
+        });
+
+        passwordInput.addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+                checkPasswordFromInput();
+            }
+        });
+
+        [signupUsernameInput, signupEmailInput, signupPasswordInput].forEach((input) => {
+            input.addEventListener("keydown", (event) => {
+                if (event.key === "Enter") {
+                    signUpUser();
+                }
+            });
+        });
+
+        [loginEmailInput, loginPasswordInput].forEach((input) => {
+            input.addEventListener("keydown", (event) => {
+                if (event.key === "Enter") {
+                    loginUser();
+                }
+            });
+        });
+
+        setTrafficLight("green");
+
+        function escHtml(str) {
+            return str
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;");
+        }
+    </script>
+    <script src="sw.js"></script>
+</body>
+</html>

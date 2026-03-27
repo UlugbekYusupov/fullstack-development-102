@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khurshid's work cls7</title>
+    <link rel="icon" href="logo.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <video autoplay loop muted playsinline class="bg-video">
+        <source src="https://ik.imagekit.io/Eduventure/animations/back.webm/ik-video.mp4?updatedAt=1772775481474" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="video-overlay"></div>
+
+    <button onclick="location.href='hw6.html'" class="dark-minimal-btn pre-btn">
+        Previous
+    </button>
+
+    <div class="main-container">
+
+        <div class="left-panel">
+            <button class="dark-minimal-btn" onclick="startProcess()">
+                Start Process Practice
+            </button>
+            <div id="output"></div>
+
+            <div id="comment-container" data-page-id="hw7">
+                <hr style="width: 100%; max-width: 400px; height: 2px; background-color: #333; border: none;">
+                <h2 style="margin: 10px 0;">Comment Area</h2>
+                <textarea id="commentInput"
+                    onkeydown="if(event.key==='Enter'){postComment()}"
+                    placeholder="Write a comment..."></textarea>
+                <button id="postBtn" class="dark-minimal-btn" onclick="postComment()" style="width: fit-content;">Post</button>
+                <div id="displayComments" style="margin-top: 20px; width: 100%;"></div>
+            </div>
+        </div>
+
+        <div class="right-panel">
+            <div class="yt-preview" data-video-id="wssvLtVSFeI" onclick="loadVideo(this)">
+                <video autoplay loop muted playsinline class="preview-media">
+                    <source src="https://ik.imagekit.io/Eduventure/animations/8.webm" type="video/webm">
+                </video>
+                <div class="play-btn">▶</div>
+            </div>
+
+            <div class="yt-preview" data-video-id="W6NZfCO5SIk" onclick="loadVideo(this)">
+                <video autoplay loop muted playsinline class="preview-media">
+                    <source src="https://ik.imagekit.io/Eduventure/animations/8.webm" type="video/webm">
+                </video>
+                <div class="play-btn">▶</div>
+            </div>
+        </div>
+
+    </div>
+
+    <script type="module" src="app.js"></script>
+
+    <script>
+        function loadVideo(el) {
+            const videoId = el.getAttribute("data-video-id");
+            el.innerHTML = `
+                <iframe
+                    src="https://www.youtube.com/embed/${videoId}?autoplay=1"
+                    allow="autoplay; encrypted-media"
+                    allowfullscreen>
+                </iframe>
+            `;
+        }
+
+        function startProcess() {
+            const outputDiv = document.getElementById("output");
+
+            let choice = Number(prompt(
+                "Choose a challenge:\n" +
+                "1 - Object Literal ({})\n" +
+                "2 - Using new Object()\n"
+            ));1
+
+            if (!choice) return;
+
+            switch (choice) {
+                case 1:
+                    let brand = prompt("Enter the brand : ");
+                    let model = prompt("Enter the model : ");
+                    let year = Number(prompt("Enter the year : "));
+                    let action = prompt("What your product does : ");
+                    let car = {
+                        brand : brand,
+                        model : model,
+                        year : year,
+                        start : function (){
+                            outputDiv.innerHTML = action;
+                        }
+                    }
+                    let choice2 = Number(prompt(
+                        "Choose the action : \n"+
+                        "1 - show brand\n"+
+                        "2 - show model\n"+
+                        "3 - show year\n"+
+                        "4 - product in action\n"
+                    ));
+                    switch (choice2){
+                        case 1:
+                            outputDiv.innerHTML = car.brand;
+                            break;
+                        case 2:
+                            outputDiv.innerHTML = car.model;
+                            break;
+                        case 3:
+                            outputDiv.innerHTML = car.year;
+                            break;
+                        case 4:
+                            car.start();
+                        break;
+
+                    }
+                    break;
+                case 2:
+                    let name = prompt("Enter the name : ");
+                    let age = prompt("Enter the age : ");
+                    let condition = prompt("Write his condition(e.g : bored) : ");
+                    let person = new Object();
+                    person.name = name;
+                    person.age = age;
+                    person.condition = condition;
+                    person.greet = function(){
+                        return `Hello this is ${this.name} and he is ${this.age} and he is currently ${this.condition}`;
+                    }
+                    let result = person.greet();
+                    outputDiv.innerHTML = result;
+                    break;
+                case 3:
+                    function createPerson(name, age , condition){
+                        return{
+                            name,
+                            age,
+                            greet(){
+                                return `Hello this is ${this.name} and he is ${this.age} and he is currently ${this.condition}`;
+                            }
+                        };
+                    }
+                    let name1 = prompt("Enter the name1 : ");
+                    let age1 = prompt("Enter the age1 : ");
+                    let condition1 = prompt("Write his condition1(e.g : bored) : ");
+                    let name2 = prompt("Enter the name2 : ");
+                    let age2 = prompt("Enter the age2 : ");
+                    let condition2 = prompt("Write his condition2(e.g : bored) : ");
+                    let person1 = createPerson(name1 , age1 , condition1);
+                    let person2 = createPerson(name2 , age2 , condition2);
+                    outputDiv.innerHTML = person1.greet() + " and " + person2.greet();
+                    break;
+
+            }
+        }
+
+    </script>   
+    <script src="sw.js"></script></body>
+</html>
