@@ -443,42 +443,77 @@
 // window.addEventListener("scroll", throttledScroll);
 
 
-//11
-function taskScheduler() {
-    let timers = [];
+// //11
+// function taskScheduler() {
+//     let timers = [];
 
-    function schedule(task, delay) {
-        const id = setTimeout(() => {
-            task();
+//     function schedule(task, delay) {
+//         const id = setTimeout(() => {
+//             task();
 
-            // удаляем выполненный таймер из массива
-            timers = timers.filter(timer => timer !== id);
-        }, delay);
+//             // удаляем выполненный таймер из массива
+//             timers = timers.filter(timer => timer !== id);
+//         }, delay);
 
-        timers.push(id);
-    }
+//         timers.push(id);
+//     }
 
-    function cancelAll() {
-        timers.forEach(id => clearTimeout(id));
-        timers = [];
-    }
+//     function cancelAll() {
+//         timers.forEach(id => clearTimeout(id));
+//         timers = [];
+//     }
 
-    return {
-        schedule,
-        cancelAll
-    };
-}
+//     return {
+//         schedule,
+//         cancelAll
+//     };
+// }
 
-const scheduler = taskScheduler();
+// const scheduler = taskScheduler();
 
-scheduler.schedule(() => {
-    console.log("Task 1");
-}, 1000);
+// scheduler.schedule(() => {
+//     console.log("Task 1");
+// }, 1000);
 
-scheduler.schedule(() => {
-    console.log("Task 2");
-}, 2000);
+// scheduler.schedule(() => {
+//     console.log("Task 2");
+// }, 2000);
 
-scheduler.schedule(() => {
-    console.log("Task 3");
-}, 3000);
+// scheduler.schedule(() => {
+//     console.log("Task 3");
+// }, 3000);
+
+
+// challange 12
+
+// function passwordChecker(password) {
+//     let hasNum = 0;
+//     let hasUpCase = 0;
+//     let hasSpChar = 0;
+//     let has8Chars = 0
+
+//     const specialChars = "!@#$%^&*()_+-=[]{}|;:'\",.<>?/";
+//     if (length(password) >= 8) has8Chars = 1
+//     for (let char of password) {
+//         if (char >= 'A' && char <= 'Z') hasUpCase = 1;
+//         if (char >= '0' && char <= '9') hasNum = 1;
+//         if (char in specialChars) hasSpChar = 1;
+//     }
+//     let st = has8Chars + hasNum + hasSpChar + hasUpCase
+//     if (st == 4) {
+//         console.log("strong password")
+//     }
+//     else if (st < 2) {
+//         console.log("weak password")
+//     }
+//     else {
+//         console.log("medium password")
+//     }
+// }
+
+// let input = prompt()
+// passwordChecker(input)
+
+
+
+
