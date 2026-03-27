@@ -1,0 +1,72 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: #f0f4f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.card {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    width: 450px;
+}
+
+h2 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 24px;
+}
+
+input {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+    transition: border-color 0.2s;
+    margin-bottom: 20px;
+}
+
+input:focus {
+    border-color: #3b82f6;
+}
+
+.badge {
+    display: inline-block;
+    padding: 6px 36px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 16px;
+    color: white;
+    transition: all 0.2s;
+    min-width: 100px;
+}
+
+.badge.hidden {
+    display: none;
+}
+
+.badge.weak {
+    background-color: #e74c3c;
+}
+
+.badge.medium {
+    background-color: #f39c12;
+}
+
+.badge.strong {
+    background-color: #27ae60;
+}
