@@ -10,7 +10,6 @@
 // const container = document.querySelector('div');
 // console.log(container);
 
-
 // const title = document. querySelector('#main-heading');
 // title.style.color = 'blue'; 
 // console.log(title);
