@@ -16,7 +16,7 @@ passwordInput.addEventListener("input", function () {
   if (/[0-9]/.test(password)) score++;
 
   
-  if (/[@$!%*?&]/.test(password)) score++;
+  if (/[@$!%*?_&]/.test(password)) score++;
 
   if (score <= 2) {
     strength = "Weak";
