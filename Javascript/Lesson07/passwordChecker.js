@@ -8,13 +8,16 @@ passwordInput.addEventListener("input", function() {
     if (password.length === 0) {
         strength = "";
         strengthText.className = "strength";
-    } else if (password.length < 6) {
+    } 
+    else if (password.length < 6) {
         strength = "Weak";
         strengthText.className = "strength weak";
-    } else if (password.length < 10) {
+    } 
+    else if (password.length < 10) {
         strength = "Medium";
         strengthText.className = "strength medium";
-    } else {
+    } 
+    else {
         strength = "Strong";
         strengthText.className = "strength strong";
     }
