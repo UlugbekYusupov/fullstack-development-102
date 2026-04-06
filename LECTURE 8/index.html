@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Password Strength Checker</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    text-align: center;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    padding: 40px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+h2 {
+    margin-bottom: 15px;
+}
+
+input {
+    width: 80%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 2px solid #ccc;
+    outline: none;
+}
+
+.strength {
+    margin-top: 15px;
+    padding: 8px 20px;
+    border-radius: 6px;
+    display: inline-block;
+    color: white;
+    font-weight: bold;
+}
+
+.weak { background: #e74c3c; }
+.medium { background: #f39c12; }
+.strong { background: #2ecc71; }
+</style>
+
+</head>
+<body>
+
+<h1>Practice - 2</h1>
+
+<div class="container">
+
+    <div class="card">
+        <h2>Password Strength Checker</h2>
+        <input type="password" placeholder="Enter password" oninput="checkPassword(this, this.nextElementSibling)">
+        <div class="strength"></div>
+    </div>
+
+    <div class="card">
+        <h2>Password Strength Checker</h2>
+        <input type="password" oninput="checkPassword(this, this.nextElementSibling)">
+        <div class="strength"></div>
+    </div>
+
+    <div class="card">
+        <h2>Password Strength Checker</h2>
+        <input type="password" oninput="checkPassword(this, this.nextElementSibling)">
+        <div class="strength"></div>
+    </div>
+
+    <div class="card">
+        <h2>Password Strength Checker</h2>
+        <input type="password" oninput="checkPassword(this, this.nextElementSibling)">
+        <div class="strength"></div>
+    </div>
+
+</div>
+
+<script>
+function checkPassword(input, display) {
+    let password = input.value;
+    let strength = 0;
+
+    if (password.length >= 6) strength++;
+    if (password.match(/[A-Z]/)) strength++;
+    if (password.match(/[0-9]/)) strength++;
+    if (password.match(/[@$!%*?&]/)) strength++;
+
+    display.className = "strength";
+
+    if (password.length === 0) {
+        display.innerHTML = "";
+        return;
+    }
+
+    if (strength <= 1) {
+        display.classList.add("weak");
+        display.innerHTML = "Weak";
+    } else if (strength === 2 || strength === 3) {
+        display.classList.add("medium");
+        display.innerHTML = "Medium";
+    } else {
+        display.classList.add("strong");
+        display.innerHTML = "Strong";
+    }
+}
+</script>
+
+</body>
+</html>
