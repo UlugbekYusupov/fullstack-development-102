@@ -27,7 +27,9 @@ function displayResult(result) {
     console.log("Result: " + result.product);
 }
 
+
 fetchData(displayResult);
+
 
 
 // 4. Handling "Callback Hell"
