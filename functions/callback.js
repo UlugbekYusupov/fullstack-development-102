@@ -28,6 +28,7 @@ function displayResult(result) {
 }
 
 
+
 fetchData(displayResult);
 
 
